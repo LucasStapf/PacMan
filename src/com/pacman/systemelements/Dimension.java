@@ -19,13 +19,13 @@ public class Dimension {
         return width;
     }
 
+    public float getHeight() {
+        return height;
+    }
+
     public void setWidth(float width) throws IllegalArgumentException {
         if (width < 0) throw new IllegalArgumentException("Width can not be a negative number");
         this.width = width;
-    }
-
-    public float getHeight() {
-        return height;
     }
 
     public void setHeight(float height) throws IllegalArgumentException {
