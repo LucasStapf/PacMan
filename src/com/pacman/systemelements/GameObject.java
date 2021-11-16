@@ -1,12 +1,15 @@
 package com.pacman.systemelements;
 
-public class GameObject extends SceneElement {
+public abstract class GameObject extends SceneElement {
 
     private HitBox hitBox = new HitBox();
     private GameObject collider;
     private Velocity velocity;
 
     private boolean rigidBody;
+
+    public abstract void update();
+    public abstract void onCollision();
 
     public HitBox getHitBox() {
         return hitBox;
