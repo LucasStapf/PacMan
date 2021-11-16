@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-public class Position {
+public final class Position {
 
     private float x;
     private float y;

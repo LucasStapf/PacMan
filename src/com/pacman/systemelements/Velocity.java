@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-public class Velocity {
+public final class Velocity {
 
     public enum Direction {
         UP,

@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-public class HitBox {
+public final class HitBox {
 
     private Dimension dimension;
     private Position position;

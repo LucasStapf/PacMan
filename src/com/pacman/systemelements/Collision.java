@@ -2,7 +2,7 @@ package com.pacman.systemelements;
 
 import java.util.Objects;
 
-public class Collision {
+public final class Collision {
 
     private GameObject collider1;
     private GameObject collider2;

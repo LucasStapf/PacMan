@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-public class Dimension {
+public final class Dimension {
 
     private float width;
     private float height;
