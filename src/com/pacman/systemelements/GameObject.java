@@ -3,7 +3,7 @@ package com.pacman.systemelements;
 public class GameObject extends SceneElement {
 
     private HitBox hitBox = new HitBox();
-    private Collision collision;
+    private GameObject collider;
     private Velocity velocity;
 
     private boolean rigidBody;
@@ -12,8 +12,8 @@ public class GameObject extends SceneElement {
         return hitBox;
     }
 
-    public Collision getCollision() {
-        return collision;
+    public GameObject getCollider() {
+        return collider;
     }
 
     public Velocity getVelocity() {
@@ -24,8 +24,8 @@ public class GameObject extends SceneElement {
         return rigidBody;
     }
 
-    public void setCollision(Collision collision) {
-        this.collision = collision;
+    public void setCollider(GameObject collider) {
+        this.collider = collider;
     }
 
     public void setVelocity(Velocity velocity) {
