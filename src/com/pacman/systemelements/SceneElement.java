@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-public class SceneElement {
+public class SceneElement implements Comparable{
 
     private Dimension dimension = new Dimension();
     private Position position = new Position();
@@ -31,5 +31,13 @@ public class SceneElement {
 
     public void setLayer(int layer) {
         this.layer = layer;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        SceneElement se = (SceneElement) o;
+        if (layer > se.layer) return 1;
+        else if (layer == se.layer) return 0;
+        else return -1;
     }
 }
