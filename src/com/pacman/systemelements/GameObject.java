@@ -6,7 +6,7 @@ public abstract class GameObject extends SceneElement {
 
     private HitBox hitBox = new HitBox(getDimension(), getPosition());
     private GameObject collider;
-    private Velocity velocity;
+    private Velocity velocity = new Velocity();
 
     private boolean rigidBody;
 
