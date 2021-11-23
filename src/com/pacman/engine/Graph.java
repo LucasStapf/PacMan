@@ -12,7 +12,7 @@ public class Graph {
         adjVertices = new HashMap<Vertex, LinkedList<Vertex>>();
     }
 
-    public void addVertice(Vertex vertex) {
+    public void addVertex(Vertex vertex) {
         adjVertices.put(vertex, new LinkedList<Vertex>());
     }
 
