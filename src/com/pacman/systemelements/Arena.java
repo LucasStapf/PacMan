@@ -1,5 +1,7 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.Graph;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +14,7 @@ public class Arena {
 
     private ArrayList<ArrayList<LinkedList<SceneElement>>> arena;
     private ArrayList<GameObject> gameObjects;
+    private Graph graph = new Graph();
 
     public Arena(String fileName) {
         arena = new ArrayList<>();
@@ -46,19 +49,20 @@ public class Arena {
 
                         case '+':
                             arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.CORNER));
+                            break;
 
                         case '-':
                             arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.HORIZONTAL));
+                            break;
 
                         case '|':
                             arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.VERTICAL));
-
-                        case ':':
-                            arena.get(i).get(j).add(null);
                             break;
 
                         default:
                             arena.get(i).get(j).add(new Floor(new Position(i, j)));
+                            graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
+                            updateEdgesArena(i, j);
                             break;
                     }
 
@@ -75,6 +79,32 @@ public class Arena {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void updateEdgesArena(int i, int j) {
+
+        SceneElement se = arena.get(i).get(j).getFirst();
+
+        if (se instanceof Floor) {
+
+            if (i > 1) {
+
+                SceneElement seAux = arena.get(i - 1).get(j).getFirst();
+
+                if (seAux instanceof Floor) {
+                    graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
+                }
+            }
+
+            if (j > 1) {
+
+                SceneElement seAux = arena.get(i).get(j - 1).getFirst();
+
+                if (seAux instanceof Floor) {
+                    graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
+                }
+            }
         }
     }
 }
