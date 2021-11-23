@@ -26,6 +26,14 @@ public class Arena {
         return arena;
     }
 
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
+    public Graph getGraph() {
+        return graph;
+    }
+
     public void loadArena(String fileName) {
 
         arena.clear();
@@ -45,6 +53,7 @@ public class Arena {
                 for (j = 0; j < line.length(); j++) {
 
                     arena.get(i).add(new LinkedList<>());
+
                     switch (line.charAt(j)) {
 
                         case '+':
@@ -59,14 +68,37 @@ public class Arena {
                             arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.VERTICAL));
                             break;
 
+                        case 'P':
+                            arena.get(i).get(j).add(new Floor(new Position(i, j)));
+                            graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
+
+
+                            PacMan pacMan = new PacMan(new Position(i, j));
+                            arena.get(i).get(j).add(pacMan);
+                            gameObjects.add(pacMan);
+
+                            break;
+
+                        case 'G':
+                            arena.get(i).get(j).add(new Floor(new Position(i, j)));
+                            graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
+
+
+                            Ghost ghost = new Ghost(new Position(i, j));
+                            arena.get(i).get(j).add(ghost);
+                            gameObjects.add(ghost);
+
+                            break;
+
                         default:
                             arena.get(i).get(j).add(new Floor(new Position(i, j)));
                             graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
-                            updateEdgesArena(i, j);
+
                             break;
                     }
 
                     Collections.sort(arena.get(i).get(j));
+                    updateEdgesArena(i, j);
                 }
 
                 line = br.readLine();
@@ -88,7 +120,7 @@ public class Arena {
 
         if (se instanceof Floor) {
 
-            if (i > 1) {
+            if (i >= 1) {
 
                 SceneElement seAux = arena.get(i - 1).get(j).getFirst();
 
@@ -97,7 +129,7 @@ public class Arena {
                 }
             }
 
-            if (j > 1) {
+            if (j >= 1) {
 
                 SceneElement seAux = arena.get(i).get(j - 1).getFirst();
 
