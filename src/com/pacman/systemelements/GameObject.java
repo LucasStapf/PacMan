@@ -1,12 +1,9 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.Time;
-
 public abstract class GameObject extends SceneElement {
 
     private HitBox hitBox = new HitBox(getDimension(), getPosition());
     private GameObject collider;
-    private Velocity velocity = new Velocity();
 
     private boolean rigidBody;
 
@@ -21,10 +18,6 @@ public abstract class GameObject extends SceneElement {
         return collider;
     }
 
-    public Velocity getVelocity() {
-        return velocity;
-    }
-
     public boolean isRigidBody() {
         return rigidBody;
     }
@@ -33,43 +26,8 @@ public abstract class GameObject extends SceneElement {
         this.collider = collider;
     }
 
-    public void setVelocity(Velocity velocity) {
-        this.velocity = velocity;
-    }
-
     public void setRigidBody(boolean rigidBody) {
         this.rigidBody = rigidBody;
-    }
-
-    public void translate(float time) {
-
-        float x = getPosition().getX();
-        float y = getPosition().getY();
-
-        switch (velocity.getDirection()) {
-
-            case UP:
-                y += velocity.getModulus() * time;
-                getPosition().setY(y);
-                break;
-
-            case DOWN:
-                y -= velocity.getModulus() * time;
-                getPosition().setY(y);
-                break;
-
-            case LEFT:
-                x -= velocity.getModulus() * time;
-                getPosition().setX(x);
-                break;
-
-            case RIGHT:
-                x += velocity.getModulus() * time;
-                getPosition().setX(x);
-                break;
-        }
-
-        getHitBox().setPosition(getPosition());
     }
 
     public boolean isOnFloor(Floor floor) {
