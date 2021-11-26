@@ -1,5 +1,6 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.Vertex;
 import java.util.LinkedList;
 
 public final class Ghost extends GameObject {
@@ -12,15 +13,27 @@ public final class Ghost extends GameObject {
 
     private Movement movement = Movement.RANDOM;
 
+    private LinkedList<Vertex<Floor>> path = new LinkedList<>();
+
     public Ghost() {
         setLayer(3);
         setRigidBody(true);
+        getVelocity().setModulus(1);
     }
 
     public Ghost(Position position) {
         setLayer(3);
         setRigidBody(true);
         setPosition(position);
+        getVelocity().setModulus(1);
+    }
+
+    public void setPath(LinkedList<Vertex<Floor>> path) {
+        this.path = path;
+    }
+
+    public void setMovement(Movement movement) {
+        this.movement = movement;
     }
 
     @Override
@@ -32,6 +45,7 @@ public final class Ghost extends GameObject {
                 break;
 
             case FOLLOW_PACMAN:
+                followPath();
                 break;
 
             case RUN_AWAY_PACMAN:
@@ -44,14 +58,21 @@ public final class Ghost extends GameObject {
 
     }
 
-    private void followPath(LinkedList<Floor> path) {
+    @Override
+    public void print() {
+        System.out.print("G");
+    }
 
-        if (isCenteredOnFloor(path.getFirst())) {
+    private void followPath() {
+
+        if (path.isEmpty()) return;
+
+        if (isCenteredOnFloor(path.getFirst().getT())) {
 
             path.removeFirst();
 
-            float deltaX = path.getFirst().getPosition().getX() - getPosition().getX();
-            float deltaY = path.getFirst().getPosition().getY() - getPosition().getY();
+            float deltaX = path.getFirst().getT().getPosition().getX() - getPosition().getX();
+            float deltaY = path.getFirst().getT().getPosition().getY() - getPosition().getY();
 
             if (deltaX > 0) getVelocity().setDirection(Velocity.Direction.RIGHT);
             else if (deltaX < 0) getVelocity().setDirection(Velocity.Direction.LEFT);
@@ -59,6 +80,6 @@ public final class Ghost extends GameObject {
             else if (deltaY < 0) getVelocity().setDirection(Velocity.Direction.DOWN);
         }
 
-        translate();
+        translate(1);
     }
 }

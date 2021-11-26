@@ -22,4 +22,9 @@ public class PacMan extends GameObject {
     public void onCollision() {
 
     }
+
+    @Override
+    public void print() {
+        System.out.print("P");
+    }
 }

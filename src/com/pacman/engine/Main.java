@@ -18,7 +18,7 @@ public class Main {
         PacMan pacMan = null;
         Ghost ghost = null;
 
-        Iterator i = arena.getGameObjects().iterator();
+        Iterator i = arena.getGameObjects().keySet().iterator();
 
         while (i.hasNext() && pacMan == null || ghost == null) {
 
@@ -53,5 +53,22 @@ public class Main {
         System.out.println();
 
         Print.printArena(arena);
+
+        int count = 0;
+
+        ghost.setMovement(Ghost.Movement.FOLLOW_PACMAN);
+        ghost.setPath(path);
+
+        while (count < 200) {
+
+            try {
+                Thread.sleep(1000);
+                arena.updateArena();
+                Print.printArena(arena);
+                count++;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

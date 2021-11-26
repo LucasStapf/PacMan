@@ -6,19 +6,17 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Arena {
 
     private ArrayList<ArrayList<LinkedList<SceneElement>>> arena;
-    private ArrayList<GameObject> gameObjects;
+    private HashMap<GameObject, Floor> gameObjects;
     private Graph graph = new Graph();
 
     public Arena(String fileName) {
         arena = new ArrayList<>();
-        gameObjects = new ArrayList<>();
+        gameObjects = new HashMap<>();
         loadArena(fileName);
     }
 
@@ -26,7 +24,7 @@ public class Arena {
         return arena;
     }
 
-    public ArrayList<GameObject> getGameObjects() {
+    public HashMap<GameObject, Floor> getGameObjects() {
         return gameObjects;
     }
 
@@ -69,31 +67,28 @@ public class Arena {
                             break;
 
                         case 'P':
-                            arena.get(i).get(j).add(new Floor(new Position(i, j)));
-                            graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
-
+                            Floor fPac = new Floor(new Position(i, j));
+                            arena.get(i).get(j).add(fPac);
+                            graph.addVertex(fPac.getVertex());
 
                             PacMan pacMan = new PacMan(new Position(i, j));
                             arena.get(i).get(j).add(pacMan);
-                            gameObjects.add(pacMan);
-
+                            gameObjects.put(pacMan, fPac);
                             break;
 
                         case 'G':
-                            arena.get(i).get(j).add(new Floor(new Position(i, j)));
-                            graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
-
+                            Floor fGhost = new Floor(new Position(i, j));
+                            arena.get(i).get(j).add(fGhost);
+                            graph.addVertex(fGhost.getVertex());
 
                             Ghost ghost = new Ghost(new Position(i, j));
                             arena.get(i).get(j).add(ghost);
-                            gameObjects.add(ghost);
-
+                            gameObjects.put(ghost, fGhost);
                             break;
 
                         default:
                             arena.get(i).get(j).add(new Floor(new Position(i, j)));
                             graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
-
                             break;
                     }
 
@@ -136,6 +131,31 @@ public class Arena {
                 if (seAux instanceof Floor) {
                     graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
                 }
+            }
+        }
+    }
+
+    public void updateArena() {
+
+        Iterator iterator = gameObjects.keySet().iterator();
+
+        while (iterator.hasNext()) {
+
+            GameObject go = (GameObject) iterator.next();
+            go.update();
+
+            int x = Math.round(go.getPosition().getX());
+            int y = Math.round(go.getPosition().getY());
+
+            Floor f = (Floor) arena.get(x).get(y).getFirst();
+            Floor fGameObject = gameObjects.get(go);
+            fGameObject.highlighted = false;
+
+            if (!f.equals(fGameObject)) {
+                arena.get((int) fGameObject.getPosition().getX()).get((int) fGameObject.getPosition().getY()).remove(go);
+                arena.get(x).get(y).add(go);
+                gameObjects.replace(go, f);
+                Collections.sort(arena.get(x).get(y));
             }
         }
     }

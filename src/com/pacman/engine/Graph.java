@@ -20,7 +20,7 @@ public class Graph {
         return adjVertices;
     }
 
-    public void removeVertice(Vertex vertex) {
+    public void removeVertex(Vertex vertex) {
         adjVertices.remove(vertex);
     }
 

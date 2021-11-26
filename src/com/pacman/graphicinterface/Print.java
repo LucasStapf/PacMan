@@ -1,45 +1,43 @@
 package com.pacman.graphicinterface;
 
-import com.pacman.systemelements.Arena;
-import com.pacman.systemelements.Floor;
-import com.pacman.systemelements.SceneElement;
-import com.pacman.systemelements.Wall;
+import com.pacman.systemelements.*;
+
+import java.util.Iterator;
+
+// classe temporaria
 
 public class Print {
 
     public static void printArena(Arena arena){
 
+        PacMan pacMan = null;
+        Iterator iterator = arena.getGameObjects().keySet().iterator();
+
+        while (iterator.hasNext() && pacMan == null) {
+            GameObject gameObject = (GameObject) iterator.next();
+            if (gameObject instanceof PacMan) pacMan = (PacMan) gameObject;
+        }
+
         for (int i = 0; i < arena.getArena().size(); i++) {
-
             for (int j = 0; j < arena.getArena().get(i).size(); j++) {
-
-                if (arena.getArena().get(i).get(j) == null) {
-                    System.out.println(":");
-                    continue;
-                }
-
                 SceneElement se = arena.getArena().get(i).get(j).getLast();
+                se.print();
+                System.out.print(" ");
+            }
 
-                if (arena.getArena().get(i).get(j).getLast() instanceof Wall) {
+            if (i == 10) {
+                System.out.print("\t");
+                System.out.print("Pac-Man: ");
+            }
 
-                    switch (((Wall) se).orientation) {
+            if (i == 11) {
+                System.out.print("\t");
+                System.out.print(pacMan.getPosition());
+            }
 
-                        case HORIZONTAL:
-                            System.out.print('-');
-                            break;
-
-                        case VERTICAL:
-                            System.out.print('|');
-                            break;
-
-                        case CORNER:
-                            System.out.print('+');
-                            break;
-                    }
-                } else if (arena.getArena().get(i).get(j).getLast() instanceof Floor) {
-                    if (((Floor) se).highlighted) System.out.print('@');
-                    else System.out.print(' ');
-                }
+            if (i == 12) {
+                System.out.print("\t");
+                System.out.print(pacMan.getVelocity());
             }
 
             System.out.println();

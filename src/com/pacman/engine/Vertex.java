@@ -11,4 +11,11 @@ public class Vertex<T> {
     public T getT() {
         return t;
     }
+
+    @Override
+    public String toString() {
+        return "Vertex{" +
+                "t=" + t +
+                '}';
+    }
 }
