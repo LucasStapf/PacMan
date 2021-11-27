@@ -11,12 +11,13 @@ import java.util.*;
 public class Arena {
 
     private ArrayList<ArrayList<LinkedList<SceneElement>>> arena;
-    private HashMap<GameObject, Floor> gameObjects;
+    private LinkedList<GameObject> gameObjects;
+    private HashMap<GameObject, Floor> hashGameObjects;
     private Graph graph = new Graph();
 
     public Arena(String fileName) {
         arena = new ArrayList<>();
-        gameObjects = new HashMap<>();
+        hashGameObjects = new HashMap<>();
         loadArena(fileName);
     }
 
@@ -24,18 +25,22 @@ public class Arena {
         return arena;
     }
 
-    public HashMap<GameObject, Floor> getGameObjects() {
-        return gameObjects;
+    public HashMap<GameObject, Floor> getHashGameObjects() {
+        return hashGameObjects;
     }
 
     public Graph getGraph() {
         return graph;
     }
 
+    public LinkedList<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
     public void loadArena(String fileName) {
 
         arena.clear();
-        gameObjects.clear();
+        hashGameObjects.clear();
 
         try {
 
@@ -69,6 +74,38 @@ public class Arena {
                             arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.VERTICAL));
                             break;
 
+                        case '.':
+                            Floor fPacDot = new Floor(new Position(x, y));
+                            arena.get(i).get(j).add(fPacDot);
+                            graph.addVertex(fPacDot.getVertex());
+
+                            PacDot pacDot = new PacDot(new Position(x, y));
+                            pacDot.setDimension(new Dimension(0.5f,0.5f));
+                            arena.get(i).get(j).add(pacDot);
+                            hashGameObjects.put(pacDot, fPacDot);
+                            break;
+
+                        case 'E':
+                            Floor fEnergyPill = new Floor(new Position(x, y));
+                            arena.get(i).get(j).add(fEnergyPill);
+                            graph.addVertex(fEnergyPill.getVertex());
+
+                            EnergyPill energyPill = new EnergyPill(new Position(x, y));
+                            energyPill.setDimension(new Dimension(0.5f,0.5f));
+                            arena.get(i).get(j).add(energyPill);
+                            hashGameObjects.put(energyPill, fEnergyPill);
+                            break;
+
+                        case 'F':
+                            Floor fFruit = new Floor(new Position(x, y));
+                            arena.get(i).get(j).add(fFruit);
+                            graph.addVertex(fFruit.getVertex());
+
+                            Fruit fruit = new Fruit(new Position(x, y));
+                            fruit.setDimension(new Dimension(0.5f,0.5f));
+                            arena.get(i).get(j).add(fruit);
+                            hashGameObjects.put(fruit, fFruit);
+
                         case 'P':
                             Floor fPac = new Floor(new Position(x, y));
                             arena.get(i).get(j).add(fPac);
@@ -76,7 +113,7 @@ public class Arena {
 
                             PacMan pacMan = new PacMan(new Position(x, y));
                             arena.get(i).get(j).add(pacMan);
-                            gameObjects.put(pacMan, fPac);
+                            hashGameObjects.put(pacMan, fPac);
                             break;
 
                         case 'G':
@@ -86,7 +123,7 @@ public class Arena {
 
                             Ghost ghost = new Ghost(new Position(x, y));
                             arena.get(i).get(j).add(ghost);
-                            gameObjects.put(ghost, fGhost);
+                            hashGameObjects.put(ghost, fGhost);
                             break;
 
                         default:
@@ -140,7 +177,7 @@ public class Arena {
 
     public void updateArena() {
 
-        Iterator iterator = gameObjects.keySet().iterator();
+        Iterator iterator = hashGameObjects.keySet().iterator();
 
         while (iterator.hasNext()) {
 
@@ -154,7 +191,7 @@ public class Arena {
             int j = Math.round((x / 2.0f) - (1 / 2.0f));
 
             Floor f = (Floor) arena.get(i).get(j).getFirst();
-            Floor fGameObject = gameObjects.get(go);
+            Floor fGameObject = hashGameObjects.get(go);
             fGameObject.highlighted = false;
 
             if (!f.equals(fGameObject)) {
@@ -164,7 +201,7 @@ public class Arena {
 
                 arena.get(iF).get(jF).remove(go);
                 arena.get(i).get(j).add(go);
-                gameObjects.replace(go, f);
+                hashGameObjects.replace(go, f);
                 Collections.sort(arena.get(i).get(j));
             }
         }

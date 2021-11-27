@@ -8,9 +8,14 @@ import java.util.LinkedList;
 public class CollisionManager {
 
     private Arena arena;
+    private LinkedList<GameObject> gameObjects;
     private LinkedList<GameObject> staticGameObjects;
     private LinkedList<DynamicGameObject> dynamicGameObjects;
     private LinkedList<Collision> collisions;
+
+    public CollisionManager(LinkedList<GameObject> gameObjects) {
+        this.gameObjects = gameObjects;
+    }
 
     public CollisionManager(Arena arena) throws NullPointerException {
 
@@ -26,7 +31,7 @@ public class CollisionManager {
 
     private void updateGameObjectLists() {
 
-        Iterator<GameObject> iterator = arena.getGameObjects().keySet().iterator();
+        Iterator<GameObject> iterator = arena.getHashGameObjects().keySet().iterator();
         while (iterator.hasNext()) {
             GameObject gameObject = iterator.next();
             if (gameObject instanceof DynamicGameObject) dynamicGameObjects.add((DynamicGameObject) gameObject);

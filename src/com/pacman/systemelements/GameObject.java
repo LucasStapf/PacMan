@@ -1,5 +1,7 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.GameManager;
+
 public abstract class GameObject extends SceneElement {
 
     private final HitBox hitBox = new HitBox(getDimension(), getPosition());
@@ -28,6 +30,10 @@ public abstract class GameObject extends SceneElement {
 
     public void setRigidBody(boolean rigidBody) {
         this.rigidBody = rigidBody;
+    }
+
+    public final void destroy() {
+        GameManager.destroyGameObject(this);
     }
 
     public boolean isOnFloor(Floor floor) {

@@ -10,12 +10,12 @@ public class Print {
 
     public static void printArena(Arena arena){
 
-        PacMan pacMan = null;
-        Iterator iterator = arena.getGameObjects().keySet().iterator();
+        Ghost ghost = null;
+        Iterator iterator = arena.getHashGameObjects().keySet().iterator();
 
-        while (iterator.hasNext() && pacMan == null) {
+        while (iterator.hasNext() && ghost == null) {
             GameObject gameObject = (GameObject) iterator.next();
-            if (gameObject instanceof PacMan) pacMan = (PacMan) gameObject;
+            if (gameObject instanceof Ghost) ghost = (Ghost) gameObject;
         }
 
         for (int i = 0; i < arena.getArena().size(); i++) {
@@ -27,23 +27,23 @@ public class Print {
 
             if (i == 10) {
                 System.out.print("\t");
-                System.out.print("Pac-Man: ");
+                System.out.print("Ghost: ");
             }
 
             if (i == 11) {
                 System.out.print("\t");
-                System.out.print(pacMan.getPosition());
+                System.out.print(ghost.getPosition());
             }
 
             if (i == 12) {
                 System.out.print("\t");
-                System.out.print(pacMan.getVelocity());
+                System.out.print(ghost.getVelocity());
             }
 
-            if (i == 13) {
-                System.out.print("\t");
-                System.out.print("Total Points: ");
-            }
+//            if (i == 13) {
+//                System.out.print("\t");
+//                System.out.print("Total Points: ");
+//            }
 
             System.out.println();
         }

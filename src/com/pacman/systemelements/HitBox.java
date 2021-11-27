@@ -52,15 +52,15 @@ public final class HitBox {
         updateProjections();
     }
 
-    public void setWidth(float width) throws IllegalArgumentException {
-        this.dimension.setWidth(width);
-        updateProjections();
-    }
-
-    public void setHeight(float height) throws IllegalArgumentException {
-        this.dimension.setHeight(height);
-        updateProjections();
-    }
+//    public void setWidth(float width) throws IllegalArgumentException {
+//        this.dimension.setWidth(width);
+//        updateProjections();
+//    }
+//
+//    public void setHeight(float height) throws IllegalArgumentException {
+//        this.dimension.setHeight(height);
+//        updateProjections();
+//    }
 
 //    public void setX(float x) {
 //        this.position.setX(x);
@@ -81,10 +81,10 @@ public final class HitBox {
         this.projectionY[1] = position.getY() + dimension.getHeight() / 2;
     }
 
-    public void updateDimension(float width, float height) throws IllegalArgumentException {
-        setWidth(width);
-        setHeight(height);
-    }
+    //    public void updateDimension(float width, float height) throws IllegalArgumentException {
+    //        setWidth(width);
+    //        setHeight(height);
+    //    }
 
 //    public void updatePosition(float x, float y) {
 //        setX(x);

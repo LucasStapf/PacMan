@@ -2,3 +2,4 @@
 *.xml
 *.iml
 *.class
+out/production/PacMan/com/pacman/systemelements/Arena.txt
