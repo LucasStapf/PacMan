@@ -57,4 +57,10 @@ public abstract class GameObject extends SceneElement {
         super.setPosition(position);
         getHitBox().setPosition(position);
     }
+
+    @Override
+    public void setDimension(Dimension dimension) throws NullPointerException {
+        super.setDimension(dimension);
+        getHitBox().setDimension(dimension);
+    }
 }
