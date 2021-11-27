@@ -15,7 +15,7 @@ public class Main {
         Arena arena = new Arena("src/com/pacman/systemelements/Arena.txt");
         CollisionManager collisionManager = new CollisionManager(arena);
 
-        Print.printArena(arena);
+//        Print.printArena(arena);
 
         PacMan pacMan = null;
         Ghost ghost = null;
@@ -30,17 +30,21 @@ public class Main {
         }
 
         Floor fPacMan, fGhost;
-        int xPac, yPac, xGhost, yGhost;
+        int iPac, jPac, iGhost, jGhost;
 
-        xPac = (int) pacMan.getPosition().getX();
-        yPac = (int) pacMan.getPosition().getY();
-        fPacMan = (Floor) arena.getArena().get(xPac).get(yPac).getFirst();
+        iPac = Math.round(pacMan.getPosition().getY() / 2.0f - 1 / 2.0f);
+        jPac = Math.round(pacMan.getPosition().getX() / 2.0f - 1 / 2.0f);
 
-        xGhost = (int) ghost.getPosition().getX();
-        yGhost = (int) ghost.getPosition().getY();
-        fGhost = (Floor) arena.getArena().get(xGhost).get(yGhost).getFirst();
+        System.out.println(pacMan.getPosition().getX() + " " + pacMan.getPosition().getY());
+        System.out.println(iPac + " " + jPac);
 
-        System.out.println(arena.getGraph().getAdjVertices().get(fGhost.getVertex()));
+        fPacMan = (Floor) arena.getArena().get(iPac).get(jPac).getFirst();
+
+        iGhost = Math.round(ghost.getPosition().getY() / 2.0f - 1 / 2.0f);
+        jGhost = Math.round(ghost.getPosition().getX() / 2.0f - 1 / 2.0f);
+        fGhost = (Floor) arena.getArena().get(iGhost).get(jGhost).getFirst();
+
+//        System.out.println(arena.getGraph().getAdjVertices().get(fGhost.getVertex()));
 
         DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm(arena.getGraph(), fGhost.getVertex());
         LinkedList<Vertex<Floor>> path = dijkstraAlgorithm.getShortestPath(fPacMan.getVertex());
@@ -60,6 +64,7 @@ public class Main {
 
         ghost.setMovement(Ghost.Movement.FOLLOW_PACMAN);
         ghost.setPath(path);
+        ghost.getVelocity().setModulus(2);
 
         while (count < 200) {
 
