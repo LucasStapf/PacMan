@@ -2,6 +2,9 @@ package com.pacman.systemelements;
 
 public class PacMan extends DynamicGameObject {
 
+    private int life;
+    private int totalPoints;
+
     public PacMan() {
         setLayer(2);
         setRigidBody(true);
