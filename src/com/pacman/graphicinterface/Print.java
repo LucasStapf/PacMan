@@ -40,6 +40,11 @@ public class Print {
                 System.out.print(pacMan.getVelocity());
             }
 
+            if (i == 13) {
+                System.out.print("\t");
+                System.out.print("Total Points: ");
+            }
+
             System.out.println();
         }
     }

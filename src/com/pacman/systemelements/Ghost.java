@@ -3,7 +3,7 @@ package com.pacman.systemelements;
 import com.pacman.engine.Vertex;
 import java.util.LinkedList;
 
-public final class Ghost extends GameObject {
+public final class Ghost extends DynamicGameObject {
 
     public enum Movement {
         FOLLOW_PACMAN,
@@ -70,6 +70,7 @@ public final class Ghost extends GameObject {
         if (isCenteredOnFloor(path.getFirst().getT())) {
 
             path.removeFirst();
+            if (path.isEmpty()) return;
 
             float deltaX = path.getFirst().getT().getPosition().getX() - getPosition().getX();
             float deltaY = path.getFirst().getT().getPosition().getY() - getPosition().getY();
@@ -78,6 +79,7 @@ public final class Ghost extends GameObject {
             else if (deltaX < 0) getVelocity().setDirection(Velocity.Direction.LEFT);
             else if (deltaY > 0) getVelocity().setDirection(Velocity.Direction.UP);
             else if (deltaY < 0) getVelocity().setDirection(Velocity.Direction.DOWN);
+
         }
 
         translate(1);

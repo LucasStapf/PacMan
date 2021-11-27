@@ -1,6 +1,9 @@
 package com.pacman.systemelements;
 
-public class PacMan extends GameObject {
+public class PacMan extends DynamicGameObject {
+
+    private int life;
+    private int totalPoints;
 
     public PacMan() {
         setLayer(2);
@@ -20,7 +23,7 @@ public class PacMan extends GameObject {
 
     @Override
     public void onCollision() {
-
+        System.out.println("Collision! Collider is: " + getCollider());
     }
 
     @Override

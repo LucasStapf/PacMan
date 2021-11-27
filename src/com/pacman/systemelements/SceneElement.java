@@ -2,7 +2,7 @@ package com.pacman.systemelements;
 
 public abstract class SceneElement implements Comparable {
 
-    private Dimension dimension = new Dimension();
+    private Dimension dimension = new Dimension(1,1);
     private Position position = new Position();
 
     private int layer = 0;

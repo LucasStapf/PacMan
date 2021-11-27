@@ -5,14 +5,14 @@ public final class HitBox {
     private Dimension dimension;
     private Position position;
 
-    private float[] projectionX = new float[2];
-    private float[] projectionY = new float[2];
+    private final float[] projectionX = new float[2];
+    private final float[] projectionY = new float[2];
 
-    public HitBox() {
-        this.position = new Position();
-        this.dimension = new Dimension();
-        updateProjections();
-    }
+//    public HitBox() {
+//        this.position = new Position();
+//        this.dimension = new Dimension();
+//        updateProjections();
+//    }
 
     public HitBox(Dimension dimension, Position position) {
         this.position = position;
@@ -20,11 +20,11 @@ public final class HitBox {
         updateProjections();
     }
 
-    public HitBox(float width, float height, float x, float y) {
-        this.position = new Position(x, y);
-        this.dimension = new Dimension(width, height);
-        updateProjections();
-    }
+//    public HitBox(float width, float height, float x, float y) {
+//        this.position = new Position(x, y);
+//        this.dimension = new Dimension(width, height);
+//        updateProjections();
+//    }
 
     public float getWidth() {
         return this.dimension.getWidth();
@@ -34,13 +34,13 @@ public final class HitBox {
         return this.dimension.getHeight();
     }
 
-    public float getX() {
-        return this.position.getX();
-    }
-
-    public float getY() {
-        return this.position.getY();
-    }
+//    public float getX() {
+//        return this.position.getX();
+//    }
+//
+//    public float getY() {
+//        return this.position.getY();
+//    }
 
     public void setDimension(Dimension dimension) {
         this.dimension = dimension;
@@ -62,17 +62,17 @@ public final class HitBox {
         updateProjections();
     }
 
-    public void setX(float x) {
-        this.position.setX(x);
-        updateProjections();
-    }
+//    public void setX(float x) {
+//        this.position.setX(x);
+//        updateProjections();
+//    }
+//
+//    public void setY(float y) {
+//        this.position.setY(y);
+//        updateProjections();
+//    }
 
-    public void setY(float y) {
-        this.position.setY(y);
-        updateProjections();
-    }
-
-    private void updateProjections() {
+    public void updateProjections() {
 
         this.projectionX[0] = position.getX() - dimension.getWidth() / 2;
         this.projectionX[1] = position.getX() + dimension.getWidth() / 2;
@@ -86,10 +86,10 @@ public final class HitBox {
         setHeight(height);
     }
 
-    public void updatePosition(float x, float y) {
-        setX(x);
-        setY(y);
-    }
+//    public void updatePosition(float x, float y) {
+//        setX(x);
+//        setY(y);
+//    }
 
     public boolean hasIntersection(HitBox hitBox) {
 
