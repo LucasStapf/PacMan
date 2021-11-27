@@ -52,42 +52,45 @@ public class Arena {
 
                     arena.get(i).add(new LinkedList<>());
 
+                    float x = (2 / 2) + (j * 2);
+                    float y = (2 / 2) + (i * 2);
+
                     switch (line.charAt(j)) {
 
                         case '+':
-                            arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.CORNER));
+                            arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.CORNER));
                             break;
 
                         case '-':
-                            arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.HORIZONTAL));
+                            arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.HORIZONTAL));
                             break;
 
                         case '|':
-                            arena.get(i).get(j).add(new Wall(new Position(i, j), Wall.Orientation.VERTICAL));
+                            arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.VERTICAL));
                             break;
 
                         case 'P':
-                            Floor fPac = new Floor(new Position(i, j));
+                            Floor fPac = new Floor(new Position(x, y));
                             arena.get(i).get(j).add(fPac);
                             graph.addVertex(fPac.getVertex());
 
-                            PacMan pacMan = new PacMan(new Position(i, j));
+                            PacMan pacMan = new PacMan(new Position(x, y));
                             arena.get(i).get(j).add(pacMan);
                             gameObjects.put(pacMan, fPac);
                             break;
 
                         case 'G':
-                            Floor fGhost = new Floor(new Position(i, j));
+                            Floor fGhost = new Floor(new Position(x, y));
                             arena.get(i).get(j).add(fGhost);
                             graph.addVertex(fGhost.getVertex());
 
-                            Ghost ghost = new Ghost(new Position(i, j));
+                            Ghost ghost = new Ghost(new Position(x, y));
                             arena.get(i).get(j).add(ghost);
                             gameObjects.put(ghost, fGhost);
                             break;
 
                         default:
-                            arena.get(i).get(j).add(new Floor(new Position(i, j)));
+                            arena.get(i).get(j).add(new Floor(new Position(x, y)));
                             graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
                             break;
                     }
@@ -144,18 +147,25 @@ public class Arena {
             GameObject go = (GameObject) iterator.next();
             go.update();
 
-            int x = Math.round(go.getPosition().getX());
-            int y = Math.round(go.getPosition().getY());
+            float x = go.getPosition().getX();
+            float y = go.getPosition().getY();
 
-            Floor f = (Floor) arena.get(x).get(y).getFirst();
+            int i = Math.round((y / 2.0f) - (1 / 2.0f));
+            int j = Math.round((x / 2.0f) - (1 / 2.0f));
+
+            Floor f = (Floor) arena.get(i).get(j).getFirst();
             Floor fGameObject = gameObjects.get(go);
             fGameObject.highlighted = false;
 
             if (!f.equals(fGameObject)) {
-                arena.get((int) fGameObject.getPosition().getX()).get((int) fGameObject.getPosition().getY()).remove(go);
-                arena.get(x).get(y).add(go);
+
+                int iF = Math.round(fGameObject.getPosition().getY() / 2.0f - 1 / 2.0f);
+                int jF = Math.round(fGameObject.getPosition().getX() / 2.0f - 1 / 2.0f);
+
+                arena.get(iF).get(jF).remove(go);
+                arena.get(i).get(j).add(go);
                 gameObjects.replace(go, f);
-                Collections.sort(arena.get(x).get(y));
+                Collections.sort(arena.get(i).get(j));
             }
         }
     }
