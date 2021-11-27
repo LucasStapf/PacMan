@@ -2,7 +2,7 @@ package com.pacman.systemelements;
 
 public abstract class GameObject extends SceneElement {
 
-    private HitBox hitBox = new HitBox(getDimension(), getPosition());
+    private final HitBox hitBox = new HitBox(getDimension(), getPosition());
     private GameObject collider;
 
     private boolean rigidBody;
@@ -55,6 +55,6 @@ public abstract class GameObject extends SceneElement {
     @Override
     public void setPosition(Position position) throws NullPointerException {
         super.setPosition(position);
-        getHitBox().setPosition(getPosition());
+        getHitBox().setPosition(position);
     }
 }
