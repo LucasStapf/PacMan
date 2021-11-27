@@ -13,6 +13,8 @@ public class Main {
     public static void main(String[] args) {
 
         Arena arena = new Arena("src/com/pacman/systemelements/Arena.txt");
+        CollisionManager collisionManager = new CollisionManager(arena);
+
         Print.printArena(arena);
 
         PacMan pacMan = null;
@@ -64,6 +66,7 @@ public class Main {
             try {
                 Thread.sleep(1000);
                 arena.updateArena();
+                collisionManager.handleCollisions();
                 Print.printArena(arena);
                 count++;
             } catch (InterruptedException e) {
