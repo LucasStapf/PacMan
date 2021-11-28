@@ -5,59 +5,53 @@ import com.pacman.systemelements.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * Classe responsável por gerenciar todas as colisões da arena do jogo.
+ */
 public class CollisionManager {
 
-    private Arena arena;
-    private LinkedList<GameObject> gameObjects;
-    private LinkedList<GameObject> staticGameObjects;
-    private LinkedList<DynamicGameObject> dynamicGameObjects;
+    /**
+     * Atributo que armazena todas as colisões ocorridas e não tratadas do jogo.
+     */
     private LinkedList<Collision> collisions;
 
-    public CollisionManager(LinkedList<GameObject> gameObjects) {
-        this.gameObjects = gameObjects;
-    }
-
-    public CollisionManager(Arena arena) throws NullPointerException {
-
-        if (arena == null) throw new NullPointerException("Arena cant be null!");
-        else this.arena = arena;
-
+    /**
+     * Construtor padrão.
+     */
+    public CollisionManager() {
         collisions = new LinkedList<>();
-        dynamicGameObjects = new LinkedList<>();
-        staticGameObjects = new LinkedList<>();
-
-        updateGameObjectLists();
     }
 
-    private void updateGameObjectLists() {
-
-        Iterator<GameObject> iterator = arena.getHashGameObjects().keySet().iterator();
-        while (iterator.hasNext()) {
-            GameObject gameObject = iterator.next();
-            if (gameObject instanceof DynamicGameObject) dynamicGameObjects.add((DynamicGameObject) gameObject);
-            else staticGameObjects.add(gameObject);
-        }
+    /**
+     * Método que retorna a lista de colisões não tratadas.
+     * @return collisions
+     */
+    public LinkedList<Collision> getCollisions() {
+        return collisions;
     }
 
+    /**
+     * Método que verifica se há colisões entre os GameObjects da arena do jogo.
+     */
     private void checkCollisions() {
 
-        Iterator<DynamicGameObject> dynamicIterator = dynamicGameObjects.iterator();
-        Iterator<GameObject> staticIterator = staticGameObjects.iterator();
+        Iterator<DynamicGameObject> dynamicIter = GameManager.getGameObjectManager().getDynamicGameObjects().iterator();
 
-        while (dynamicIterator.hasNext()) {
-            DynamicGameObject dynamicGameObject = dynamicIterator.next();
-            while (staticIterator.hasNext()) {
-                GameObject gameObject = staticIterator.next();
+        while (dynamicIter.hasNext()) {
+            DynamicGameObject dynamicGameObject = dynamicIter.next();
+            Iterator<GameObject> staticIter = GameManager.getGameObjectManager().getStaticGameObjects().iterator();
+            while (staticIter.hasNext()) {
+                GameObject gameObject = staticIter.next();
                 if (dynamicGameObject.getHitBox().hasIntersection(gameObject.getHitBox())) {
                     collisions.add(new Collision(dynamicGameObject, gameObject));
                 }
             }
         }
 
-        for (int i = 0; i < dynamicGameObjects.size(); i++) {
-            DynamicGameObject dynamicGameObject_I = dynamicGameObjects.get(i);
-            for (int j = i + 1; j < dynamicGameObjects.size(); j++) {
-                DynamicGameObject dynamicGameObject_J = dynamicGameObjects.get(j);
+        for (int i = 0; i < GameManager.getGameObjectManager().getDynamicGameObjects().size(); i++) {
+            DynamicGameObject dynamicGameObject_I = GameManager.getGameObjectManager().getDynamicGameObjects().get(i);
+            for (int j = i + 1; j < GameManager.getGameObjectManager().getDynamicGameObjects().size(); j++) {
+                DynamicGameObject dynamicGameObject_J = GameManager.getGameObjectManager().getDynamicGameObjects().get(j);
                 if (dynamicGameObject_I.getHitBox().hasIntersection(dynamicGameObject_J.getHitBox())) {
                     collisions.add(new Collision(dynamicGameObject_I, dynamicGameObject_J));
                 }
@@ -65,6 +59,9 @@ public class CollisionManager {
         }
     }
 
+    /**
+     * Método que realiza as colisões e as trata.
+     */
     public void handleCollisions() {
 
         checkCollisions();
@@ -78,11 +75,11 @@ public class CollisionManager {
             GameObject collider1 = collision.getCollider1();
             GameObject collider2 = collision.getCollider2();
 
-            if (collider1.isRigidBody() && collider2.isRigidBody()) {
-                if (collider1 instanceof DynamicGameObject) {
-                    breakOverlap((DynamicGameObject) collider1, collider2);
-                } else breakOverlap((DynamicGameObject) collider2, collider1);
-            }
+//            if (collider1.isRigidBody() && collider2.isRigidBody()) {
+//                if (collider1 instanceof DynamicGameObject) {
+//                    breakOverlap((DynamicGameObject) collider1, collider2);
+//                } else breakOverlap((DynamicGameObject) collider2, collider1);
+//            }
 
             collider1.setCollider(collider2);
             collider2.setCollider(collider1);
@@ -91,12 +88,17 @@ public class CollisionManager {
             collider1.setCollider(null);
             collider2.setCollider(null);
 
-
             iterator.remove();
         }
     }
 
 
+    /**
+     * Método em construção
+     * @param dynamicGameObject
+     * @param gameObject
+     * @param distance
+     */
     private void moveAwayInX(DynamicGameObject dynamicGameObject, GameObject gameObject, float distance) {
 
         float x1, y1, x2;
@@ -108,6 +110,12 @@ public class CollisionManager {
         else dynamicGameObject.setPosition(new Position(x1 - distance, y1));
     }
 
+    /**
+     * Método em construção
+     * @param dynamicGameObject
+     * @param gameObject
+     * @param distance
+     */
     private void moveAwayInY(DynamicGameObject dynamicGameObject, GameObject gameObject, float distance) {
 
         float x1, y1, y2;
@@ -119,6 +127,11 @@ public class CollisionManager {
         else dynamicGameObject.setPosition(new Position(x1, y1 - distance));
     }
 
+    /**
+     * Método em construção
+     * @param dGameObject
+     * @param gameObject
+     */
     public void breakOverlap(DynamicGameObject dGameObject, GameObject gameObject) {
 
         float w1, w2, h1, h2, x1, x2, y1, y2;
