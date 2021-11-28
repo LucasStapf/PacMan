@@ -1,183 +1,68 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.Graph;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
+/**
+ * Classe que representa a arena do jogo.
+ */
 public class Arena {
 
-    private ArrayList<ArrayList<LinkedList<SceneElement>>> arena;
-    private LinkedList<GameObject> gameObjects;
-    private HashMap<GameObject, Floor> hashGameObjects;
-    private Graph graph = new Graph();
+    /**
+     * Atributo que guarda as posições de cada SceneElement no tabuleiro.
+     */
+    private ArrayList<ArrayList<LinkedList<SceneElement>>> board;
 
-    public Arena(String fileName) {
-        arena = new ArrayList<>();
-        hashGameObjects = new HashMap<>();
-        loadArena(fileName);
+    /**
+     * Atributo que relaciona cada GameObject do jogo a um Floor.
+     */
+    private HashMap<GameObject, Floor> gameObjectFloorHashMap;
+
+    /**
+     * Construtor padrão
+     */
+    public Arena() {
+        board = new ArrayList<>();
+        gameObjectFloorHashMap = new HashMap<>();
     }
 
-    public ArrayList<ArrayList<LinkedList<SceneElement>>> getArena() {
-        return arena;
+    /**
+     * Método que retorna o tabuleiro do jogo.
+     * @return board
+     */
+    public ArrayList<ArrayList<LinkedList<SceneElement>>> getBoard() {
+        return board;
     }
 
-    public HashMap<GameObject, Floor> getHashGameObjects() {
-        return hashGameObjects;
+    /**
+     * Método que retorna o HashMap entre GameObject e Floor.
+     * @return gameObjectFloorHashMap
+     */
+    public HashMap<GameObject, Floor> getGameObjectFloorHashMap() {
+        return gameObjectFloorHashMap;
     }
 
-    public Graph getGraph() {
-        return graph;
+    /**
+     * Método que altera o atual tabuleiro da arena.
+     * @param board novo tabuleiro.
+     */
+    public void setBoard(ArrayList<ArrayList<LinkedList<SceneElement>>> board) {
+        this.board = board;
     }
 
-    public LinkedList<GameObject> getGameObjects() {
-        return gameObjects;
+    /**
+     * Método que altera o HashMap entre GameObject e Floor.
+     * @param gameObjectFloorHashMap novo HashMap.
+     */
+    public void setGameObjectFloorHashMap(HashMap<GameObject, Floor> gameObjectFloorHashMap) {
+        this.gameObjectFloorHashMap = gameObjectFloorHashMap;
     }
 
-    public void loadArena(String fileName) {
+    /**
+     * Método temporário
+     */
+    public void updateArena() { // temp
 
-        arena.clear();
-        hashGameObjects.clear();
-
-        try {
-
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            String line;
-            int i = 0, j = 0;
-
-            line = br.readLine();
-
-            while (line != null) {
-
-                arena.add(new ArrayList<>());
-                for (j = 0; j < line.length(); j++) {
-
-                    arena.get(i).add(new LinkedList<>());
-
-                    float x = (2 / 2) + (j * 2);
-                    float y = (2 / 2) + (i * 2);
-
-                    switch (line.charAt(j)) {
-
-                        case '+':
-                            arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.CORNER));
-                            break;
-
-                        case '-':
-                            arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.HORIZONTAL));
-                            break;
-
-                        case '|':
-                            arena.get(i).get(j).add(new Wall(new Position(x, y), Wall.Orientation.VERTICAL));
-                            break;
-
-                        case '.':
-                            Floor fPacDot = new Floor(new Position(x, y));
-                            arena.get(i).get(j).add(fPacDot);
-                            graph.addVertex(fPacDot.getVertex());
-
-                            PacDot pacDot = new PacDot(new Position(x, y));
-                            pacDot.setDimension(new Dimension(0.5f,0.5f));
-                            arena.get(i).get(j).add(pacDot);
-                            hashGameObjects.put(pacDot, fPacDot);
-                            break;
-
-                        case 'E':
-                            Floor fEnergyPill = new Floor(new Position(x, y));
-                            arena.get(i).get(j).add(fEnergyPill);
-                            graph.addVertex(fEnergyPill.getVertex());
-
-                            EnergyPill energyPill = new EnergyPill(new Position(x, y));
-                            energyPill.setDimension(new Dimension(0.5f,0.5f));
-                            arena.get(i).get(j).add(energyPill);
-                            hashGameObjects.put(energyPill, fEnergyPill);
-                            break;
-
-                        case 'F':
-                            Floor fFruit = new Floor(new Position(x, y));
-                            arena.get(i).get(j).add(fFruit);
-                            graph.addVertex(fFruit.getVertex());
-
-                            Fruit fruit = new Fruit(new Position(x, y));
-                            fruit.setDimension(new Dimension(0.5f,0.5f));
-                            arena.get(i).get(j).add(fruit);
-                            hashGameObjects.put(fruit, fFruit);
-
-                        case 'P':
-                            Floor fPac = new Floor(new Position(x, y));
-                            arena.get(i).get(j).add(fPac);
-                            graph.addVertex(fPac.getVertex());
-
-                            PacMan pacMan = new PacMan(new Position(x, y));
-                            arena.get(i).get(j).add(pacMan);
-                            hashGameObjects.put(pacMan, fPac);
-                            break;
-
-                        case 'G':
-                            Floor fGhost = new Floor(new Position(x, y));
-                            arena.get(i).get(j).add(fGhost);
-                            graph.addVertex(fGhost.getVertex());
-
-                            Ghost ghost = new Ghost(new Position(x, y));
-                            arena.get(i).get(j).add(ghost);
-                            hashGameObjects.put(ghost, fGhost);
-                            break;
-
-                        default:
-                            arena.get(i).get(j).add(new Floor(new Position(x, y)));
-                            graph.addVertex(((Floor) arena.get(i).get(j).getLast()).getVertex());
-                            break;
-                    }
-
-                    Collections.sort(arena.get(i).get(j));
-                    updateEdgesArena(i, j);
-                }
-
-                line = br.readLine();
-                i++;
-            }
-
-            br.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void updateEdgesArena(int i, int j) {
-
-        SceneElement se = arena.get(i).get(j).getFirst();
-
-        if (se instanceof Floor) {
-
-            if (i >= 1) {
-
-                SceneElement seAux = arena.get(i - 1).get(j).getFirst();
-
-                if (seAux instanceof Floor) {
-                    graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
-                }
-            }
-
-            if (j >= 1) {
-
-                SceneElement seAux = arena.get(i).get(j - 1).getFirst();
-
-                if (seAux instanceof Floor) {
-                    graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
-                }
-            }
-        }
-    }
-
-    public void updateArena() {
-
-        Iterator iterator = hashGameObjects.keySet().iterator();
+        Iterator iterator = gameObjectFloorHashMap.keySet().iterator();
 
         while (iterator.hasNext()) {
 
@@ -190,8 +75,8 @@ public class Arena {
             int i = Math.round((y / 2.0f) - (1 / 2.0f));
             int j = Math.round((x / 2.0f) - (1 / 2.0f));
 
-            Floor f = (Floor) arena.get(i).get(j).getFirst();
-            Floor fGameObject = hashGameObjects.get(go);
+            Floor f = (Floor) board.get(i).get(j).getFirst();
+            Floor fGameObject = gameObjectFloorHashMap.get(go);
             fGameObject.highlighted = false;
 
             if (!f.equals(fGameObject)) {
@@ -199,10 +84,10 @@ public class Arena {
                 int iF = Math.round(fGameObject.getPosition().getY() / 2.0f - 1 / 2.0f);
                 int jF = Math.round(fGameObject.getPosition().getX() / 2.0f - 1 / 2.0f);
 
-                arena.get(iF).get(jF).remove(go);
-                arena.get(i).get(j).add(go);
-                hashGameObjects.replace(go, f);
-                Collections.sort(arena.get(i).get(j));
+                board.get(iF).get(jF).remove(go);
+                board.get(i).get(j).add(go);
+                gameObjectFloorHashMap.replace(go, f);
+                Collections.sort(board.get(i).get(j));
             }
         }
     }
