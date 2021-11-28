@@ -3,13 +3,13 @@ package com.pacman.systemelements;
 import com.pacman.engine.GameManager;
 
 /**
- * Classe que representa todos os SceneElement que podem interagir entre si via colisão.
+ * Classe que representa todos os {@link SceneElement} que podem interagir entre si via colisão.
  */
 public abstract class GameObject extends SceneElement {
 
     /**
-     * HitBox do GameObject.
-     * Por padrão, possui a mesma dimensão e posição do seu SceneElement.
+     * Atributo que guarda a {@link HitBox} do GameObject.
+     * Por padrão, possui a mesma dimensão e posição do seu {@link SceneElement}.
      */
     private final HitBox hitBox = new HitBox(getDimension(), getPosition());
 
@@ -34,8 +34,8 @@ public abstract class GameObject extends SceneElement {
     public abstract void onCollision();
 
     /**
-     * Retorna a HitBox do GameObject.
-     * @return hitBox
+     * Retorna a {@link HitBox} do GameObject.
+     * @return a {@link HitBox} do GameObject.
      */
     public HitBox getHitBox() {
         return hitBox;
@@ -43,7 +43,7 @@ public abstract class GameObject extends SceneElement {
 
     /**
      * Retorna o GameObject com o qual a colisão ocorreu.
-     * @return collider
+     * @return o GameObject com o qual a colisão ocorreu.
      */
     public GameObject getCollider() {
         return collider;
@@ -81,9 +81,9 @@ public abstract class GameObject extends SceneElement {
     }
 
     /**
-     * Verifica se o atual GameObject está no Floor passado.
-     * @param floor Floor que será analisado.
-     * @return true se o GameObject está no floor analisado, false caso contrário.
+     * Verifica se o atual GameObject está no {@link Floor} passado.
+     * @param floor {@link Floor} que será analisado.
+     * @return true se o GameObject está no {@link Floor} analisado, false caso contrário.
      */
     public boolean isOnFloor(Floor floor) {
 
@@ -101,9 +101,9 @@ public abstract class GameObject extends SceneElement {
     }
 
     /**
-     * Verifica se o GameObject atual está centralizado no Floor passado.
+     * Verifica se o GameObject atual está centralizado no {@link Floor} passado.
      * A tolerância é de 0.1f para mais ou para menos.
-     * @param floor Floor que analisádo.
+     * @param floor {@link Floor} que analisádo.
      * @return true se o GameObject estiver centralizado, false caso contrário.
      */
     public boolean isCenteredOnFloor(Floor floor) {
@@ -114,9 +114,9 @@ public abstract class GameObject extends SceneElement {
 
 
     /**
-     * Altera a atual posição do GameObject e de sua HitBox.
-     * @param position nova posição do GameObject.
-     * @throws NullPointerException caso a posição passada for null.
+     * Altera a atual {@link Position} do GameObject e de sua {@link HitBox}.
+     * @param position nova {@link Position} do GameObject.
+     * @throws NullPointerException caso a {@link Position} passada for null.
      */
     @Override
     public void setPosition(Position position) throws NullPointerException {
@@ -125,9 +125,9 @@ public abstract class GameObject extends SceneElement {
     }
 
     /**
-     * Altera a atual dimensão do GameObject e de sua HitBox.
-     * @param dimension nova dimensão do GameObject.
-     * @throws NullPointerException caso a dimensão passada for null.
+     * Altera a atual {@link Dimension} do GameObject e de sua {@link HitBox}.
+     * @param dimension nova {@link Dimension} do GameObject.
+     * @throws NullPointerException caso a {@link Dimension} passada for null.
      */
     @Override
     public void setDimension(Dimension dimension) throws NullPointerException {
