@@ -6,12 +6,12 @@ package com.pacman.systemelements;
 public final class Position {
 
     /**
-     * Representa a abscissa do SceneElement.
+     * Representa a abscissa do {@link SceneElement}.
      */
     private final float x;
 
     /**
-     * Representa a ordenada do SceneElement.
+     * Representa a ordenada do {@link SceneElement}.
      */
     private final float y;
 
@@ -25,8 +25,8 @@ public final class Position {
 
     /**
      * Construtor com os parâmetros da abscissa e ordenadas sendo passados.
-     * @param x abscissa do SceneElement.
-     * @param y ordenada do SceneElement.
+     * @param x abscissa do {@link SceneElement}.
+     * @param y ordenada do {@link SceneElement}.
      */
     public Position(float x, float y) {
         this.x = x;
@@ -34,16 +34,16 @@ public final class Position {
     }
 
     /**
-     * Retorna a abscissa do SceneElement.
-     * @return a abscissa do SceneElement.
+     * Retorna a abscissa do {@link SceneElement}.
+     * @return a abscissa do {@link SceneElement}.
      */
     public float getX() {
         return x;
     }
 
     /**
-     * Retorna a ordenada do SceneElement.
-     * @return a ordenada do SceneElement.
+     * Retorna a ordenada do {@link SceneElement}.
+     * @return a ordenada do {@link SceneElement}.
      */
     public float getY() {
         return y;
