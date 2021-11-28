@@ -8,7 +8,7 @@ public class PacDot extends GameObject {
     /**
      * Construtor padrão.
      * Por padrão, a camada do PacDot é 2 (layer = 2) e não é um corpo rigido (rigidBody = false).
-     * @param position posição onde será criado o PacDot
+     * @param position {@link Position} onde será criado o PacDot
      */
     public PacDot (Position position) {
         setLayer(2);
