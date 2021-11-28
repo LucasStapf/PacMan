@@ -37,7 +37,7 @@ public final class Ghost extends DynamicGameObject {
     /**
      * Construtor padrão.
      * Por padrão, a camada do Ghost é 4 (layer = 4) e é um corpo rígido (rigidBody = true).
-     * @param position posição onde será criado o Ghost.
+     * @param position {@link Position} onde será criado o Ghost.
      */
     public Ghost(Position position) {
         setLayer(4);
@@ -48,7 +48,7 @@ public final class Ghost extends DynamicGameObject {
 
     /**
      * Retorna o atual tipo de movimento do Ghost.
-     * @return movement
+     * @return o atual tipo de movimento do Ghost.
      */
     public Movement getMovement() {
         return movement;
@@ -56,7 +56,7 @@ public final class Ghost extends DynamicGameObject {
 
     /**
      * Retorna o alvo do Ghost.
-     * @return target
+     * @return o alvo do Ghost.
      */
     public GameObject getTarget() {
         return target;
