@@ -4,40 +4,46 @@ import com.pacman.systemelements.*;
 
 import java.util.Iterator;
 
-// classe temporaria
 
+/**
+ * Classe temporária
+ */
 public class Print {
 
+    /**
+     * Método para printar a arena do jogo no terminal
+     * @param arena 
+     */
     public static void printArena(Arena arena){
 
-        Ghost ghost = null;
-        Iterator iterator = arena.getHashGameObjects().keySet().iterator();
+        PacMan pacMan = null;
+        Iterator iterator = arena.getGameObjectFloorHashMap().keySet().iterator();
 
-        while (iterator.hasNext() && ghost == null) {
+        while (iterator.hasNext() && pacMan == null) {
             GameObject gameObject = (GameObject) iterator.next();
-            if (gameObject instanceof Ghost) ghost = (Ghost) gameObject;
+            if (gameObject instanceof PacMan) pacMan = (PacMan) gameObject;
         }
 
-        for (int i = 0; i < arena.getArena().size(); i++) {
-            for (int j = 0; j < arena.getArena().get(i).size(); j++) {
-                SceneElement se = arena.getArena().get(i).get(j).getLast();
+        for (int i = 0; i < arena.getBoard().size(); i++) {
+            for (int j = 0; j < arena.getBoard().get(i).size(); j++) {
+                SceneElement se = arena.getBoard().get(i).get(j).getLast();
                 se.print();
                 System.out.print(" ");
             }
 
             if (i == 10) {
                 System.out.print("\t");
-                System.out.print("Ghost: ");
+                System.out.print("Pac-Man: ");
             }
 
             if (i == 11) {
                 System.out.print("\t");
-                System.out.print(ghost.getPosition());
+                System.out.print(pacMan.getPosition());
             }
 
             if (i == 12) {
                 System.out.print("\t");
-                System.out.print(ghost.getVelocity());
+                System.out.print(pacMan.getVelocity());
             }
 
 //            if (i == 13) {
