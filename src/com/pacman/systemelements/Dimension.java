@@ -1,22 +1,22 @@
 package com.pacman.systemelements;
 
 /**
- * Classe que representa as dimensões de um SceneElement.
+ * Classe que representa as dimensões de um {@link SceneElement}.
  */
 public final class Dimension {
 
     /**
-     * Largura do SceneElement.
+     * Largura do {@link SceneElement}.
      */
     private final float width;
 
     /**
-     * Altura do SceneElement.
+     * Altura do {@link SceneElement}.
      */
     private final float height;
 
     /**
-     * Construtor padrão. Os valores de altura e largura serão ambos inicializados com0 0.0f.
+     * Construtor padrão. Os valores de altura e largura serão ambos inicializados com 0.0f.
      */
     public Dimension() {
         this.width = 0.0f;
@@ -24,9 +24,9 @@ public final class Dimension {
     }
 
     /**
-     * Construtor no qual os valores das dimensões são passadas.
-     * @param width largura do SceneElement
-     * @param height altura do SceneElement
+     * Construtor onde os valores das dimensões são passadas.
+     * @param width largura do {@link SceneElement}.
+     * @param height altura do {@link SceneElement}.
      * @throws IllegalArgumentException caso algum dos parâmetros passados seja menor que zero.
      */
     public Dimension(float width, float height) throws IllegalArgumentException {
@@ -37,16 +37,16 @@ public final class Dimension {
     }
 
     /**
-     * Retorna a largura do SceneElement.
-     * @return width
+     * Retorna a largura do {@link SceneElement}.
+     * @return a largura do {@link SceneElement}.
      */
     public float getWidth() {
         return width;
     }
 
     /**
-     * Retorna a altura do SceneElement.
-     * @return height
+     * Retorna a altura do {@link SceneElement}.
+     * @return a altura do {@link SceneElement}.
      */
     public float getHeight() {
         return height;
