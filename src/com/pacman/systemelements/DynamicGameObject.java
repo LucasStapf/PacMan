@@ -1,26 +1,26 @@
 package com.pacman.systemelements;
 
 /**
- * Classe que representa todos os GameObject que podem transladar pelo tabuleiro.
+ * Classe que representa todos os {@link GameObject} que podem transladar pelo tabuleiro.
  */
 public abstract class DynamicGameObject extends GameObject {
 
     /**
-     * Atributo que guarda a velocidade do DynamicGameObject.
+     * Atributo que guarda a {@link Velocity} do DynamicGameObject.
      */
     private Velocity velocity = new Velocity();
 
     /**
-     * Retorna a velocidade do DynamicGameObject.
-     * @return velocity
+     * Retorna a {@link Velocity} do DynamicGameObject.
+     * @return a {@link Velocity} do DynamicGameObject
      */
     public Velocity getVelocity() {
         return velocity;
     }
 
     /**
-     * Altera a atual velocidade do DynamicGameObject.
-     * @param velocity nova velocidade.
+     * Altera a atual {@link Velocity} do DynamicGameObject.
+     * @param velocity nova {@link Velocity}.
      */
     public void setVelocity(Velocity velocity) {
         this.velocity = velocity;
@@ -28,7 +28,7 @@ public abstract class DynamicGameObject extends GameObject {
 
     /**
      * Método que permite o objeto transladar pelo tabuleiro por um determina período.
-     * A translação move tanto o DynamicGameObject quanto sua HitBox.
+     * A translação move tanto o DynamicGameObject quanto sua {@link HitBox}.
      * @param time tempo que o objeto irá transladar.
      */
     public void translate(float time) {
