@@ -10398,8 +10398,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -80,
-											"top": 80,
+											"left": 64,
+											"top": 128,
 											"height": 13
 										},
 										{
@@ -10409,9 +10409,9 @@
 												"$ref": "AAAAAAF9Z7a48sc2Htc="
 											},
 											"font": "Arial;13;1",
-											"left": 2389,
-											"top": 943,
-											"width": 62.8544921875,
+											"left": 2461,
+											"top": 967,
+											"width": 123.2080078125,
 											"height": 13,
 											"text": "VertexInfo"
 										},
@@ -10423,8 +10423,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -80,
-											"top": 80,
+											"left": 64,
+											"top": 128,
 											"width": 136.5126953125,
 											"height": 13,
 											"text": "(from DijkstraAlgorithm)"
@@ -10437,16 +10437,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -80,
-											"top": 80,
+											"left": 64,
+											"top": 128,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 2384,
-									"top": 936,
-									"width": 72.8544921875,
+									"left": 2456,
+									"top": 960,
+									"width": 133.2080078125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF9Z7a48sc3TfE="
@@ -10470,11 +10470,47 @@
 									"model": {
 										"$ref": "AAAAAAF9Z7a48ccz4Og="
 									},
+									"subViews": [
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF9Z71Lj+HZweY=",
+											"_parent": {
+												"$ref": "AAAAAAF9Z7a488c7Ovs="
+											},
+											"model": {
+												"$ref": "AAAAAAF9Z71LDOG7vlg="
+											},
+											"font": "Arial;13;0",
+											"left": 2461,
+											"top": 990,
+											"width": 123.2080078125,
+											"height": 13,
+											"text": "+predecessor: Vertex",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAF9Z72MR+MlbMg=",
+											"_parent": {
+												"$ref": "AAAAAAF9Z7a488c7Ovs="
+											},
+											"model": {
+												"$ref": "AAAAAAF9Z72L4eMH3rA="
+											},
+											"font": "Arial;13;0",
+											"left": 2461,
+											"top": 1005,
+											"width": 123.2080078125,
+											"height": 13,
+											"text": "+distance: int",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
-									"left": 2384,
-									"top": 961,
-									"width": 72.8544921875,
-									"height": 10
+									"left": 2456,
+									"top": 985,
+									"width": 133.2080078125,
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -10485,11 +10521,30 @@
 									"model": {
 										"$ref": "AAAAAAF9Z7a48ccz4Og="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAF9Z73zQeWA3Pw=",
+											"_parent": {
+												"$ref": "AAAAAAF9Z7a488c8VDY="
+											},
+											"model": {
+												"$ref": "AAAAAAF9Z73y4+ViyrI="
+											},
+											"font": "Arial;13;0",
+											"left": 2461,
+											"top": 1028,
+											"width": 123.2080078125,
+											"height": 13,
+											"text": "+VertexInfo(Vertex)",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
-									"left": 2384,
-									"top": 971,
-									"width": 72.8544921875,
-									"height": 10
+									"left": 2456,
+									"top": 1023,
+									"width": 133.2080078125,
+									"height": 23
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -10502,8 +10557,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -40,
-									"top": 40,
+									"left": 32,
+									"top": 64,
 									"width": 10,
 									"height": 10
 								},
@@ -10518,18 +10573,18 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -40,
-									"top": 40,
+									"left": 32,
+									"top": 64,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 2384,
-							"top": 936,
-							"width": 72.8544921875,
-							"height": 45,
+							"left": 2456,
+							"top": 960,
+							"width": 133.2080078125,
+							"height": 86,
 							"nameCompartment": {
 								"$ref": "AAAAAAF9Z7a48sc2Htc="
 							},
@@ -10559,7 +10614,7 @@
 							"tail": {
 								"$ref": "AAAAAAF9Z7a48sc1uSw="
 							},
-							"points": "2417:936;2417:865"
+							"points": "2528:960;2528:865"
 						}
 					]
 				},
@@ -14163,7 +14218,50 @@
 									}
 								}
 							],
-							"visibility": "private"
+							"visibility": "private",
+							"attributes": [
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAF9Z71LDOG7vlg=",
+									"_parent": {
+										"$ref": "AAAAAAF9Z7a48ccz4Og="
+									},
+									"name": "predecessor",
+									"type": {
+										"$ref": "AAAAAAF9KgmA/QVX23M="
+									}
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAF9Z72L4eMH3rA=",
+									"_parent": {
+										"$ref": "AAAAAAF9Z7a48ccz4Og="
+									},
+									"name": "distance",
+									"type": "int"
+								}
+							],
+							"operations": [
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAF9Z73y4+ViyrI=",
+									"_parent": {
+										"$ref": "AAAAAAF9Z7a48ccz4Og="
+									},
+									"name": "VertexInfo",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAF9Z74uvOZBqHk=",
+											"_parent": {
+												"$ref": "AAAAAAF9Z73y4+ViyrI="
+											},
+											"name": "Vertex",
+											"type": ""
+										}
+									]
+								}
+							]
 						}
 					],
 					"attributes": [
