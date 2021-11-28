@@ -22,7 +22,7 @@ public class Wall extends GameObject {
     /**
      * Construtor Padrão.
      * Por padrão, a camada do Wall é 1 (layer = 1) e é um corpo rígido (rigidBody = true).
-     * @param position posição onde será criada a parede.
+     * @param position {@link Position} onde será criada a parede.
      * @param orientation orientação da parede.
      */
     public Wall(Position position, Orientation orientation) {
