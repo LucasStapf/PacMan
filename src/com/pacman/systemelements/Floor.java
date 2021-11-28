@@ -8,7 +8,7 @@ import com.pacman.engine.Vertex;
 public class Floor extends SceneElement {
 
     /**
-     * Vértice associado ao Floor.
+     * {@link Vertex} associado ao Floor.
      */
     private Vertex<Floor> vertex = new Vertex<>(this);
 
@@ -20,7 +20,7 @@ public class Floor extends SceneElement {
     /**
      * Construtor padrão.
      * Por padrão, a camada (layer) do Floor é zero.
-     * @param position posição em que o Floor será criado.
+     * @param position {@link Position} em que o Floor será criado.
      */
     public Floor(Position position) {
         setLayer(0);
@@ -28,8 +28,8 @@ public class Floor extends SceneElement {
     }
 
     /**
-     * Retorna o vértice associado ao Floor.
-     * @return vertex
+     * Retorna o {@link Vertex} associado ao Floor.
+     * @return o {@link Vertex} associado ao Floor.
      */
     public Vertex<Floor> getVertex() {
         return vertex;
