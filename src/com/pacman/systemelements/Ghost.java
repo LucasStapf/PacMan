@@ -36,11 +36,11 @@ public final class Ghost extends DynamicGameObject {
 
     /**
      * Construtor padrão.
-     * Por padrão, a camada (layer) do Ghost é 3.
+     * Por padrão, a camada do Ghost é 4 (layer = 4) e é um corpo rígido (rigidBody = true).
      * @param position posição onde será criado o Ghost.
      */
     public Ghost(Position position) {
-        setLayer(3);
+        setLayer(4);
         setRigidBody(true);
         setPosition(position);
         getVelocity().setModulus(1);
