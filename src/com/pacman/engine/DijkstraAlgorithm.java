@@ -7,30 +7,54 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+/**
+ * Classe responsável por calcular o menor caminha entre dois vértices de um grafo.
+ */
 public class DijkstraAlgorithm {
 
+    /**
+     * Classe privada que armazena as informações necessárias para a operação do algoritmo de Dijkstra.
+     */
     private class VertexInfo {
 
+        /**
+         * Atributo que armazena o vértice predecessor.
+         */
         public Vertex predecessor;
+
+        /**
+         * Atributo que armazena a distância até aquele vértice.
+         */
         public int distance;
 
+        /**
+         * Construtor padrão.
+         * @param predecessor vértice predecessor.
+         */
         public VertexInfo(Vertex predecessor) {
             this.predecessor = predecessor;
             this.distance = Integer.MAX_VALUE / 2;
         }
-
-        public VertexInfo(Vertex predecessor, int distance) {
-            this.predecessor = predecessor;
-            this.distance = distance;
-        }
     }
 
+    /**
+     * Atributo que guarda o grafo no qual o algoritmo será aplicado.
+     */
     private Graph G;
+
+    /**
+     * Atributo que armazena o vértice de partida para o cálculo de todos os menores caminhos.
+     */
     private Vertex V;
 
     private Map<Vertex, VertexInfo> openVertices = new HashMap<>();
     private Map<Vertex, VertexInfo> closedVertices = new HashMap<>();
 
+    /**
+     * Construtor padrão.
+     * @param G grafo no qual o algoritmo será aplicado.
+     * @param V vértice de partida.
+     */
     public DijkstraAlgorithm(Graph G, Vertex V) {
 
         this.G = G;
@@ -45,6 +69,9 @@ public class DijkstraAlgorithm {
         openVertices.get(V).distance = 0;
     }
 
+    /**
+     * Método que encontra todos os menores caminhos.
+     */
     private void findAllShortestPaths() {
 
         Vertex vCurrent = V;
@@ -85,12 +112,17 @@ public class DijkstraAlgorithm {
         }
     }
 
-    public LinkedList<Vertex<Floor>> getShortestPath(Vertex<Floor> vertice) {
+    /**
+     * Método que retorna o menor caminho até um determinado vértice.
+     * @param vertex vértice de destino.
+     * @return LinkedList com todos os vértices que compõem o menor caminho.
+     */
+    public LinkedList<Vertex<Floor>> getShortestPath(Vertex<Floor> vertex) {
 
         if (closedVertices.isEmpty()) findAllShortestPaths();
 
         LinkedList<Vertex<Floor>> path = new LinkedList<>();
-        Vertex vPath = vertice;
+        Vertex vPath = vertex;
 
         do {
 
