@@ -1,77 +1,94 @@
 package com.pacman.systemelements;
 
+/**
+ * Classe que representa uma caixa virtual que é utilizada na detecção de colisões.
+ */
 public final class HitBox {
 
+    /**
+     * Atributo responsável pela dimensão da HitBox.
+     */
     private Dimension dimension;
+
+    /**
+     * Atributo responsável pela posição da HitBox.
+     */
     private Position position;
 
+    /**
+     * Atributo responsável por guardar os extremos da projeção da base da HitBox no eixo das abscissas.
+     */
     private final float[] projectionX = new float[2];
+
+    /**
+     * Atributo responsável por guardar os extremos da projeção da altura da HitBox no eixo das coordenadas.
+     */
     private final float[] projectionY = new float[2];
 
-//    public HitBox() {
-//        this.position = new Position();
-//        this.dimension = new Dimension();
-//        updateProjections();
-//    }
-
+    /**
+     * Construtor padrão.
+     * @param dimension dimensão da HitBox.
+     * @param position posição da HitBox.
+     */
     public HitBox(Dimension dimension, Position position) {
         this.position = position;
         this.dimension = dimension;
         updateProjections();
     }
 
-//    public HitBox(float width, float height, float x, float y) {
-//        this.position = new Position(x, y);
-//        this.dimension = new Dimension(width, height);
-//        updateProjections();
-//    }
-
+    /**
+     * Retorna a largura da HitBox.
+     * @return width da HitBox.
+     */
     public float getWidth() {
         return this.dimension.getWidth();
     }
 
+    /**
+     * Retorna a altura da HitBox
+     * @return height da HitBox.
+     */
     public float getHeight() {
         return this.dimension.getHeight();
     }
 
-//    public float getX() {
-//        return this.position.getX();
-//    }
-//
-//    public float getY() {
-//        return this.position.getY();
-//    }
+    /**
+     * Retorna a abscissa da HitBox.
+     * @return x da HitBox.
+     */
+    public float getX() {
+        return this.position.getX();
+    }
 
+    /**
+     * Retorna a ordenada da HitBox.
+     * @return y da HitBox.
+     */
+    public float getY() {
+        return this.position.getY();
+    }
+
+    /**
+     * Altera a dimensão atual da HitBox e atualiza as projeções.
+     * @param dimension nova dimensão.
+     */
     public void setDimension(Dimension dimension) {
         this.dimension = dimension;
         updateProjections();
     }
 
+    /**
+     * Altera a posição atual da HitBox e atualiza as projeções.
+     * @param position nova posição.
+     */
     public void setPosition(Position position) {
         this.position = position;
         updateProjections();
     }
 
-//    public void setWidth(float width) throws IllegalArgumentException {
-//        this.dimension.setWidth(width);
-//        updateProjections();
-//    }
-//
-//    public void setHeight(float height) throws IllegalArgumentException {
-//        this.dimension.setHeight(height);
-//        updateProjections();
-//    }
-
-//    public void setX(float x) {
-//        this.position.setX(x);
-//        updateProjections();
-//    }
-//
-//    public void setY(float y) {
-//        this.position.setY(y);
-//        updateProjections();
-//    }
-
+    /**
+     * Atualiza as projeções com base na posição e dimensão da HitBox.
+     */
     public void updateProjections() {
 
         this.projectionX[0] = position.getX() - dimension.getWidth() / 2;
@@ -81,22 +98,17 @@ public final class HitBox {
         this.projectionY[1] = position.getY() + dimension.getHeight() / 2;
     }
 
-    //    public void updateDimension(float width, float height) throws IllegalArgumentException {
-    //        setWidth(width);
-    //        setHeight(height);
-    //    }
-
-//    public void updatePosition(float x, float y) {
-//        setX(x);
-//        setY(y);
-//    }
-
+    /**
+     * Verifica se a atual HitBox possui intersecção com a HitBox passada.
+     * @param hitBox que será utilizada na verificação.
+     * @return true se houver interseção, false caso contrário.
+     */
     public boolean hasIntersection(HitBox hitBox) {
 
-        if (this.projectionX[1] < hitBox.projectionX[0]) return false;
-        else if (this.projectionX[0] > hitBox.projectionX[1]) return false;
-        else if (this.projectionY[1] < hitBox.projectionY[0]) return false;
-        else if (this.projectionY[0] > hitBox.projectionY[1]) return false;
+        if (this.projectionX[1] <= hitBox.projectionX[0]) return false;
+        else if (this.projectionX[0] >= hitBox.projectionX[1]) return false;
+        else if (this.projectionY[1] <= hitBox.projectionY[0]) return false;
+        else if (this.projectionY[0] >= hitBox.projectionY[1]) return false;
 
         return true;
     }
