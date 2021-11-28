@@ -37,7 +37,7 @@ public class Graph {
     public void addVertex(Vertex vertex) {
         adjVertices.put(vertex, new LinkedList<Vertex>());
     }
-    
+
     /**
      *
      * Método que cria uma aresta entre 2 vértices.
