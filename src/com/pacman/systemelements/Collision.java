@@ -2,34 +2,65 @@ package com.pacman.systemelements;
 
 import java.util.Objects;
 
+/**
+ * Classe que representa uma colisão entre dois corpos no jogo.
+ */
 public final class Collision {
 
+    /**
+     * Primeiro colisor.
+     */
     private GameObject collider1;
+
+    /**
+     * Segundo colisor.
+     */
     private GameObject collider2;
 
+    /**
+     * Construtor padrão.
+     * @param collider1 primeiro colisor.
+     * @param collider2 segundo colisor.
+     */
     public Collision(GameObject collider1, GameObject collider2) {
         this.collider1 = collider1;
         this.collider2 = collider2;
     }
 
+    /**
+     * Retorna o primeiro colisor.
+     * @return collider1
+     */
     public GameObject getCollider1() {
         return collider1;
     }
 
+    /**
+     * Retorna o segundor colisor.
+     * @return collider2
+     */
     public GameObject getCollider2() {
         return collider2;
     }
 
-    public void handleCollision() {
+//    public void handleCollision() {
+//
+//        this.collider1.setCollider(this.collider2);
+//        this.collider2.setCollider(this.collider1);
+//
+//        this.collider1.onCollision();
+//        this.collider2.onCollision();
+//
+//        this.collider1.setCollider(null);
+//        this.collider2.setCollider(null);
+//    }
 
-        this.collider1.setCollider(this.collider2);
-        this.collider2.setCollider(this.collider1);
-
-        this.collider1.onCollision();
-        this.collider2.onCollision();
-
-        this.collider1.setCollider(null);
-        this.collider2.setCollider(null);
+    @Override
+    public String toString() {
+        return "Collision{" +
+                "collider1=" + collider1 +
+                ", collider2=" + collider2 +
+                '}';
     }
 
     @Override
