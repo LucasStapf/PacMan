@@ -1,7 +1,7 @@
 package com.pacman.systemelements;
 
 /**
- * Classe que representa a velocidade de um DynamicGameObject.
+ * Classe que representa a velocidade de um {@link DynamicGameObject}.
  */
 public final class Velocity {
 
