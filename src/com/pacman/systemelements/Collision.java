@@ -3,7 +3,7 @@ package com.pacman.systemelements;
 import java.util.Objects;
 
 /**
- * Classe que representa uma colisão entre dois corpos no jogo.
+ * Classe que representa uma colisão entre dois {@link GameObject} no jogo.
  */
 public final class Collision {
 
@@ -29,7 +29,7 @@ public final class Collision {
 
     /**
      * Retorna o primeiro colisor.
-     * @return collider1
+     * @return o primeiro colisor.
      */
     public GameObject getCollider1() {
         return collider1;
@@ -37,7 +37,7 @@ public final class Collision {
 
     /**
      * Retorna o segundor colisor.
-     * @return collider2
+     * @return o segundor colisor.
      */
     public GameObject getCollider2() {
         return collider2;
