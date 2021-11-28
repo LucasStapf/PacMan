@@ -8,17 +8,17 @@ import java.util.*;
 public class Arena {
 
     /**
-     * Atributo que guarda as posições de cada SceneElement no tabuleiro.
+     * Atributo que guarda as posições de cada {@link SceneElement} no tabuleiro.
      */
     private ArrayList<ArrayList<LinkedList<SceneElement>>> board;
 
     /**
-     * Atributo que relaciona cada GameObject do jogo a um Floor.
+     * Atributo que relaciona cada {@link GameObject} do jogo a um {@link Floor}.
      */
     private HashMap<GameObject, Floor> gameObjectFloorHashMap;
 
     /**
-     * Construtor padrão
+     * Construtor padrão.
      */
     public Arena() {
         board = new ArrayList<>();
@@ -27,15 +27,15 @@ public class Arena {
 
     /**
      * Método que retorna o tabuleiro do jogo.
-     * @return board
+     * @return o tabuleiro do jogo.
      */
     public ArrayList<ArrayList<LinkedList<SceneElement>>> getBoard() {
         return board;
     }
 
     /**
-     * Método que retorna o HashMap entre GameObject e Floor.
-     * @return gameObjectFloorHashMap
+     * Método que retorna o HashMap entre {@link GameObject} e {@link Floor}.
+     * @return o HashMap entre {@link GameObject} e {@link Floor}.
      */
     public HashMap<GameObject, Floor> getGameObjectFloorHashMap() {
         return gameObjectFloorHashMap;
@@ -50,7 +50,7 @@ public class Arena {
     }
 
     /**
-     * Método que altera o HashMap entre GameObject e Floor.
+     * Método que altera o HashMap entre {@link GameObject} e {@link Floor}.
      * @param gameObjectFloorHashMap novo HashMap.
      */
     public void setGameObjectFloorHashMap(HashMap<GameObject, Floor> gameObjectFloorHashMap) {
