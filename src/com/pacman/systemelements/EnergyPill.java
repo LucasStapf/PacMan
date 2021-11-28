@@ -7,7 +7,7 @@ public class EnergyPill extends GameObject {
 
     /**
      * Construtor padrão.
-     * @param position posição em que o EnergyPill será criado.
+     * @param position {@link Position} em que o EnergyPill será criado.
      */
     public EnergyPill(Position position) {
         setLayer(2);
