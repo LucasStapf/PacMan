@@ -1,7 +1,7 @@
 package com.pacman.systemelements;
 
 /**
- * Classe que representa a posição do SceneElement no tabuleiro.
+ * Classe que representa a posição do {@link SceneElement} no tabuleiro.
  */
 public final class Position {
 
