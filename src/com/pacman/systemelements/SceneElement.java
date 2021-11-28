@@ -88,8 +88,6 @@ public abstract class SceneElement implements Comparable {
     @Override
     public int compareTo(Object o) {
         SceneElement se = (SceneElement) o;
-        if (layer > se.layer) return 1;
-        else if (layer == se.layer) return 0;
-        else return -1;
+        return Integer.compare(layer, se.layer);
     }
 }
