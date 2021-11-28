@@ -35,7 +35,7 @@ public final class Position {
 
     /**
      * Retorna a abscissa do SceneElement.
-     * @return
+     * @return a abscissa do SceneElement.
      */
     public float getX() {
         return x;
@@ -43,7 +43,7 @@ public final class Position {
 
     /**
      * Retorna a ordenada do SceneElement.
-     * @return
+     * @return a ordenada do SceneElement.
      */
     public float getY() {
         return y;

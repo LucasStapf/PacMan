@@ -20,7 +20,7 @@ public class PacMan extends DynamicGameObject {
     /**
      * Construtor padrão.
      * Por padrão, a camada do PacMan é 3 (layer = 3) e é um corpo rígido (rigidBody = true).
-     * @param position
+     * @param position posição onde será criado o PacMan
      */
     public PacMan(Position position) {
         setLayer(3);

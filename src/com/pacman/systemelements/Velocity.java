@@ -166,7 +166,7 @@ public final class Velocity {
      * @param v1 primeira velocidade. Não pode ser null.
      * @param v2 segunda velocidade. Não pode ser null.
      * @return true caso sejam perpediculares, false caso contrário.
-     * @throws NullPointerException
+     * @throws NullPointerException caso uma das velocidades seja null.
      */
     public static boolean isPerpendicularDirection(Velocity v1, Velocity v2) throws NullPointerException {
         if (v1 == null || v2 == null) throw new NullPointerException();

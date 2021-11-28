@@ -12,7 +12,7 @@ public class Print {
 
     /**
      * Método para printar a arena do jogo no terminal
-     * @param arena 
+     * @param arena arena que terá o tabuleiro printado.
      */
     public static void printArena(Arena arena){
 
