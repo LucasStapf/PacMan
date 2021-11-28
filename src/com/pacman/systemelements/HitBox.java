@@ -38,15 +38,15 @@ public final class HitBox {
 
     /**
      * Retorna a largura da HitBox.
-     * @return width da HitBox.
+     * @return a largura da HitBox.
      */
     public float getWidth() {
         return this.dimension.getWidth();
     }
 
     /**
-     * Retorna a altura da HitBox
-     * @return height da HitBox.
+     * Retorna a altura da HitBox.
+     * @return a altura da HitBox.
      */
     public float getHeight() {
         return this.dimension.getHeight();
@@ -54,7 +54,7 @@ public final class HitBox {
 
     /**
      * Retorna a abscissa da HitBox.
-     * @return x da HitBox.
+     * @return a abscissa da HitBox.
      */
     public float getX() {
         return this.position.getX();
@@ -62,7 +62,7 @@ public final class HitBox {
 
     /**
      * Retorna a ordenada da HitBox.
-     * @return y da HitBox.
+     * @return a ordenada da HitBox.
      */
     public float getY() {
         return this.position.getY();
