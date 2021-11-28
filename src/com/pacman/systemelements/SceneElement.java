@@ -6,7 +6,7 @@ package com.pacman.systemelements;
 public abstract class SceneElement implements Comparable {
 
     /**
-     * Dimensão do SceneElement no Tabuleiro.
+     * {@link Dimension} do SceneElement no Tabuleiro.
      * Valor padrão: Dimension(2,2).
      */
     private Dimension dimension = new Dimension(2,2);
@@ -27,16 +27,16 @@ public abstract class SceneElement implements Comparable {
     public abstract void print();
 
     /**
-     * Retorna a Dimension do SceneElement.
-     * @return dimension
+     * Retorna a {@link Dimension} do SceneElement.
+     * @return a {@link Dimension} do SceneElement.
      */
     public Dimension getDimension() {
         return dimension;
     }
 
     /**
-     * Retorna a Position do SceneElement.
-     * @return position
+     * Retorna a {@link Position} do SceneElement.
+     * @return a {@link Position} do SceneElement.
      */
     public Position getPosition() {
         return position;
@@ -44,16 +44,16 @@ public abstract class SceneElement implements Comparable {
 
     /**
      * Retorna a camada atual do SceneElement.
-     * @return layer
+     * @return a camada atual do SceneElement.
      */
     public int getLayer() {
         return layer;
     }
 
     /**
-     * Altera a dimensão atual do SceneElement.
-     * @param dimension nova dimensão do SceneElement.
-     * @throws NullPointerException se a dimensão for null.
+     * Altera a {@link Dimension} atual do SceneElement.
+     * @param dimension nova {@link Dimension} do SceneElement.
+     * @throws NullPointerException se a {@link Dimension} for null.
      */
     public void setDimension(Dimension dimension) throws NullPointerException {
         if (dimension == null) throw new NullPointerException("Dimension cannot be null");
@@ -61,9 +61,9 @@ public abstract class SceneElement implements Comparable {
     }
 
     /**
-     * Altera a posição atual do SceneElement.
-     * @param position nova posição do SceneElement.
-     * @throws NullPointerException se a posição for null.
+     * Altera a {@link Position} atual do SceneElement.
+     * @param position nova {@link Position} do SceneElement.
+     * @throws NullPointerException se a {@link Position} for null.
      */
     public void setPosition(Position position) throws NullPointerException {
         if (position == null) throw new NullPointerException("Position cannot be null");
@@ -71,7 +71,7 @@ public abstract class SceneElement implements Comparable {
     }
 
     /**
-     * Altera a camada atual do SceneElement.
+     * Altera a layer atual do SceneElement.
      * @param layer nova camada do SceneElement.
      */
     public void setLayer(int layer) {
