@@ -33,25 +33,37 @@ public class CollisionManager {
     /**
      * Método que verifica se há colisões entre os GameObjects da arena do jogo.
      */
-    private void checkCollisions() {
+    public void checkCollisions(LinkedList<DynamicGameObject> dynamicGameObjects, LinkedList<GameObject> staticGameObjects) {
 
-        Iterator<DynamicGameObject> dynamicIter = GameManager.getGameObjectManager().getDynamicGameObjects().iterator();
+        Iterator<DynamicGameObject> dynamicGameObjectIterator = dynamicGameObjects.iterator();
 
-        while (dynamicIter.hasNext()) {
-            DynamicGameObject dynamicGameObject = dynamicIter.next();
-            Iterator<GameObject> staticIter = GameManager.getGameObjectManager().getStaticGameObjects().iterator();
-            while (staticIter.hasNext()) {
-                GameObject gameObject = staticIter.next();
+        while (dynamicGameObjectIterator.hasNext()) {
+            DynamicGameObject dynamicGameObject = dynamicGameObjectIterator.next();
+            Iterator<GameObject> staticGameObjectIterator = staticGameObjects.iterator();
+            while (staticGameObjectIterator.hasNext()) {
+                GameObject gameObject = staticGameObjectIterator.next();
                 if (dynamicGameObject.getHitBox().hasIntersection(gameObject.getHitBox())) {
                     collisions.add(new Collision(dynamicGameObject, gameObject));
                 }
             }
         }
 
-        for (int i = 0; i < GameManager.getGameObjectManager().getDynamicGameObjects().size(); i++) {
-            DynamicGameObject dynamicGameObject_I = GameManager.getGameObjectManager().getDynamicGameObjects().get(i);
-            for (int j = i + 1; j < GameManager.getGameObjectManager().getDynamicGameObjects().size(); j++) {
-                DynamicGameObject dynamicGameObject_J = GameManager.getGameObjectManager().getDynamicGameObjects().get(j);
+        for (int i = 0; i < dynamicGameObjects.size(); i++) {
+            DynamicGameObject dynamicGameObject_I = dynamicGameObjects.get(i);
+            for (int j = i + 1; j < dynamicGameObjects.size(); j++) {
+                DynamicGameObject dynamicGameObject_J = dynamicGameObjects.get(j);
+                if (dynamicGameObject_I.getHitBox().hasIntersection(dynamicGameObject_J.getHitBox())) {
+                    collisions.add(new Collision(dynamicGameObject_I, dynamicGameObject_J));
+                }
+            }
+        }
+    }
+
+    public void checkCollisions(LinkedList<DynamicGameObject> dynamicGameObjects) {
+        for (int i = 0; i < dynamicGameObjects.size(); i++) {
+            DynamicGameObject dynamicGameObject_I = dynamicGameObjects.get(i);
+            for (int j = i + 1; j < dynamicGameObjects.size(); j++) {
+                DynamicGameObject dynamicGameObject_J = dynamicGameObjects.get(j);
                 if (dynamicGameObject_I.getHitBox().hasIntersection(dynamicGameObject_J.getHitBox())) {
                     collisions.add(new Collision(dynamicGameObject_I, dynamicGameObject_J));
                 }
@@ -63,8 +75,6 @@ public class CollisionManager {
      * Método que realiza as colisões e as trata.
      */
     public void handleCollisions() {
-
-        checkCollisions();
 
         Iterator<Collision> iterator = collisions.iterator();
 
