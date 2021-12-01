@@ -35,6 +35,8 @@ public class CollisionManager {
      */
     public void checkCollisions(LinkedList<DynamicGameObject> dynamicGameObjects, LinkedList<GameObject> staticGameObjects) {
 
+        collisions.clear();
+
         Iterator<DynamicGameObject> dynamicGameObjectIterator = dynamicGameObjects.iterator();
 
         while (dynamicGameObjectIterator.hasNext()) {
@@ -60,6 +62,9 @@ public class CollisionManager {
     }
 
     public void checkCollisions(LinkedList<DynamicGameObject> dynamicGameObjects) {
+
+        collisions.clear();
+
         for (int i = 0; i < dynamicGameObjects.size(); i++) {
             DynamicGameObject dynamicGameObject_I = dynamicGameObjects.get(i);
             for (int j = i + 1; j < dynamicGameObjects.size(); j++) {
@@ -85,11 +90,10 @@ public class CollisionManager {
             GameObject collider1 = collision.getCollider1();
             GameObject collider2 = collision.getCollider2();
 
-//            if (collider1.isRigidBody() && collider2.isRigidBody()) {
-//                if (collider1 instanceof DynamicGameObject) {
-//                    breakOverlap((DynamicGameObject) collider1, collider2);
-//                } else breakOverlap((DynamicGameObject) collider2, collider1);
-//            }
+            if (collider1.isRigidBody() && collider2.isRigidBody()) {
+                collider1.returnToOldPosition();
+                collider2.returnToOldPosition();
+            }
 
             collider1.setCollider(collider2);
             collider2.setCollider(collider1);
@@ -109,9 +113,11 @@ public class CollisionManager {
      * @param gameObject
      * @param distance
      */
-    private void moveAwayInX(DynamicGameObject dynamicGameObject, GameObject gameObject, float distance) {
+    private void moveAwayInX(DynamicGameObject dynamicGameObject, GameObject gameObject, double distance) {
 
-        float x1, y1, x2;
+        double x1;
+        double y1;
+        double x2;
         x1 = dynamicGameObject.getPosition().getX();
         y1 = dynamicGameObject.getPosition().getY();
         x2 = gameObject.getPosition().getX();
@@ -126,9 +132,11 @@ public class CollisionManager {
      * @param gameObject
      * @param distance
      */
-    private void moveAwayInY(DynamicGameObject dynamicGameObject, GameObject gameObject, float distance) {
+    private void moveAwayInY(DynamicGameObject dynamicGameObject, GameObject gameObject, double distance) {
 
-        float x1, y1, y2;
+        double x1;
+        double y1;
+        double y2;
         x1 = dynamicGameObject.getPosition().getX();
         y1 = dynamicGameObject.getPosition().getY();
         y2 = gameObject.getPosition().getY();
@@ -144,7 +152,10 @@ public class CollisionManager {
      */
     public void breakOverlap(DynamicGameObject dGameObject, GameObject gameObject) {
 
-        float w1, w2, h1, h2, x1, x2, y1, y2;
+        double w1, w2;
+        double h1, h2;
+        double x1, x2;
+        double y1, y2;
 
         w1 = dGameObject.getHitBox().getWidth() / 2;
         h1 = dGameObject.getHitBox().getHeight() / 2;
@@ -156,64 +167,10 @@ public class CollisionManager {
         x2 = gameObject.getPosition().getX();
         y2 = gameObject.getPosition().getY();
 
-        float dX = ((w1 + w2) / 2) - Math.abs(x1 - x2);
-        float dY = ((h1 + h2) / 2) - Math.abs(y1 - y2);
+        double dX = ((w1 + w2) / 2) - Math.abs(x1 - x2);
+        double dY = ((h1 + h2) / 2) - Math.abs(y1 - y2);
 
-        if (gameObject instanceof DynamicGameObject) {
-
-            DynamicGameObject dGameObjectAux = (DynamicGameObject) gameObject;
-
-            if (Velocity.isSameDirection(dGameObject.getVelocity(), dGameObjectAux.getVelocity())) { //
-
-                DynamicGameObject dynamicGameObject;
-
-                if (dGameObject.getVelocity().getModulus() > dGameObjectAux.getVelocity().getModulus()) {
-                    dynamicGameObject = dGameObject;
-                } else {
-                    dynamicGameObject = dGameObjectAux;
-                    dGameObjectAux = dGameObject;
-                }
-
-                if (Velocity.isVertical(dynamicGameObject.getVelocity())) {
-                    moveAwayInY(dynamicGameObject, dGameObjectAux, dY);
-                } else {
-                    moveAwayInX(dynamicGameObject, dGameObjectAux, dX);
-                }
-
-            } else if (Velocity.isOppositeDirection(dGameObject.getVelocity(), dGameObjectAux.getVelocity())) {
-
-                float dX1, dX2, dY1, dY2, r12;
-                r12 = dGameObject.getVelocity().getModulus() / dGameObjectAux.getVelocity().getModulus();
-
-                if (Velocity.isVertical(dGameObject.getVelocity())) {
-
-                    dY1 = dY / (1 + (1 / r12));
-                    dY2 = dY / (1 + r12);
-
-                    moveAwayInY(dGameObject, dGameObjectAux, dY1);
-                    moveAwayInY(dGameObjectAux, dGameObject, dY2);
-
-                } else {
-
-                    dX1 = dX / (1 + (1 / r12));
-                    dX2 = dX / (1 + r12);
-
-                    moveAwayInX(dGameObject, dGameObjectAux, dX1);
-                    moveAwayInX(dGameObjectAux, dGameObject, dX2);
-                }
-
-            } else { // Perpendiculares
-
-
-            }
-
-        } else {
-
-            if (Velocity.isVertical(dGameObject.getVelocity())) {
-                moveAwayInY(dGameObject, gameObject, dY);
-            } else {
-                moveAwayInX(dGameObject, gameObject, dX);
-            }
-        }
+        moveAwayInX(dGameObject, gameObject, dX);
+        moveAwayInY(dGameObject, gameObject, dY);
     }
 }

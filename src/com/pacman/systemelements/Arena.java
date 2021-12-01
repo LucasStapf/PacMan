@@ -69,11 +69,11 @@ public class Arena {
             GameObject go = (GameObject) iterator.next();
             go.update();
 
-            float x = go.getPosition().getX();
-            float y = go.getPosition().getY();
+            double x = go.getPosition().getX();
+            double y = go.getPosition().getY();
 
-            int i = Math.round((y / 2.0f) - (1 / 2.0f));
-            int j = Math.round((x / 2.0f) - (1 / 2.0f));
+            int i = (int) Math.round((y / 2.0) - (1 / 2.0));
+            int j = (int) Math.round((x / 2.0) - (1 / 2.0));
 
             Floor f = (Floor) board.get(i).get(j).getFirst();
             Floor fGameObject = gameObjectFloorHashMap.get(go);
@@ -81,8 +81,8 @@ public class Arena {
 
             if (!f.equals(fGameObject)) {
 
-                int iF = Math.round(fGameObject.getPosition().getY() / 2.0f - 1 / 2.0f);
-                int jF = Math.round(fGameObject.getPosition().getX() / 2.0f - 1 / 2.0f);
+                int iF = (int) Math.round(fGameObject.getPosition().getY() / 2.0 - 1 / 2.0);
+                int jF = (int) Math.round(fGameObject.getPosition().getX() / 2.0 - 1 / 2.0);
 
                 board.get(iF).get(jF).remove(go);
                 board.get(i).get(j).add(go);

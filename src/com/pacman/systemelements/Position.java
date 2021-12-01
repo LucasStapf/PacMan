@@ -8,19 +8,19 @@ public final class Position {
     /**
      * Representa a abscissa do {@link SceneElement}.
      */
-    private final float x;
+    private final double x;
 
     /**
      * Representa a ordenada do {@link SceneElement}.
      */
-    private final float y;
+    private final double y;
 
     /**
      * Construtor padrão. Tanto a abscissa quanto ordenadas serão inicializados como zero.
      */
     public Position() {
-        this.x = 0.0f;
-        this.y = 0.0f;
+        this.x = 0.0;
+        this.y = 0.0;
     }
 
     /**
@@ -28,7 +28,7 @@ public final class Position {
      * @param x abscissa do {@link SceneElement}.
      * @param y ordenada do {@link SceneElement}.
      */
-    public Position(float x, float y) {
+    public Position(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -37,7 +37,7 @@ public final class Position {
      * Retorna a abscissa do {@link SceneElement}.
      * @return a abscissa do {@link SceneElement}.
      */
-    public float getX() {
+    public double getX() {
         return x;
     }
 
@@ -45,7 +45,7 @@ public final class Position {
      * Retorna a ordenada do {@link SceneElement}.
      * @return a ordenada do {@link SceneElement}.
      */
-    public float getY() {
+    public double getY() {
         return y;
     }
 

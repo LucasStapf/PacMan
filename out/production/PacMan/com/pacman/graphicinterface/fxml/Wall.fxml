@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.Rectangle?>
+
+<Rectangle fx:controller="com.pacman.graphicinterface.WallController" fx:id="wallID" arcHeight="5.0" arcWidth="5.0" fill="#000000"
+           height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+

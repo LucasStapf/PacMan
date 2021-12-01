@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.GameManager;
+import com.pacman.engine.SystemManager;
 
 /**
  * Classe que representa todos os {@link SceneElement} que podem interagir entre si via colisão.
@@ -22,6 +22,8 @@ public abstract class GameObject extends SceneElement {
      * Atributo que registra se o GameObject é um rigido ou não. Dois GameObject rigidos são podem se sobrepor.
      */
     private boolean rigidBody;
+
+    private Position oldPosition = getPosition();
 
     /**
      * Método que é chamado a cada frame do jogo.
@@ -57,6 +59,10 @@ public abstract class GameObject extends SceneElement {
         return rigidBody;
     }
 
+    public Position getOldPosition() {
+        return oldPosition;
+    }
+
     /**
      * Altera o atual colisor.
      * @param collider novo colisor.
@@ -73,11 +79,15 @@ public abstract class GameObject extends SceneElement {
         this.rigidBody = rigidBody;
     }
 
+    public void setOldPosition(Position position) {
+        oldPosition = position;
+    }
+
     /**
      * Método utilizado para destruir o atual GameObject.
      */
     public final void destroy() {
-        GameManager.destroyGameObject(this);
+        SystemManager.destroyGameObject(this);
     }
 
     /**
@@ -87,10 +97,10 @@ public abstract class GameObject extends SceneElement {
      */
     public boolean isOnFloor(Floor floor) {
 
-        float x = floor.getPosition().getX();
-        float y = floor.getPosition().getY();
-        float[] projX = {x - (floor.getDimension().getWidth() / 2), x + (floor.getDimension().getWidth() / 2)};
-        float[] projY = {y - (floor.getDimension().getHeight() / 2), y + (floor.getDimension().getHeight() / 2)};
+        double x = floor.getPosition().getX();
+        double y = floor.getPosition().getY();
+        double[] projX = {x - (floor.getDimension().getWidth() / 2), x + (floor.getDimension().getWidth() / 2)};
+        double[] projY = {y - (floor.getDimension().getHeight() / 2), y + (floor.getDimension().getHeight() / 2)};
 
         if (getPosition().getX() < projX[0]) return false;
         else if (getPosition().getX() > projX[1]) return false;
@@ -102,24 +112,32 @@ public abstract class GameObject extends SceneElement {
 
     /**
      * Verifica se o GameObject atual está centralizado no {@link Floor} passado.
-     * A tolerância é de 0.1f para mais ou para menos.
+     * A tolerância é de 0,1 para mais ou para menos.
      * @param floor {@link Floor} que analisádo.
      * @return true se o GameObject estiver centralizado, false caso contrário.
      */
     public boolean isCenteredOnFloor(Floor floor) {
-        float deltaX = Math.abs(getPosition().getX() - floor.getPosition().getX());
-        float deltaY = Math.abs(getPosition().getY() - floor.getPosition().getY());
-        return (deltaX < 0.10f && deltaY < 0.10f);
+        double deltaX = Math.abs(getPosition().getX() - floor.getPosition().getX());
+        double deltaY = Math.abs(getPosition().getY() - floor.getPosition().getY());
+        return (deltaX < 0.10 && deltaY < 0.10);
+    }
+
+    public void returnToOldPosition() {
+        if (oldPosition != null) {
+            setPosition(oldPosition);
+            oldPosition = null;
+        }
     }
 
 
     /**
-     * Altera a atual {@link Position} do GameObject e de sua {@link HitBox}.
+     * Altera a atual {@link Position} do GameObject e da sua {@link HitBox}.
      * @param position nova {@link Position} do GameObject.
      * @throws NullPointerException caso a {@link Position} passada for null.
      */
     @Override
     public void setPosition(Position position) throws NullPointerException {
+        oldPosition = getPosition();
         super.setPosition(position);
         getHitBox().setPosition(position);
     }

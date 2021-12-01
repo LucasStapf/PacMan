@@ -29,6 +29,7 @@ public class Wall extends GameObject {
         setLayer(1);
         setRigidBody(true);
         setPosition(position);
+        setOldPosition(position);
         this.orientation = orientation;
     }
 

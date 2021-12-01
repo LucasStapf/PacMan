@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.GameManager;
+import com.pacman.engine.GraphicManager;
 
 /**
  * Classe que representa o Pac-Man do jogo.
@@ -26,27 +26,31 @@ public class PacMan extends DynamicGameObject {
         setLayer(3);
         setRigidBody(true);
         setPosition(position);
+        setOldPosition(position);
     }
 
     @Override
     public void update() {
-        translate(1);
+        System.out.println("PacMan: " + getPosition());
+        translate(GraphicManager.getDeltaTime());
     }
 
     @Override
     public void onCollision() {
 
-        if (getCollider() instanceof Ghost) {
-            System.out.println("Collision with Ghost!");
-            GameManager.end();
-        }
+        System.out.println("Colisão!");
 
-        // temp
-        if (getVelocity().getDirection() == Velocity.Direction.LEFT) {
-            getVelocity().setDirection(Velocity.Direction.RIGHT);
-        } else if (getVelocity().getDirection() == Velocity.Direction.RIGHT) {
-            getVelocity().setDirection(Velocity.Direction.LEFT);
-        }
+//        if (getCollider() instanceof Ghost) {
+//            System.out.println("Collision with Ghost!");
+//            SystemManager.end();
+//        }
+//
+//        // temp
+//        if (getVelocity().getDirection() == Velocity.Direction.LEFT) {
+//            getVelocity().setDirection(Velocity.Direction.RIGHT);
+//        } else if (getVelocity().getDirection() == Velocity.Direction.RIGHT) {
+//            getVelocity().setDirection(Velocity.Direction.LEFT);
+//        }
     }
 
     @Override

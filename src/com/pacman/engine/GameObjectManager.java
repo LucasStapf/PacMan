@@ -1,8 +1,10 @@
 package com.pacman.engine;
 
+import com.pacman.graphicinterface.GameObjectController;
 import com.pacman.systemelements.DynamicGameObject;
 import com.pacman.systemelements.GameObject;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -15,6 +17,11 @@ public class GameObjectManager {
      * Atributo que guarda uma lista encadeada com todos os GameObject do jogo.
      */
     private LinkedList<GameObject> gameObjects;
+
+    /**
+     * Atributo que guarda a classe GameObjectController de cada GameObject do jogo.
+     */
+    private HashMap<GameObject, GameObjectController> gameObjectController;
 
     /**
      * Atributo que guarda todos os objetos que são estáticos (não se movem) do jogo.
@@ -31,6 +38,7 @@ public class GameObjectManager {
      */
     public GameObjectManager() {
         gameObjects = new LinkedList<>();
+        gameObjectController = new HashMap<>();
         staticGameObjects = new LinkedList<>();
         dynamicGameObjects = new LinkedList<>();
     }
@@ -41,6 +49,11 @@ public class GameObjectManager {
      */
     public LinkedList<GameObject> getGameObjects() {
         return gameObjects;
+    }
+
+
+    public HashMap<GameObject, GameObjectController> getGameObjectController() {
+        return gameObjectController;
     }
 
     /**

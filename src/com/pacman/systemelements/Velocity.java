@@ -19,7 +19,7 @@ public final class Velocity {
     /**
      * Indica o módulo da velocidade.
      */
-    private float modulus;
+    private double modulus;
 
     /**
      * Guarda a direção da velocidade.
@@ -30,17 +30,17 @@ public final class Velocity {
      * Construtor padrão. Velocidade possui módulo zero e não tem direção definida.
      */
     public Velocity() {
-        this.modulus = 0.0f;
+        this.modulus = 0.0;
         this.direction = Direction.NONE;
     }
 
     /**
-     * Construtor no qual são passadas os parâmetros da velocidade.
-     * @param modulus módulo da velocidade. Não pode ser negativo.
+     * Construtor onde são passadas os parâmetros da velocidade.
+     * @param modulus Módulo da velocidade. Não pode ser negativo.
      * @param direction direção da velocidade.
      * @throws IllegalArgumentException caso a valor do módulo passado seja menor que zero.
      */
-    public Velocity(float modulus, Direction direction) throws IllegalArgumentException {
+    public Velocity(double modulus, Direction direction) throws IllegalArgumentException {
         if (modulus < 0) throw new IllegalArgumentException("Modulos must be a positive number");
         this.modulus = modulus;
         this.direction = direction;
@@ -50,7 +50,7 @@ public final class Velocity {
      * Retorna o módulo da velocidade.
      * @return modulus
      */
-    public float getModulus() {
+    public double getModulus() {
         return modulus;
     }
 
@@ -64,10 +64,10 @@ public final class Velocity {
 
     /**
      * Altera o valor do módulo da velocidade.
-     * @param modulus novo valor do módulo. Deve ser não-negativo.
+     * @param modulus Novo valor do módulo. Deve ser não-negativo.
      * @throws IllegalArgumentException caso o valor passado seja negativo.
      */
-    public void setModulus(float modulus) throws IllegalArgumentException {
+    public void setModulus(double modulus) throws IllegalArgumentException {
         if (modulus < 0) throw new IllegalArgumentException(); // msg
         this.modulus = modulus;
     }

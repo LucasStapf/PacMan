@@ -18,12 +18,12 @@ public final class HitBox {
     /**
      * Atributo responsável por guardar os extremos da projeção da base da HitBox no eixo das abscissas.
      */
-    private final float[] projectionX = new float[2];
+    private final double[] projectionX = new double[2];
 
     /**
      * Atributo responsável por guardar os extremos da projeção da altura da HitBox no eixo das coordenadas.
      */
-    private final float[] projectionY = new float[2];
+    private final double[] projectionY = new double[2];
 
     /**
      * Construtor padrão.
@@ -40,7 +40,7 @@ public final class HitBox {
      * Retorna a largura da HitBox.
      * @return a largura da HitBox.
      */
-    public float getWidth() {
+    public double getWidth() {
         return this.dimension.getWidth();
     }
 
@@ -48,7 +48,7 @@ public final class HitBox {
      * Retorna a altura da HitBox.
      * @return a altura da HitBox.
      */
-    public float getHeight() {
+    public double getHeight() {
         return this.dimension.getHeight();
     }
 
@@ -56,7 +56,7 @@ public final class HitBox {
      * Retorna a abscissa da HitBox.
      * @return a abscissa da HitBox.
      */
-    public float getX() {
+    public double getX() {
         return this.position.getX();
     }
 
@@ -64,7 +64,7 @@ public final class HitBox {
      * Retorna a ordenada da HitBox.
      * @return a ordenada da HitBox.
      */
-    public float getY() {
+    public double getY() {
         return this.position.getY();
     }
 
@@ -105,10 +105,10 @@ public final class HitBox {
      */
     public boolean hasIntersection(HitBox hitBox) {
 
-        if (this.projectionX[1] <= hitBox.projectionX[0]) return false;
-        else if (this.projectionX[0] >= hitBox.projectionX[1]) return false;
-        else if (this.projectionY[1] <= hitBox.projectionY[0]) return false;
-        else if (this.projectionY[0] >= hitBox.projectionY[1]) return false;
+        if (this.projectionX[1] < hitBox.projectionX[0]) return false;
+        else if (this.projectionX[0] > hitBox.projectionX[1]) return false;
+        else if (this.projectionY[1] < hitBox.projectionY[0]) return false;
+        else if (this.projectionY[0] > hitBox.projectionY[1]) return false;
 
         return true;
     }

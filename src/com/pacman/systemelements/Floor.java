@@ -1,5 +1,6 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.ArenaManager;
 import com.pacman.engine.Vertex;
 
 /**
@@ -25,6 +26,7 @@ public class Floor extends SceneElement {
     public Floor(Position position) {
         setLayer(0);
         setPosition(position);
+        setDimension(new Dimension(ArenaManager.widthFloor, ArenaManager.heightFloor));
     }
 
     /**

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.Rectangle?>
+
+<Rectangle fx:controller="com.pacman.graphicinterface.PacManController" fx:id="pacmanID" arcHeight="5.0" arcWidth="5.0" fill="#fff70c"
+           height="18.0" onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked" stroke="BLACK" strokeType="INSIDE" width="18.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />

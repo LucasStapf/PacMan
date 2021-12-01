@@ -1,7 +1,8 @@
 package com.pacman.systemelements;
 
 import com.pacman.engine.DijkstraAlgorithm;
-import com.pacman.engine.GameManager;
+import com.pacman.engine.GraphicManager;
+import com.pacman.engine.SystemManager;
 import com.pacman.engine.Vertex;
 import java.util.LinkedList;
 
@@ -43,6 +44,7 @@ public final class Ghost extends DynamicGameObject {
         setLayer(4);
         setRigidBody(true);
         setPosition(position);
+        setOldPosition(position);
         getVelocity().setModulus(1);
     }
 
@@ -89,20 +91,19 @@ public final class Ghost extends DynamicGameObject {
         }
 
         if (pathToTarget != null && !pathToTarget.isEmpty()) {
-            if (target.isOnFloor(pathToTarget.getLast().getT())) return;
+            if (target.isOnFloor(pathToTarget.getLast().getT()) && isOnFloor(pathToTarget.getFirst().getT())) return;
             else for (Vertex<Floor> vertex: pathToTarget) vertex.getT().highlighted = false; // temp
         }
 
         Floor floor, targetFloor;
 
-        floor = GameManager.getArenaManager().getArena().getGameObjectFloorHashMap().get(this);
-        targetFloor = GameManager.getArenaManager().getArena().getGameObjectFloorHashMap().get(target);
+        floor = SystemManager.getArenaManager().getArena().getGameObjectFloorHashMap().get(this);
+        targetFloor = SystemManager.getArenaManager().getArena().getGameObjectFloorHashMap().get(target);
 
-        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(GameManager.getArenaManager().getGraph(), floor.getVertex());
+        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(SystemManager.getArenaManager().getGraph(), floor.getVertex());
         pathToTarget = dijAlg.getShortestPath(targetFloor.getVertex());
 
         for (Vertex<Floor> vertex: pathToTarget) vertex.getT().highlighted = true; // temp
-
     }
 
     /**
@@ -118,8 +119,8 @@ public final class Ghost extends DynamicGameObject {
             pathToTarget.removeFirst();
             if (pathToTarget.isEmpty()) return;
 
-            float deltaX = pathToTarget.getFirst().getT().getPosition().getX() - getPosition().getX();
-            float deltaY = pathToTarget.getFirst().getT().getPosition().getY() - getPosition().getY();
+            double deltaX = pathToTarget.getFirst().getT().getPosition().getX() - getPosition().getX();
+            double deltaY = pathToTarget.getFirst().getT().getPosition().getY() - getPosition().getY();
 
             if (deltaX > 0) getVelocity().setDirection(Velocity.Direction.RIGHT);
             else if (deltaX < 0) getVelocity().setDirection(Velocity.Direction.LEFT);
@@ -127,15 +128,19 @@ public final class Ghost extends DynamicGameObject {
             else if (deltaY < 0) getVelocity().setDirection(Velocity.Direction.DOWN);
         }
 
-        translate(1);
+        translate(GraphicManager.getDeltaTime());
     }
 
     @Override
     public void update() {
 
+        System.out.println("Ghost: " + getPosition());
+        System.out.println("Path: " + pathToTarget);
+
         switch (movement) {
 
             case RANDOM:
+                translate(GraphicManager.getDeltaTime());
                 break;
 
             case FOLLOW_TARGET:

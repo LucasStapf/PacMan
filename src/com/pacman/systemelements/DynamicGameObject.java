@@ -1,5 +1,9 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.ArenaManager;
+import com.pacman.engine.GameObjectManager;
+import com.pacman.engine.SystemManager;
+
 /**
  * Classe que representa todos os {@link GameObject} que podem transladar pelo tabuleiro.
  */
@@ -29,12 +33,14 @@ public abstract class DynamicGameObject extends GameObject {
     /**
      * Método que permite o objeto transladar pelo tabuleiro por um determina período.
      * A translação move tanto o DynamicGameObject quanto sua {@link HitBox}.
-     * @param time tempo que o objeto irá transladar.
+     * @param time tempo que o objeto irá transladar (milissegundos).
      */
-    public void translate(float time) {
+    public void translate(double time) {
 
-        float x = getPosition().getX();
-        float y = getPosition().getY();
+        double x = getPosition().getX();
+        double y = getPosition().getY();
+
+        time = time / 1000.0;
 
         switch (velocity.getDirection()) {
 
@@ -54,6 +60,19 @@ public abstract class DynamicGameObject extends GameObject {
                 x += velocity.getModulus() * time;
                 break;
         }
+
+        int i, j;
+
+        // temp ?
+        j = (int) Math.round((x / ArenaManager.widthFloor) - (1 / 2.0));
+        i = (int) Math.round((y / ArenaManager.heightFloor) - (1/ 2.0));
+
+        Floor floor = SystemManager.getArenaManager().getArena().getGameObjectFloorHashMap().get(this);
+        if (!isOnFloor(floor)) {
+            floor = (Floor) SystemManager.getArenaManager().getArena().getBoard().get(i).get(j).getFirst();
+            SystemManager.getArenaManager().getArena().getGameObjectFloorHashMap().replace(this, floor);
+        }
+        //
 
         Position position = new Position(x, y);
         setPosition(position);
