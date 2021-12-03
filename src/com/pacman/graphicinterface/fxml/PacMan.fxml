@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.*?>
 
-<Region fx:id="pacManID" prefHeight="18.0" prefWidth="18.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.pacman.graphicinterface.PacManController"
-        onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked"/>
+
+<Region fx:id="pacManID" onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pacman.graphicinterface.PacManController" />

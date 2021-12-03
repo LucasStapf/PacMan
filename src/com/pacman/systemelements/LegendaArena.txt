@@ -1,0 +1,10 @@
+1: Wall TOP-LEFT
+2: Wall TOP-RIGHT
+3: Wall BUTTON-LEFT
+4: Wall BUTTON-RIGHT
+5: Wall TOP
+6: Wall BUTTON
+7: Wall LEFT
+8: Wall RIGHT
+-: Wall HORIZONTAL
+|: Wall VERTICAL

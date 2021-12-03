@@ -76,11 +76,6 @@ public class ArenaManager {
         }
     }
 
-    public void updateWallOrientation() {
-
-        System.getGameObjectManager().getGameObjects().iterator();
-    }
-
     public Node createNodeOf(GameObject gameObject) {
 
         Node node = null;
@@ -143,8 +138,36 @@ public class ArenaManager {
 
                     switch (line.charAt(j)) {
 
-                        case '+':
-                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER);
+                        case '1':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_TOP_LEFT);
+                            break;
+
+                        case '2':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_TOP_RIGHT);
+                            break;
+
+                        case '3':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_BUTTON_LEFT);
+                            break;
+
+                        case '4':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_BUTTON_RIGHT);
+                            break;
+
+                        case '5':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_TOP);
+                            break;
+
+                        case '6':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_BUTTON);
+                            break;
+
+                        case '7':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_LEFT);
+                            break;
+
+                        case '8':
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER_RIGHT);
                             break;
 
                         case '-':

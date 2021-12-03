@@ -15,7 +15,11 @@ public class Wall extends GameObject {
         CORNER_TOP_LEFT,
         CORNER_TOP_RIGHT,
         CORNER_BUTTON_LEFT,
-        CORNER_BUTTON_RIGHT;
+        CORNER_BUTTON_RIGHT,
+        CORNER_TOP,
+        CORNER_BUTTON,
+        CORNER_LEFT,
+        CORNER_RIGHT;
     }
 
     /**

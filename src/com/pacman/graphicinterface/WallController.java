@@ -34,6 +34,22 @@ public class WallController implements GameObjectController {
 
         switch (wall.orientation) {
 
+            case CORNER_TOP:
+                wallID.setStyle("-fx-background-radius: 10 10 0 0; -fx-background-color: black");
+                break;
+
+            case CORNER_BUTTON:
+                wallID.setStyle("-fx-background-radius: 0 0 10 10; -fx-background-color: black");
+                break;
+
+            case CORNER_LEFT:
+                wallID.setStyle("-fx-background-radius: 10 0 0 10; -fx-background-color: black");
+                break;
+
+            case CORNER_RIGHT:
+                wallID.setStyle("-fx-background-radius: 0 10 10 0; -fx-background-color: black");
+                break;
+
             case CORNER_TOP_LEFT:
                 wallID.setStyle("-fx-background-radius: 10 0 0 0; -fx-background-color: black");
                 break;
@@ -43,11 +59,11 @@ public class WallController implements GameObjectController {
                 break;
 
             case CORNER_BUTTON_LEFT:
-                wallID.setStyle("-fx-background-radius: 0 0 10 0; -fx-background-color: black");
+                wallID.setStyle("-fx-background-radius: 0 0 0 10; -fx-background-color: black");
                 break;
 
             case CORNER_BUTTON_RIGHT:
-                wallID.setStyle("-fx-background-radius: 0 0 0 10; -fx-background-color: black");
+                wallID.setStyle("-fx-background-radius: 0 0 10 0; -fx-background-color: black");
                 break;
         }
     }
