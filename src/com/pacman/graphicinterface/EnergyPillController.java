@@ -6,12 +6,12 @@ import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.Position;
 import javafx.animation.KeyFrame;
 import javafx.fxml.FXML;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
 
 public class EnergyPillController implements GameObjectController {
 
     @FXML
-    private Rectangle energyPillID;
+    private Region energyPillID;
 
     private EnergyPill energyPill;
 
@@ -26,12 +26,12 @@ public class EnergyPillController implements GameObjectController {
     }
 
     @Override
-    public Rectangle getGameObjectRectangle() {
+    public Region getGameObjectID() {
         return energyPillID;
     }
 
     @Override
-    public void updateGameObjectRectangle() {
+    public void updateGameObjectID() {
 
     }
 

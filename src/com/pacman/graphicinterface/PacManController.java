@@ -8,14 +8,14 @@ import javafx.animation.KeyValue;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
 
 public class PacManController implements GameObjectController {
 
     @FXML
-    private Rectangle pacManID;
+    private Region pacManID;
 
     private PacMan pacMan;
 
@@ -23,7 +23,7 @@ public class PacManController implements GameObjectController {
         pacMan = new PacMan(new Position());
     }
 
-    public Rectangle getPacManID() {
+    public Region getPacManID() {
         return pacManID;
     }
 
@@ -69,12 +69,12 @@ public class PacManController implements GameObjectController {
     }
 
     @Override
-    public Rectangle getGameObjectRectangle() {
+    public Region getGameObjectID() {
         return pacManID;
     }
 
     @Override
-    public void updateGameObjectRectangle() {
+    public void updateGameObjectID() {
 
     }
 

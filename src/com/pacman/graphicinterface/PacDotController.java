@@ -1,18 +1,19 @@
 package com.pacman.graphicinterface;
 
-import com.pacman.engine.GraphicManager;
 import com.pacman.engine.System;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.PacDot;
 import com.pacman.systemelements.Position;
 import javafx.animation.KeyFrame;
 import javafx.fxml.FXML;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
 public class PacDotController implements GameObjectController {
 
     @FXML
-    private Rectangle pacDotID;
+    private Region pacDotID;
 
     private PacDot pacDot;
 
@@ -27,13 +28,12 @@ public class PacDotController implements GameObjectController {
     }
 
     @Override
-    public Rectangle getGameObjectRectangle() {
+    public Region getGameObjectID() {
         return pacDotID;
     }
 
     @Override
-    public void updateGameObjectRectangle() {
-
+    public void updateGameObjectID() {
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.pacman.graphicinterface;
 
 import javafx.fxml.FXML;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
 
 public class FloorController {
 
     @FXML
-    private Rectangle floorID;
+    private Region floorID;
 }

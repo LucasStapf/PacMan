@@ -76,6 +76,11 @@ public class ArenaManager {
         }
     }
 
+    public void updateWallOrientation() {
+
+        System.getGameObjectManager().getGameObjects().iterator();
+    }
+
     public Node createNodeOf(GameObject gameObject) {
 
         Node node = null;
@@ -95,15 +100,21 @@ public class ArenaManager {
         gameObjectController.setGameObject(gameObject);
 
         double x = GraphicManager.convertGameToScreenX(gameObject);
-        gameObjectController.getGameObjectRectangle().setTranslateX(x);
+        gameObjectController.getGameObjectID().setTranslateX(x);
 
         double y = GraphicManager.convertGameToScreenY(gameObject);
-        gameObjectController.getGameObjectRectangle().setTranslateY(y);
+        gameObjectController.getGameObjectID().setTranslateY(y);
 
-        gameObjectController.getGameObjectRectangle().setWidth(gameObject.getDimension().getWidth());
-        gameObjectController.getGameObjectRectangle().setHeight(gameObject.getDimension().getHeight());
+        gameObjectController.getGameObjectID().setMinWidth(gameObject.getDimension().getWidth());
+        gameObjectController.getGameObjectID().setMinHeight(gameObject.getDimension().getHeight());
 
-        gameObjectController.updateGameObjectRectangle();
+        gameObjectController.getGameObjectID().setMaxWidth(gameObject.getDimension().getWidth());
+        gameObjectController.getGameObjectID().setMaxHeight(gameObject.getDimension().getHeight());
+
+//        gameObjectController.getGameObjectID().prefWidth(gameObject.getDimension().getWidth());
+//        gameObjectController.getGameObjectID().prefHeight(gameObject.getDimension().getHeight());
+
+        gameObjectController.updateGameObjectID();
 
         return node;
     }

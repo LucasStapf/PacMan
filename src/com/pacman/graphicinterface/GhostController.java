@@ -8,13 +8,13 @@ import com.pacman.systemelements.Position;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.fxml.FXML;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
 public class GhostController implements GameObjectController {
 
     @FXML
-    public Rectangle ghostID;
+    public Region ghostID;
 
     private Ghost ghost;
 
@@ -22,7 +22,7 @@ public class GhostController implements GameObjectController {
         ghost = new Ghost(new Position(0,0));
     }
 
-    public Rectangle getGhostID() {
+    public Region getGhostID() {
         return ghostID;
     }
 
@@ -37,18 +37,17 @@ public class GhostController implements GameObjectController {
 
     @Override
     public void setGameObject(GameObject gameObject) throws IllegalArgumentException {
-
         if (!(gameObject instanceof Ghost)) throw new IllegalArgumentException("GameObject must be a Ghost!");
         else ghost = (Ghost) gameObject;
     }
 
     @Override
-    public Rectangle getGameObjectRectangle() {
+    public Region getGameObjectID() {
         return ghostID;
     }
 
     @Override
-    public void updateGameObjectRectangle() {
+    public void updateGameObjectID() {
 
     }
 

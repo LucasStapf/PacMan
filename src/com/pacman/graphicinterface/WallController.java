@@ -1,34 +1,21 @@
 package com.pacman.graphicinterface;
 
-import com.pacman.engine.GraphicManager;
 import com.pacman.engine.System;
 import com.pacman.systemelements.*;
 import javafx.animation.KeyFrame;
 import javafx.fxml.FXML;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
 
 public class WallController implements GameObjectController {
 
     @FXML
-    private Rectangle wallID;
+    private Region wallID;
 
     private Wall wall;
 
     public WallController() {
         wall = new Wall(new Position(), Wall.Orientation.CORNER);
         wall.setDimension(new Dimension(20,20));
-    }
-
-    public Rectangle getWallID() {
-        return wallID;
-    }
-
-    public Wall getWall() {
-        return wall;
-    }
-
-    public void setWall(Wall wall) {
-        this.wall = wall;
     }
 
     @Override
@@ -38,14 +25,30 @@ public class WallController implements GameObjectController {
     }
 
     @Override
-    public Rectangle getGameObjectRectangle() {
+    public Region getGameObjectID() {
         return wallID;
     }
 
     @Override
-    public void updateGameObjectRectangle() {
-        if (wall.orientation.equals(Wall.Orientation.CORNER)) {
-            wallID.setStyle("-fx-background-radius: 10 10 0 10");
+    public void updateGameObjectID() {
+
+        switch (wall.orientation) {
+
+            case CORNER_TOP_LEFT:
+                wallID.setStyle("-fx-background-radius: 10 0 0 0; -fx-background-color: black");
+                break;
+
+            case CORNER_TOP_RIGHT:
+                wallID.setStyle("-fx-background-radius: 0 10 0 0; -fx-background-color: black");
+                break;
+
+            case CORNER_BUTTON_LEFT:
+                wallID.setStyle("-fx-background-radius: 0 0 10 0; -fx-background-color: black");
+                break;
+
+            case CORNER_BUTTON_RIGHT:
+                wallID.setStyle("-fx-background-radius: 0 0 0 10; -fx-background-color: black");
+                break;
         }
     }
 

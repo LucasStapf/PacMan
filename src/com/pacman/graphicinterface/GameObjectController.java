@@ -2,13 +2,13 @@ package com.pacman.graphicinterface;
 
 import com.pacman.systemelements.GameObject;
 import javafx.animation.KeyFrame;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Region;
 
 public interface GameObjectController {
 
     public abstract void setGameObject(GameObject gameObject) throws IllegalArgumentException;
-    public abstract Rectangle getGameObjectRectangle();
-    public abstract void updateGameObjectRectangle();
+    public abstract Region getGameObjectID();
+    public abstract void updateGameObjectID();
     public abstract KeyFrame getKeyFrame();
     public abstract void destroy();
 

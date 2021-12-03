@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.*?>
 
-<Rectangle fx:controller="com.pacman.graphicinterface.FloorController" fx:id="floorID" arcHeight="5.0" arcWidth="5.0" fill="#c4c4c4"
-           height="20.0" stroke="BLACK" strokeType="INSIDE" width="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
 
+<Region fx:id="floorID" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.pacman.graphicinterface.FloorController"/>
