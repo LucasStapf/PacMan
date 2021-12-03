@@ -11,17 +11,15 @@ import java.util.Iterator;
 
 public class GraphicManager {
 
-    public static Pane root;
-    private static double deltaTime = 50;
+    public Pane boardPane;
 
-    public static double getDeltaTime() {
-        return deltaTime;
+    public Pane getBoardPane() {
+        return boardPane;
     }
 
-    public static void setDeltaTime(double deltaTime) {
-        GraphicManager.deltaTime = deltaTime;
+    public void setBoardPane(Pane boardPane) {
+        this.boardPane = boardPane;
     }
-
 
     public static void updateScreen() {
 
@@ -35,17 +33,21 @@ public class GraphicManager {
 
             timeline.getKeyFrames().clear();
 
-            SystemManager.getGameObjectManager().updateAllGameObjects();
+            System.getGameObjectManager().destroyGameObjects();
 
-            Iterator<DynamicGameObject> i = SystemManager.getGameObjectManager().getDynamicGameObjects().iterator();
-            SystemManager.getCollisionManager().checkCollisions(SystemManager.getGameObjectManager().getDynamicGameObjects(),
-                    SystemManager.getGameObjectManager().getStaticGameObjects());
-            SystemManager.getCollisionManager().handleCollisions();
+            System.getGameObjectManager().updateAllGameObjects();
+
+            System.getCollisionManager().checkCollisions(System.getGameObjectManager().getDynamicGameObjects(),
+                    System.getGameObjectManager().getStaticGameObjects());
+            System.getCollisionManager().handleCollisions();
+
+
+            Iterator<DynamicGameObject> i = System.getGameObjectManager().getDynamicGameObjects().iterator();
 
             while (i.hasNext()) {
 
                 DynamicGameObject dynamicGameObject = i.next();
-                GameObjectController gameObjectController = SystemManager.getGameObjectManager().getGameObjectController().get(dynamicGameObject);
+                GameObjectController gameObjectController = System.getGameObjectManager().getGameObjectController().get(dynamicGameObject);
 
                 timeline.getKeyFrames().add(gameObjectController.getKeyFrame());
             }

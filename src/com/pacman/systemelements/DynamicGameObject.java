@@ -1,8 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.ArenaManager;
-import com.pacman.engine.GameObjectManager;
-import com.pacman.engine.SystemManager;
+import com.pacman.engine.System;
 
 /**
  * Classe que representa todos os {@link GameObject} que podem transladar pelo tabuleiro.
@@ -63,19 +61,86 @@ public abstract class DynamicGameObject extends GameObject {
 
         int i, j;
 
-        // temp ?
-        j = (int) Math.round((x / ArenaManager.widthFloor) - (1 / 2.0));
-        i = (int) Math.round((y / ArenaManager.heightFloor) - (1/ 2.0));
-
-        Floor floor = SystemManager.getArenaManager().getArena().getGameObjectFloorHashMap().get(this);
-        if (!isOnFloor(floor)) {
-            floor = (Floor) SystemManager.getArenaManager().getArena().getBoard().get(i).get(j).getFirst();
-            SystemManager.getArenaManager().getArena().getGameObjectFloorHashMap().replace(this, floor);
-        }
-        //
-
         Position position = new Position(x, y);
         setPosition(position);
         getHitBox().setPosition(position);
+    }
+
+    public void turn(Velocity.Direction direction) {
+
+        Floor floor = Floor.getFloorFrom(this);
+
+        double x = floor.getPosition().getX();
+        double y = floor.getPosition().getY();
+
+        if (!canMakeCurve(floor)) return;
+
+        switch (direction) {
+            case UP:
+                y += Floor.height;
+                break;
+
+            case DOWN:
+                y -= Floor.height;
+                break;
+
+            case RIGHT:
+                x += Floor.width;
+                break;
+
+            case LEFT:
+                x -= Floor.width;
+                break;
+        }
+
+        if (System.getArenaManager().getArena().hasFloorOn(x, y)) {
+            setPosition(new Position(floor.getPosition().getX(), floor.getPosition().getY()));
+            getVelocity().setDirection(direction);
+        }
+    }
+
+    public void changeDirectionTo(Velocity.Direction direction) {
+
+        if (direction.equals(Velocity.Direction.UP) || direction.equals(Velocity.Direction.DOWN)) {
+            if (getVelocity().getDirection().equals(Velocity.Direction.UP) || getVelocity().getDirection().equals(Velocity.Direction.DOWN)) {
+                getVelocity().setDirection(direction);
+                return;
+            }
+        }
+
+        if (direction.equals(Velocity.Direction.LEFT) || direction.equals(Velocity.Direction.RIGHT)) {
+            if (getVelocity().getDirection().equals(Velocity.Direction.LEFT) || getVelocity().getDirection().equals(Velocity.Direction.RIGHT)) {
+                getVelocity().setDirection(direction);
+                return;
+            }
+        }
+
+        Floor floor = Floor.getFloorFrom(this);
+
+        double x = floor.getPosition().getX();
+        double y = floor.getPosition().getY();
+
+        switch (direction) {
+            case UP:
+                y += Floor.height;
+                break;
+
+            case DOWN:
+                y -= Floor.height;
+                break;
+
+            case RIGHT:
+                x += Floor.width;
+                break;
+
+            case LEFT:
+                x -= Floor.width;
+                break;
+        }
+
+        if (System.getArenaManager().getArena().hasFloorOn(x, y)) {
+            setPosition(new Position(floor.getPosition().getX(), floor.getPosition().getY()));
+            getVelocity().setDirection(direction);
+        }
     }
 }

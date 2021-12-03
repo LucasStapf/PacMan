@@ -11,7 +11,11 @@ public class Wall extends GameObject {
     public enum Orientation {
         HORIZONTAL,
         VERTICAL,
-        CORNER;
+        CORNER,
+        CORNER_UP_LEFT,
+        CORNER_UP_RIGHT,
+        CORNER_DOWN_LEFT,
+        CORNER_DOWN_RIGHT;
     }
 
     /**
@@ -30,6 +34,7 @@ public class Wall extends GameObject {
         setRigidBody(true);
         setPosition(position);
         setOldPosition(position);
+        setDimension(new Dimension(Floor.width, Floor.height));
         this.orientation = orientation;
     }
 

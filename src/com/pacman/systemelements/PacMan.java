@@ -1,6 +1,7 @@
 package com.pacman.systemelements;
 
 import com.pacman.engine.GraphicManager;
+import com.pacman.engine.System;
 
 /**
  * Classe que representa o Pac-Man do jogo.
@@ -15,7 +16,7 @@ public class PacMan extends DynamicGameObject {
     /**
      * Atributo que guarda a quantidade de pontos obtidos pelo PacMan.
      */
-    private int totalPoints;
+    private int score;
 
     /**
      * Construtor padrão.
@@ -27,34 +28,23 @@ public class PacMan extends DynamicGameObject {
         setRigidBody(true);
         setPosition(position);
         setOldPosition(position);
+        setDimension(new Dimension(18, 18));
+        getVelocity().setModulus(70);
     }
+
 
     @Override
     public void update() {
-        System.out.println("PacMan: " + getPosition());
-        translate(GraphicManager.getDeltaTime());
+        translate(System.deltaTime);
     }
 
     @Override
     public void onCollision() {
 
-        System.out.println("Colisão!");
-
-//        if (getCollider() instanceof Ghost) {
-//            System.out.println("Collision with Ghost!");
-//            SystemManager.end();
-//        }
-//
-//        // temp
-//        if (getVelocity().getDirection() == Velocity.Direction.LEFT) {
-//            getVelocity().setDirection(Velocity.Direction.RIGHT);
-//        } else if (getVelocity().getDirection() == Velocity.Direction.RIGHT) {
-//            getVelocity().setDirection(Velocity.Direction.LEFT);
-//        }
     }
 
     @Override
     public void print() {
-        System.out.print("P");
+        java.lang.System.out.print("P");
     }
 }

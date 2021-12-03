@@ -14,6 +14,7 @@ public class PacDot extends GameObject {
         setLayer(2);
         setRigidBody(false);
         setPosition(position);
+        setDimension(new Dimension(5, 5));
     }
 
     @Override
@@ -23,7 +24,7 @@ public class PacDot extends GameObject {
 
     @Override
     public void onCollision() {
-
+        if (getCollider() instanceof PacMan) destroy();
     }
 
     @Override

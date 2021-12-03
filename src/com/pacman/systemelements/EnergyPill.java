@@ -13,6 +13,7 @@ public class EnergyPill extends GameObject {
         setLayer(2);
         setRigidBody(false);
         setPosition(position);
+        setDimension(new Dimension(12, 12));
     }
 
     @Override
@@ -22,7 +23,7 @@ public class EnergyPill extends GameObject {
 
     @Override
     public void onCollision() {
-
+        if (getCollider() instanceof PacMan) destroy();
     }
 
     @Override

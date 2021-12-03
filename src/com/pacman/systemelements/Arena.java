@@ -10,85 +10,44 @@ public class Arena {
     /**
      * Atributo que guarda as posições de cada {@link SceneElement} no tabuleiro.
      */
-    private ArrayList<ArrayList<LinkedList<SceneElement>>> board;
-
-    /**
-     * Atributo que relaciona cada {@link GameObject} do jogo a um {@link Floor}.
-     */
-    private HashMap<GameObject, Floor> gameObjectFloorHashMap;
+    private ArrayList<ArrayList<Floor>> board;
 
     /**
      * Construtor padrão.
      */
     public Arena() {
-        board = new ArrayList<>();
-        gameObjectFloorHashMap = new HashMap<>();
+        board = new ArrayList<ArrayList<Floor>>();
     }
 
     /**
      * Método que retorna o tabuleiro do jogo.
      * @return o tabuleiro do jogo.
      */
-    public ArrayList<ArrayList<LinkedList<SceneElement>>> getBoard() {
+    public ArrayList<ArrayList<Floor>> getBoard() {
         return board;
-    }
-
-    /**
-     * Método que retorna o HashMap entre {@link GameObject} e {@link Floor}.
-     * @return o HashMap entre {@link GameObject} e {@link Floor}.
-     */
-    public HashMap<GameObject, Floor> getGameObjectFloorHashMap() {
-        return gameObjectFloorHashMap;
     }
 
     /**
      * Método que altera o atual tabuleiro da arena.
      * @param board novo tabuleiro.
      */
-    public void setBoard(ArrayList<ArrayList<LinkedList<SceneElement>>> board) {
+    public void setBoard(ArrayList<ArrayList<Floor>> board) {
         this.board = board;
     }
 
-    /**
-     * Método que altera o HashMap entre {@link GameObject} e {@link Floor}.
-     * @param gameObjectFloorHashMap novo HashMap.
-     */
-    public void setGameObjectFloorHashMap(HashMap<GameObject, Floor> gameObjectFloorHashMap) {
-        this.gameObjectFloorHashMap = gameObjectFloorHashMap;
+    public boolean hasFloorOn(double x, double y) {
+
+        int i = (int) Math.round(y / Floor.height - 0.5);
+        int j = (int) Math.round(x / Floor.width - 0.5);
+
+        return board.get(i).get(j) != null;
     }
 
-    /**
-     * Método temporário
-     */
-    public void updateArena() { // temp
+    public Floor getFloorOn(double x, double y) {
 
-        Iterator iterator = gameObjectFloorHashMap.keySet().iterator();
+        int i = (int) Math.round(y / Floor.height - 0.5);
+        int j = (int) Math.round(x / Floor.width - 0.5);
 
-        while (iterator.hasNext()) {
-
-            GameObject go = (GameObject) iterator.next();
-            go.update();
-
-            double x = go.getPosition().getX();
-            double y = go.getPosition().getY();
-
-            int i = (int) Math.round((y / 2.0) - (1 / 2.0));
-            int j = (int) Math.round((x / 2.0) - (1 / 2.0));
-
-            Floor f = (Floor) board.get(i).get(j).getFirst();
-            Floor fGameObject = gameObjectFloorHashMap.get(go);
-            fGameObject.highlighted = false;
-
-            if (!f.equals(fGameObject)) {
-
-                int iF = (int) Math.round(fGameObject.getPosition().getY() / 2.0 - 1 / 2.0);
-                int jF = (int) Math.round(fGameObject.getPosition().getX() / 2.0 - 1 / 2.0);
-
-                board.get(iF).get(jF).remove(go);
-                board.get(i).get(j).add(go);
-                gameObjectFloorHashMap.replace(go, f);
-                Collections.sort(board.get(i).get(j));
-            }
-        }
+        return board.get(i).get(j);
     }
 }

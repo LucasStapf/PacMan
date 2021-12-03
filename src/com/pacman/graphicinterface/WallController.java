@@ -1,5 +1,7 @@
 package com.pacman.graphicinterface;
 
+import com.pacman.engine.GraphicManager;
+import com.pacman.engine.System;
 import com.pacman.systemelements.*;
 import javafx.animation.KeyFrame;
 import javafx.fxml.FXML;
@@ -41,7 +43,19 @@ public class WallController implements GameObjectController {
     }
 
     @Override
+    public void updateGameObjectRectangle() {
+        if (wall.orientation.equals(Wall.Orientation.CORNER)) {
+            wallID.setStyle("-fx-background-radius: 10 10 0 10");
+        }
+    }
+
+    @Override
     public KeyFrame getKeyFrame() {
         return null;
+    }
+
+    @Override
+    public void destroy() {
+        System.getGraphicManager().getBoardPane().getChildren().remove(wallID);
     }
 }

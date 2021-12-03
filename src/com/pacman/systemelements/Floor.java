@@ -1,12 +1,15 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.ArenaManager;
+import com.pacman.engine.System;
 import com.pacman.engine.Vertex;
 
 /**
  * Classe que representa o chão do tabuleiro.
  */
 public class Floor extends SceneElement {
+
+    public static final double width = 20.0;
+    public static final double height = 20.0;
 
     /**
      * {@link Vertex} associado ao Floor.
@@ -26,7 +29,7 @@ public class Floor extends SceneElement {
     public Floor(Position position) {
         setLayer(0);
         setPosition(position);
-        setDimension(new Dimension(ArenaManager.widthFloor, ArenaManager.heightFloor));
+        setDimension(new Dimension(Floor.width, Floor.height));
     }
 
     /**
@@ -37,10 +40,18 @@ public class Floor extends SceneElement {
         return vertex;
     }
 
+    public static Floor getFloorFrom(SceneElement sceneElement) {
+
+        int i = (int) Math.round(sceneElement.getPosition().getY() / height - 0.5);
+        int j = (int) Math.round(sceneElement.getPosition().getX() / width - 0.5);
+
+        return System.getArenaManager().getArena().getBoard().get(i).get(j);
+    }
+
     @Override
     public void print() {
-        if (highlighted) System.out.print("o");
-        else System.out.print(" ");
+        if (highlighted) java.lang.System.out.print("o");
+        else java.lang.System.out.print(" ");
     }
 
     @Override

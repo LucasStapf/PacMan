@@ -5,7 +5,7 @@ import com.pacman.systemelements.GameObject;
 /**
  * Classe que gerencia toda a lógica do jogo.
  */
-public class SystemManager {
+public class System {
 
     /**
      * Constantes que armazenam o atual estado do jogo.
@@ -23,6 +23,12 @@ public class SystemManager {
     private static Status status;
 
     /**
+     * Intervalo de tempo entre cada atualização do sistema do jogo.
+     * É utilizado, por exemplo, para o cálculo de distâncias percorridas e para o processamento gráfico.
+     */
+    public static final long deltaTime = 100;
+
+    /**
      * Atributo que armazena o gerenciador da arena.
      */
     private static ArenaManager arenaManager;
@@ -37,10 +43,12 @@ public class SystemManager {
      */
     private static CollisionManager collisionManager;
 
+    private static GraphicManager graphicManager;
+
     /**
      * Construtor padrão.
      */
-    public SystemManager() {
+    public System() {
         start();
     }
 
@@ -68,6 +76,10 @@ public class SystemManager {
         return collisionManager;
     }
 
+    public static GraphicManager getGraphicManager() {
+        return graphicManager;
+    }
+
     /**
      * Método utilizado para adicionar um GameObject dinâmicamente (runtime).
      * @param gameObject objeto a ser adicionado.
@@ -85,7 +97,7 @@ public class SystemManager {
     public static void destroyGameObject(GameObject gameObject) {
 
         if (arenaManager == null || gameObjectManager == null || collisionManager == null) return;
-
+        gameObjectManager.getObjectsToDestroy().add(gameObject);
     }
 
     /**
@@ -96,6 +108,7 @@ public class SystemManager {
         gameObjectManager = new GameObjectManager();
         arenaManager = new ArenaManager();
         collisionManager = new CollisionManager();
+        graphicManager = new GraphicManager();
     }
 
     /**

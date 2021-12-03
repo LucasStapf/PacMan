@@ -8,6 +8,8 @@ public interface GameObjectController {
 
     public abstract void setGameObject(GameObject gameObject) throws IllegalArgumentException;
     public abstract Rectangle getGameObjectRectangle();
+    public abstract void updateGameObjectRectangle();
     public abstract KeyFrame getKeyFrame();
+    public abstract void destroy();
 
 }

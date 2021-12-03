@@ -33,6 +33,8 @@ public class GameObjectManager {
      */
     private LinkedList<DynamicGameObject> dynamicGameObjects;
 
+    private LinkedList<GameObject> objectsToDestroy;
+
     /**
      * Construtor padrão.
      */
@@ -41,6 +43,7 @@ public class GameObjectManager {
         gameObjectController = new HashMap<>();
         staticGameObjects = new LinkedList<>();
         dynamicGameObjects = new LinkedList<>();
+        objectsToDestroy = new LinkedList<>();
     }
 
     /**
@@ -72,7 +75,11 @@ public class GameObjectManager {
         return dynamicGameObjects;
     }
 
-//    public void setGameObjects(LinkedList<GameObject> gameObjects) {
+    public LinkedList<GameObject> getObjectsToDestroy() {
+        return objectsToDestroy;
+    }
+
+    //    public void setGameObjects(LinkedList<GameObject> gameObjects) {
 //        this.gameObjects = gameObjects;
 //    }
 //
@@ -103,5 +110,22 @@ public class GameObjectManager {
         for(GameObject gameObject: gameObjects) {
             gameObject.update();
         }
+    }
+
+    public void destroyGameObjects() {
+
+        if (objectsToDestroy.isEmpty()) return;
+
+        for(GameObject gameObject: objectsToDestroy){
+//            System.out.println(objectsToDestroy.size());
+//            System.out.println(gameObject);
+//            System.out.println(gameObjectController.get(gameObject));
+            gameObjectController.get(gameObject).destroy();
+            gameObjects.remove(gameObject);
+            gameObjectController.remove(gameObject);
+        }
+
+        objectsToDestroy.clear();
+        updateGameObjectLists();
     }
 }

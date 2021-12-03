@@ -1,8 +1,6 @@
 package com.pacman.engine;
 
 import com.pacman.graphicinterface.GameObjectController;
-import com.pacman.graphicinterface.PacManController;
-import com.pacman.graphicinterface.WallController;
 import com.pacman.systemelements.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,17 +11,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * Classe responsável por gerenciar a arena do jogo.
  *
  */
 public class ArenaManager {
-
-    public static final double widthFloor = 20.0;
-    public static final double heightFloor = 20.0;
 
     /**
      * Atributo que armazena a arena.
@@ -60,33 +53,25 @@ public class ArenaManager {
     }
 
     /**
-     * Método que atualiza as arenas de um determinado vértice.
+     * Método que atualiza as arestas de um determinado vértice.
      * @param board tabuleiro onde se encontra o vértice.
      * @param i linha do vértice.
      * @param j coluna do vértice.
      */
-    private void updateEdgesArena(ArrayList<ArrayList<LinkedList<SceneElement>>> board, int i, int j) {
+    private void updateEdgesArena(ArrayList<ArrayList<Floor>> board, int i, int j) {
 
-        SceneElement se = board.get(i).get(j).getFirst();
+        Floor floor = board.get(i).get(j);
 
-        if (se instanceof Floor) {
+        if (floor != null) {
 
             if (i >= 1) {
-
-                SceneElement seAux = board.get(i - 1).get(j).getFirst();
-
-                if (seAux instanceof Floor) {
-                    graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
-                }
+                Floor auxFloor = board.get(i - 1).get(j);
+                if (auxFloor != null) graph.addEdge(floor.getVertex(), auxFloor.getVertex());
             }
 
             if (j >= 1) {
-
-                SceneElement seAux = board.get(i).get(j - 1).getFirst();
-
-                if (seAux instanceof Floor) {
-                    graph.addEdge(((Floor) se).getVertex(), ((Floor) seAux).getVertex());
-                }
+                Floor auxFloor = board.get(i).get(j - 1);
+                if (auxFloor != null) graph.addEdge(floor.getVertex(), auxFloor.getVertex());
             }
         }
     }
@@ -105,7 +90,7 @@ public class ArenaManager {
         }
 
         GameObjectController gameObjectController = fxmlLoader.getController();
-        SystemManager.getGameObjectManager().getGameObjectController().put(gameObject, gameObjectController);
+        System.getGameObjectManager().getGameObjectController().put(gameObject, gameObjectController);
 
         gameObjectController.setGameObject(gameObject);
 
@@ -118,152 +103,79 @@ public class ArenaManager {
         gameObjectController.getGameObjectRectangle().setWidth(gameObject.getDimension().getWidth());
         gameObjectController.getGameObjectRectangle().setHeight(gameObject.getDimension().getHeight());
 
+        gameObjectController.updateGameObjectRectangle();
+
         return node;
     }
 
-    /**
-     * Carrega a arena de um arquivo.
-     * @param path endereço do arquivo da arena.
-     */
-    public void loadArena(String path) {
+    public void loadArenaFrom(String path) {
 
-        ArrayList<ArrayList<LinkedList<SceneElement>>> board = new ArrayList<>();
-        HashMap<GameObject, Floor> gameObjectFloorHashMap = new HashMap<>();
+        ArrayList<ArrayList<Floor>> board = new ArrayList<>();
 
         try {
 
             BufferedReader br = new BufferedReader(new FileReader(path));
-            String line;
+            String line = br.readLine();
             int i = 0, j = 0;
-
-            line = br.readLine();
 
             while (line != null) {
 
                 board.add(new ArrayList<>());
+
                 for (j = 0; j < line.length(); j++) {
 
-                    board.get(i).add(new LinkedList<>());
+                    double x = (Floor.width / 2.0) + (j * Floor.width);
+                    double y = (Floor.height / 2.0) + (i * Floor.height);
 
-                    SceneElement sceneElement;
-
-//                    double x = (widthFloor / 2.0) + (j * widthFloor);
-//                    double y = (heightFloor / 2.0) + (i * heightFloor);
-
-                    double x = (widthFloor / 2.0) + (j * widthFloor);
-                    double y = (heightFloor / 2.0) + (i * heightFloor);
+                    GameObject gameObject = null;
+                    Floor floor = null;
 
                     switch (line.charAt(j)) {
 
                         case '+':
-                            Wall wallCorner =  new Wall(new Position(x, y), Wall.Orientation.CORNER);
-                            wallCorner.setDimension(new Dimension(widthFloor,heightFloor));
-                            board.get(i).get(j).add(wallCorner);
-                            SystemManager.getGameObjectManager().getGameObjects().add(wallCorner);
-                            GraphicManager.root.getChildren().add(createNodeOf(wallCorner));
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.CORNER);
                             break;
 
                         case '-':
-                            Wall wallHorizontal =  new Wall(new Position(x, y), Wall.Orientation.HORIZONTAL);
-                            wallHorizontal.setDimension(new Dimension(widthFloor,heightFloor));
-                            board.get(i).get(j).add(wallHorizontal);
-                            SystemManager.getGameObjectManager().getGameObjects().add(wallHorizontal);
-                            GraphicManager.root.getChildren().add(createNodeOf(wallHorizontal));
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.HORIZONTAL);
                             break;
 
                         case '|':
-                            Wall wallVertical =  new Wall(new Position(x, y), Wall.Orientation.VERTICAL);
-                            wallVertical.setDimension(new Dimension(widthFloor,heightFloor));
-                            board.get(i).get(j).add(wallVertical);
-                            SystemManager.getGameObjectManager().getGameObjects().add(wallVertical);
-                            GraphicManager.root.getChildren().add(createNodeOf(wallVertical));
-                            break;
-
-                        case '.':
-                            Floor fPacDot = new Floor(new Position(x, y));
-                            board.get(i).get(j).add(fPacDot);
-                            graph.addVertex(fPacDot.getVertex());
-
-//                            PacDot pacDot = new PacDot(new Position(x, y));
-//                            pacDot.setDimension(new Dimension(0.5f,0.5f));
-//                            board.get(i).get(j).add(pacDot);
-//                            gameObjectFloorHashMap.put(pacDot, fPacDot);
-//
-//                            SystemManager.getGameObjectManager().getGameObjects().add(pacDot);
-                            break;
-
-                        case 'E':
-                            Floor fEnergyPill = new Floor(new Position(x, y));
-                            board.get(i).get(j).add(fEnergyPill);
-                            graph.addVertex(fEnergyPill.getVertex());
-
-                            EnergyPill energyPill = new EnergyPill(new Position(x, y));
-//                            energyPill.setDimension(new Dimension(1,1));
-                            board.get(i).get(j).add(energyPill);
-                            gameObjectFloorHashMap.put(energyPill, fEnergyPill);
-
-                            SystemManager.getGameObjectManager().getGameObjects().add(energyPill);
-                            break;
-
-                        case 'F':
-                            Floor fFruit = new Floor(new Position(x, y));
-                            board.get(i).get(j).add(fFruit);
-                            graph.addVertex(fFruit.getVertex());
-
-                            Fruit fruit = new Fruit(new Position(x, y));
-                            fruit.setDimension(new Dimension(0.5f,0.5f));
-                            board.get(i).get(j).add(fruit);
-                            gameObjectFloorHashMap.put(fruit, fFruit);
-
-                            SystemManager.getGameObjectManager().getGameObjects().add(fruit);
+                            gameObject = new Wall(new Position(x, y), Wall.Orientation.VERTICAL);
                             break;
 
                         case 'P':
-                            Floor fPac = new Floor(new Position(x, y));
-                            board.get(i).get(j).add(fPac);
-                            graph.addVertex(fPac.getVertex());
-
-                            PacMan pacMan = new PacMan(new Position(x, y));
-                            pacMan.setDimension(new Dimension(18,18));
-                            pacMan.getVelocity().updateVelocity(0, Velocity.Direction.NONE);
-                            board.get(i).get(j).add(pacMan);
-                            gameObjectFloorHashMap.put(pacMan, fPac);
-
-                            SystemManager.getGameObjectManager().getGameObjects().add(pacMan);
-                            GraphicManager.root.getChildren().add(createNodeOf(pacMan));
+                            gameObject = new PacMan(new Position(x, y));
                             break;
 
                         case 'G':
-                            Floor fGhost = new Floor(new Position(x, y));
-                            board.get(i).get(j).add(fGhost);
-                            graph.addVertex(fGhost.getVertex());
-
-                            Ghost ghost = new Ghost(new Position(x, y));
-                            ghost.setDimension(new Dimension(18f,18f));
-                            ghost.getVelocity().updateVelocity(50, Velocity.Direction.NONE);
-                            ghost.setMovement(Ghost.Movement.FOLLOW_TARGET);
-                            board.get(i).get(j).add(ghost);
-                            gameObjectFloorHashMap.put(ghost, fGhost);
-
-                            SystemManager.getGameObjectManager().getGameObjects().add(ghost);
-                            GraphicManager.root.getChildren().add(createNodeOf(ghost));
+                            gameObject = new Ghost(new Position(x, y));
                             break;
 
-                        default:
-                            board.get(i).get(j).add(new Floor(new Position(x, y)));
-                            graph.addVertex(((Floor) board.get(i).get(j).getLast()).getVertex());
+                        case '.':
+                            gameObject = new PacDot(new Position(x, y));
+                            break;
+
+                        case 'E':
+                            gameObject = new EnergyPill(new Position(x, y));
+                            break;
+
+                        case 'F':
+                            gameObject = new Fruit(new Position(x, y));
                             break;
                     }
 
-                    Collections.sort(board.get(i).get(j));
+                    if (!(gameObject instanceof Wall)) floor = new Floor(new Position(x, y));
+                    if (gameObject != null) System.getGameObjectManager().getGameObjects().add(gameObject);
+                    if (floor != null) graph.addVertex(floor.getVertex());
+                    board.get(i).add(floor);
+
                     updateEdgesArena(board, i, j);
                 }
 
                 line = br.readLine();
                 i++;
             }
-
-            br.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -272,6 +184,9 @@ public class ArenaManager {
         }
 
         arena.setBoard(board);
-        arena.setGameObjectFloorHashMap(gameObjectFloorHashMap);
+        Collections.sort(System.getGameObjectManager().getGameObjects());
+        for (GameObject gameObject: System.getGameObjectManager().getGameObjects()) {
+            System.getGraphicManager().getBoardPane().getChildren().add(createNodeOf(gameObject));
+        }
     }
 }

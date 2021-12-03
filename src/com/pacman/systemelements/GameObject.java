@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.SystemManager;
+import com.pacman.engine.System;
 
 /**
  * Classe que representa todos os {@link SceneElement} que podem interagir entre si via colisão.
@@ -87,7 +87,7 @@ public abstract class GameObject extends SceneElement {
      * Método utilizado para destruir o atual GameObject.
      */
     public final void destroy() {
-        SystemManager.destroyGameObject(this);
+        System.destroyGameObject(this);
     }
 
     /**
@@ -99,8 +99,8 @@ public abstract class GameObject extends SceneElement {
 
         double x = floor.getPosition().getX();
         double y = floor.getPosition().getY();
-        double[] projX = {x - (floor.getDimension().getWidth() / 2), x + (floor.getDimension().getWidth() / 2)};
-        double[] projY = {y - (floor.getDimension().getHeight() / 2), y + (floor.getDimension().getHeight() / 2)};
+        double[] projX = {x - (floor.getDimension().getWidth() / 2.0), x + (floor.getDimension().getWidth() / 2.0)};
+        double[] projY = {y - (floor.getDimension().getHeight() / 2.0), y + (floor.getDimension().getHeight() / 2.0)};
 
         if (getPosition().getX() < projX[0]) return false;
         else if (getPosition().getX() > projX[1]) return false;
@@ -117,9 +117,17 @@ public abstract class GameObject extends SceneElement {
      * @return true se o GameObject estiver centralizado, false caso contrário.
      */
     public boolean isCenteredOnFloor(Floor floor) {
+        double fraction = 0.10;
         double deltaX = Math.abs(getPosition().getX() - floor.getPosition().getX());
         double deltaY = Math.abs(getPosition().getY() - floor.getPosition().getY());
-        return (deltaX < 0.10 && deltaY < 0.10);
+        return (deltaX <= fraction * Floor.width && deltaY <= fraction * Floor.height);
+    }
+
+    public boolean canMakeCurve(Floor floor) {
+        double porc = 0.25;
+        double deltaX = Math.abs(getPosition().getX() - floor.getPosition().getX());
+        double deltaY = Math.abs(getPosition().getY() - floor.getPosition().getY());
+        return (deltaX <= porc * Floor.width && deltaY <= porc * Floor.height);
     }
 
     public void returnToOldPosition() {

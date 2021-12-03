@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+
+
+<Rectangle fx:id="pacDotID" arcHeight="5.0" arcWidth="5.0" fill="#c4c4c4" height="10.0" stroke="BLACK" strokeType="INSIDE" width="10.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pacman.graphicinterface.PacDotController" />
