@@ -5,7 +5,7 @@ import com.pacman.systemelements.GameObject;
 /**
  * Classe que gerencia toda a lógica do jogo.
  */
-public class System {
+public class SystemGame {
 
     /**
      * Constantes que armazenam o atual estado do jogo.
@@ -43,13 +43,17 @@ public class System {
      */
     private static CollisionManager collisionManager;
 
-    private static GraphicManager graphicManager;
+    private static ScreenManager screenManager;
 
     /**
      * Construtor padrão.
      */
-    public System() {
+    public SystemGame() {
         start();
+    }
+
+    public static Status getStatus() {
+        return status;
     }
 
     /**
@@ -76,8 +80,8 @@ public class System {
         return collisionManager;
     }
 
-    public static GraphicManager getGraphicManager() {
-        return graphicManager;
+    public static ScreenManager getScreenManager() {
+        return screenManager;
     }
 
     /**
@@ -108,15 +112,17 @@ public class System {
         gameObjectManager = new GameObjectManager();
         arenaManager = new ArenaManager();
         collisionManager = new CollisionManager();
-        graphicManager = new GraphicManager();
+        screenManager = new ScreenManager();
+
+        status = Status.STARTED;
     }
 
     /**
      * Método responsável por rodar o jogo.
      */
     public static void run() {
-//        GraphicManager.updateFrame();
-        GraphicManager.updateScreen();
+        status = Status.RUNNING;
+        screenManager.runGameScreen();
     }
 
     /**

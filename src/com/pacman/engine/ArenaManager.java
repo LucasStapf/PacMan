@@ -79,7 +79,7 @@ public class ArenaManager {
     public Node createNodeOf(GameObject gameObject) {
 
         Node node = null;
-        String path = "/com/pacman/graphicinterface/fxml/" + gameObject.getClass().getSimpleName() + ".fxml";
+        String path = "/com/pacman/graphicinterface/components/" + gameObject.getClass().getSimpleName() + ".fxml";
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
 
@@ -90,14 +90,14 @@ public class ArenaManager {
         }
 
         GameObjectController gameObjectController = fxmlLoader.getController();
-        System.getGameObjectManager().getGameObjectController().put(gameObject, gameObjectController);
+        SystemGame.getGameObjectManager().getGameObjectController().put(gameObject, gameObjectController);
 
         gameObjectController.setGameObject(gameObject);
 
-        double x = GraphicManager.convertGameToScreenX(gameObject);
+        double x = ScreenManager.convertGameToScreenX(gameObject);
         gameObjectController.getGameObjectID().setTranslateX(x);
 
-        double y = GraphicManager.convertGameToScreenY(gameObject);
+        double y = ScreenManager.convertGameToScreenY(gameObject);
         gameObjectController.getGameObjectID().setTranslateY(y);
 
         gameObjectController.getGameObjectID().setMinWidth(gameObject.getDimension().getWidth());
@@ -108,6 +108,8 @@ public class ArenaManager {
 
 //        gameObjectController.getGameObjectID().prefWidth(gameObject.getDimension().getWidth());
 //        gameObjectController.getGameObjectID().prefHeight(gameObject.getDimension().getHeight());
+
+//        if (gameObject instanceof PacMan) gameObjectController.getGameObjectID().requestFocus();
 
         gameObjectController.updateGameObjectID();
 
@@ -200,7 +202,7 @@ public class ArenaManager {
                     }
 
                     if (!(gameObject instanceof Wall)) floor = new Floor(new Position(x, y));
-                    if (gameObject != null) System.getGameObjectManager().getGameObjects().add(gameObject);
+                    if (gameObject != null) SystemGame.getGameObjectManager().getGameObjects().add(gameObject);
                     if (floor != null) graph.addVertex(floor.getVertex());
                     board.get(i).add(floor);
 
@@ -218,9 +220,9 @@ public class ArenaManager {
         }
 
         arena.setBoard(board);
-        Collections.sort(System.getGameObjectManager().getGameObjects());
-        for (GameObject gameObject: System.getGameObjectManager().getGameObjects()) {
-            System.getGraphicManager().getBoardPane().getChildren().add(createNodeOf(gameObject));
+        Collections.sort(SystemGame.getGameObjectManager().getGameObjects());
+        for (GameObject gameObject: SystemGame.getGameObjectManager().getGameObjects()) {
+            SystemGame.getScreenManager().getBoardPane().getChildren().add(createNodeOf(gameObject));
         }
     }
 }

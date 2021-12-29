@@ -3,6 +3,8 @@ package com.pacman.engine;
 import com.pacman.graphicinterface.GameObjectController;
 import com.pacman.systemelements.DynamicGameObject;
 import com.pacman.systemelements.GameObject;
+import com.pacman.systemelements.Ghost;
+import com.pacman.systemelements.PacMan;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,6 +14,19 @@ import java.util.LinkedList;
  * Classe responsável por gerenciar todos os GameObject do jogo.
  */
 public class GameObjectManager {
+
+    /**
+     * Atributo que representa o Pac-Man do jogador número 1.
+     */
+    private PacMan player1;
+
+    /**
+     * Fantasma Blinky. Seu movimento é de perseguir o Pac-Man
+     */
+    private Ghost blinky;
+    private Ghost pinky;
+    private Ghost inky;
+    private Ghost clyde;
 
     /**
      * Atributo que guarda uma lista encadeada com todos os GameObject do jogo.
@@ -117,9 +132,9 @@ public class GameObjectManager {
         if (objectsToDestroy.isEmpty()) return;
 
         for(GameObject gameObject: objectsToDestroy){
-//            System.out.println(objectsToDestroy.size());
-//            System.out.println(gameObject);
-//            System.out.println(gameObjectController.get(gameObject));
+//            SystemGame.out.println(objectsToDestroy.size());
+//            SystemGame.out.println(gameObject);
+//            SystemGame.out.println(gameObjectController.get(gameObject));
             gameObjectController.get(gameObject).destroy();
             gameObjects.remove(gameObject);
             gameObjectController.remove(gameObject);

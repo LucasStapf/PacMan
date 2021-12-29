@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml">
+   <Arc fx:id="PACMAN_BODY" fill="#ffe71f" layoutX="315.0" layoutY="169.0" length="300.0" radiusX="9.0" radiusY="9.0"
+        startAngle="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0.4;" type="ROUND"
+        AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+   <Circle fx:id="PACMAN_EYE" layoutX="10.0" layoutY="4.0" radius="1.0" stroke="BLACK" strokeType="INSIDE"
+           AnchorPane.topAnchor="3.0"/>
+</fx:root>

@@ -1,7 +1,8 @@
-package com.pacman.graphicinterface;
+package com.pacman.graphicinterface.components.controllers;
 
-import com.pacman.engine.GraphicManager;
-import com.pacman.engine.System;
+import com.pacman.engine.ScreenManager;
+import com.pacman.engine.SystemGame;
+import com.pacman.graphicinterface.GameObjectController;
 import com.pacman.systemelements.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -81,14 +82,14 @@ public class PacManController implements GameObjectController {
     @Override
     public KeyFrame getKeyFrame() {
 
-        KeyValue kvX = new KeyValue(pacManID.translateXProperty(), GraphicManager.convertGameToScreenX(pacMan));
-        KeyValue kvY = new KeyValue(pacManID.translateYProperty(), GraphicManager.convertGameToScreenY(pacMan));
+        KeyValue kvX = new KeyValue(pacManID.translateXProperty(), ScreenManager.convertGameToScreenX(pacMan));
+        KeyValue kvY = new KeyValue(pacManID.translateYProperty(), ScreenManager.convertGameToScreenY(pacMan));
 
-        return new KeyFrame(Duration.millis(System.deltaTime), kvX, kvY);
+        return new KeyFrame(Duration.millis(SystemGame.deltaTime), kvX, kvY);
     }
 
     @Override
     public void destroy() {
-        System.getGraphicManager().getBoardPane().getChildren().remove(pacManID);
+        SystemGame.getScreenManager().getBoardPane().getChildren().remove(pacManID);
     }
 }

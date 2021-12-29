@@ -1,6 +1,6 @@
 package com.pacman.graphicinterface;
 
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 import com.pacman.systemelements.EnergyPill;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.Position;
@@ -42,6 +42,6 @@ public class EnergyPillController implements GameObjectController {
 
     @Override
     public void destroy() {
-        System.getGraphicManager().getBoardPane().getChildren().remove(energyPillID);
+        SystemGame.getScreenManager().getBoardPane().getChildren().remove(energyPillID);
     }
 }

@@ -1,5 +1,7 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.ScoreManager;
+
 /**
  * Classe que representa um pacdot do jogo.
  */
@@ -24,7 +26,10 @@ public class PacDot extends GameObject {
 
     @Override
     public void onCollision() {
-        if (getCollider() instanceof PacMan) destroy();
+        if (getCollider() instanceof PacMan) {
+            ScoreManager.addScore((PacMan) getCollider(), this);
+            destroy();
+        }
     }
 
     @Override

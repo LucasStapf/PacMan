@@ -1,6 +1,6 @@
 package com.pacman.graphicinterface;
 
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 import com.pacman.systemelements.*;
 import javafx.animation.KeyFrame;
 import javafx.fxml.FXML;
@@ -75,6 +75,6 @@ public class WallController implements GameObjectController {
 
     @Override
     public void destroy() {
-        System.getGraphicManager().getBoardPane().getChildren().remove(wallID);
+        SystemGame.getScreenManager().getBoardPane().getChildren().remove(wallID);
     }
 }

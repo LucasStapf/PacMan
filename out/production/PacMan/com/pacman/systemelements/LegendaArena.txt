@@ -8,3 +8,9 @@
 8: Wall RIGHT
 -: Wall HORIZONTAL
 |: Wall VERTICAL
+.: PacDot
+E: EnergyPill
+F: Fruit
+G: Ghost
+P: PacMan
+:: null

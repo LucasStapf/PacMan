@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 import com.pacman.engine.Vertex;
 
 /**
@@ -45,7 +45,7 @@ public class Floor extends SceneElement {
         int i = (int) Math.round(sceneElement.getPosition().getY() / height - 0.5);
         int j = (int) Math.round(sceneElement.getPosition().getX() / width - 0.5);
 
-        return System.getArenaManager().getArena().getBoard().get(i).get(j);
+        return SystemGame.getArenaManager().getArena().getBoard().get(i).get(j);
     }
 
     @Override

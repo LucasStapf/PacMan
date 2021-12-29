@@ -81,6 +81,8 @@ public class CollisionManager {
      */
     public void handleCollisions() {
 
+        java.lang.System.out.println("Colisões: " + collisions);
+
         Iterator<Collision> iterator = collisions.iterator();
 
         while (iterator.hasNext()) {

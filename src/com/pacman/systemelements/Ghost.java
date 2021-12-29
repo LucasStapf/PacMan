@@ -1,8 +1,7 @@
 package com.pacman.systemelements;
 
 import com.pacman.engine.DijkstraAlgorithm;
-import com.pacman.engine.GraphicManager;
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 import com.pacman.engine.Vertex;
 import java.util.LinkedList;
 
@@ -42,7 +41,7 @@ public final class Ghost extends DynamicGameObject {
      */
     public Ghost(Position position) {
         setLayer(4);
-        setRigidBody(true);
+        setRigidBody(false);
         setPosition(position);
         setOldPosition(position);
         setDimension(new Dimension(18, 18));
@@ -101,7 +100,7 @@ public final class Ghost extends DynamicGameObject {
         floor = Floor.getFloorFrom(this);
         targetFloor = Floor.getFloorFrom(target);
 
-        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(System.getArenaManager().getGraph(), floor.getVertex());
+        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(SystemGame.getArenaManager().getGraph(), floor.getVertex());
         pathToTarget = dijAlg.getShortestPath(targetFloor.getVertex());
 
         for (Vertex<Floor> vertex: pathToTarget) vertex.getT().highlighted = true; // temp
@@ -146,7 +145,7 @@ public final class Ghost extends DynamicGameObject {
 //
 //        }
 
-        translate(System.deltaTime);
+        translate(SystemGame.deltaTime);
     }
 
     @Override
@@ -155,7 +154,7 @@ public final class Ghost extends DynamicGameObject {
         switch (movement) {
 
             case RANDOM:
-                translate(System.deltaTime);
+                translate(SystemGame.deltaTime);
                 break;
 
             case FOLLOW_TARGET:

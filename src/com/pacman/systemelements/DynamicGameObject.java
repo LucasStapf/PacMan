@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 
 /**
  * Classe que representa todos os {@link GameObject} que podem transladar pelo tabuleiro.
@@ -93,7 +93,7 @@ public abstract class DynamicGameObject extends GameObject {
                 break;
         }
 
-        if (System.getArenaManager().getArena().hasFloorOn(x, y)) {
+        if (SystemGame.getArenaManager().getArena().hasFloorOn(x, y)) {
             setPosition(new Position(floor.getPosition().getX(), floor.getPosition().getY()));
             getVelocity().setDirection(direction);
         }
@@ -138,7 +138,7 @@ public abstract class DynamicGameObject extends GameObject {
                 break;
         }
 
-        if (System.getArenaManager().getArena().hasFloorOn(x, y)) {
+        if (SystemGame.getArenaManager().getArena().hasFloorOn(x, y)) {
             setPosition(new Position(floor.getPosition().getX(), floor.getPosition().getY()));
             getVelocity().setDirection(direction);
         }

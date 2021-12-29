@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 
 /**
  * Classe que representa todos os {@link SceneElement} que podem interagir entre si via colisão.
@@ -87,7 +87,7 @@ public abstract class GameObject extends SceneElement {
      * Método utilizado para destruir o atual GameObject.
      */
     public final void destroy() {
-        System.destroyGameObject(this);
+        SystemGame.destroyGameObject(this);
     }
 
     /**

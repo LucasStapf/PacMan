@@ -1,7 +1,7 @@
 package com.pacman.graphicinterface;
 
-import com.pacman.engine.GraphicManager;
-import com.pacman.engine.System;
+import com.pacman.engine.ScreenManager;
+import com.pacman.engine.SystemGame;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.Ghost;
 import com.pacman.systemelements.Position;
@@ -54,14 +54,14 @@ public class GhostController implements GameObjectController {
     @Override
     public KeyFrame getKeyFrame() {
 
-        KeyValue kvX = new KeyValue(ghostID.translateXProperty(), GraphicManager.convertGameToScreenX(ghost));
-        KeyValue kvY = new KeyValue(ghostID.translateYProperty(), GraphicManager.convertGameToScreenY(ghost));
+        KeyValue kvX = new KeyValue(ghostID.translateXProperty(), ScreenManager.convertGameToScreenX(ghost));
+        KeyValue kvY = new KeyValue(ghostID.translateYProperty(), ScreenManager.convertGameToScreenY(ghost));
 
-        return new KeyFrame(Duration.millis(System.deltaTime), kvX, kvY);
+        return new KeyFrame(Duration.millis(SystemGame.deltaTime), kvX, kvY);
     }
 
     @Override
     public void destroy() {
-        System.getGraphicManager().getBoardPane().getChildren().remove(ghostID);
+        SystemGame.getScreenManager().getBoardPane().getChildren().remove(ghostID);
     }
 }

@@ -1,7 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.GraphicManager;
-import com.pacman.engine.System;
+import com.pacman.engine.SystemGame;
 
 /**
  * Classe que representa o Pac-Man do jogo.
@@ -32,10 +31,26 @@ public class PacMan extends DynamicGameObject {
         getVelocity().setModulus(70);
     }
 
+    public int getLife() {
+        return life;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     @Override
     public void update() {
-        translate(System.deltaTime);
+        java.lang.System.out.println("Score: " + score);
+        translate(SystemGame.deltaTime);
     }
 
     @Override
