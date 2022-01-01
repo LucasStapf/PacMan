@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.ArcTo?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.ClosePath?>
+<?import javafx.scene.shape.LineTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+
+<fx:root fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <Path fx:id="body" fill="#f50000" layoutY="51.0" stroke="BLACK" strokeType="INSIDE">
+        <elements>
+            <MoveTo x="102.0" />
+          <ArcTo radiusX="51.0" radiusY="51.0" />
+          <LineTo y="51.0" />
+          <ArcTo radiusX="5.0" radiusY="8.0" x="34.0" y="51.0" />
+          <ArcTo radiusX="5.0" radiusY="8.0" x="68.0" y="51.0" />
+          <ArcTo radiusX="5.0" radiusY="8.0" x="102.0" y="51.0" />
+            <ClosePath />
+        </elements>
+    </Path>
+    <Circle fx:id="rightEye" fill="WHITE" layoutX="80.0" layoutY="50.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+    <Circle fx:id="leftEye" fill="WHITE" layoutX="40.0" layoutY="50.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+    <Circle fx:id="leftPupil" layoutX="45.0" layoutY="50.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+    <Circle fx:id="rightPupil" layoutX="85.0" layoutY="50.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+</fx:root>
