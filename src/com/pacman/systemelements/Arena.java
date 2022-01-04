@@ -8,7 +8,7 @@ import java.util.*;
 public class Arena {
 
     /**
-     * Atributo que guarda as posições de cada {@link SceneElement} no tabuleiro.
+     * Atributo que guarda as posições de cada {@link Floor} no tabuleiro.
      */
     private ArrayList<ArrayList<Floor>> board;
 
@@ -16,7 +16,7 @@ public class Arena {
      * Construtor padrão.
      */
     public Arena() {
-        board = new ArrayList<ArrayList<Floor>>();
+        board = new ArrayList<>();
     }
 
     /**
@@ -35,6 +35,12 @@ public class Arena {
         this.board = board;
     }
 
+    /**
+     * Verifica se há um {@link Floor} num determinado ponto do plano.
+     * @param x abscissa do ponto.
+     * @param y ordenada do ponto.
+     * @return true caso houver um {@link Floor} no ponto passado, false caso contrário.
+     */
     public boolean hasFloorOn(double x, double y) {
 
         int i = (int) Math.round(y / Floor.height - 0.5);
@@ -43,6 +49,12 @@ public class Arena {
         return board.get(i).get(j) != null;
     }
 
+    /**
+     * Retorna o {@link Floor} presente nas coordenadas passadas.
+     * @param x abscissa do ponto.
+     * @param y ordenada do ponto.
+     * @return o {@link Floor} presente no ponto.
+     */
     public Floor getFloorOn(double x, double y) {
 
         int i = (int) Math.round(y / Floor.height - 0.5);
