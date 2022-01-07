@@ -11,16 +11,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 
 import java.io.IOException;
 
 /**
- * Representação gráfica do {@link com.pacman.systemelements.PacMan} no jogo.
+ * Representação gráfica da entidade PacMan no jogo.
  */
-public class PacManGraphic extends AnchorPane {
+public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
 
     /**
-     * Construtor padrão no qual o arquivo fxml referente ao {@link com.pacman.systemelements.PacMan} é carregado.
+     * Construtor padrão no qual o arquivo fxml referente a entidade PacMan é carregado.
      */
     public PacManGraphic() {
 
@@ -34,60 +35,62 @@ public class PacManGraphic extends AnchorPane {
             e.printStackTrace();
         }
 
-        /* -- Default Values -- */
-        directionProperty().set(Direction.LEFT);
-        radiusBodyProperty().set(65);
-        mouthAngleProperty().set(30);
+        /* ---- Default Values ---- */
+        setHeightValue(130);
+        setWidthValue(130);
+        setDirection(Direction.LEFT);
+        setBodyColor(Color.YELLOW);
+        /* ------------------------ */
     }
 
     /**
-     * Corpo do PacMan.
+     * Representação do corpo do PacMan por meio de um {@link Arc}.
      */
     @FXML
-    private Arc bodyPacMan;
+    private Arc body;
 
     /**
-     * Retorna o corpo do PacMan.
-     * @return o corpo do PacMan.
+     * Retorna o {@link Arc} que representa o corpo do PacMan.
+     * @return o {@link Arc} que representa o corpo do PacMan.
      */
-    public Arc getBodyPacMan() {
-        return bodyPacMan;
+    public Arc getBody() {
+        return body;
     }
 
     /**
      * Altera o corpo do PacMan.
-     * @param bodyPacMan novo corpo.
+     * @param body novo corpo na representação de um arco.
      */
-    public void setBodyPacMan(Arc bodyPacMan) {
-        this.bodyPacMan = bodyPacMan;
+    public void setBody(Arc body) {
+        this.body = body;
     }
 
     /**
-     * Olho do {@link com.pacman.systemelements.PacMan}.
+     * Representação do olho do PacMan por um {@link Circle}.
      */
     @FXML
-    private Circle eyePacMan;
+    private Ellipse eye;
 
     /**
      * Retorna o olho do PacMan.
      * @return o olho do PacMan.
      */
-    public Circle getEyePacMan() {
-        return eyePacMan;
+    public Ellipse getEye() {
+        return eye;
     }
 
     /**
      * Altera o olho do PacMan.
-     * @param eyePacMan novo olho na representação de um círculo.
+     * @param eye novo olho.
      */
-    public void setEyePacMan(Circle eyePacMan) {
-        this.eyePacMan = eyePacMan;
+    public void setEye(Ellipse eye) {
+        this.eye = eye;
     }
 
     /**
      * Atributo relacionado ao ângulo de abertura da boca do PacMan.
      */
-    private final DoubleProperty mouthAngle = new SimpleDoubleProperty();
+    private final DoubleProperty mouthAngle = new SimpleDoubleProperty(30);
 
     /**
      * Retorna o valor do ângulo de abertura da boca do PacMan.
@@ -111,46 +114,8 @@ public class PacManGraphic extends AnchorPane {
      */
     public void setMouthAngle(double mouthAngle) {
         this.mouthAngle.set(mouthAngle);
-        this.bodyPacMan.setStartAngle(mouthAngle);
-        this.bodyPacMan.setLength((-2.0) * mouthAngle + 360.0);
-    }
-
-    /**
-     * Atributo relacionado ao raio do corpo do PacMan.
-     */
-    private final DoubleProperty radiusBody = new SimpleDoubleProperty();
-
-    /**
-     * Retorna o valor do raio do corpo do PacMan.
-     * @return o valor do raio do corpo do PacMan.
-     */
-    public double getRadiusBody() {
-        return radiusBody.get();
-    }
-
-    /**
-     * Retorna a propriedade relacionada ao raio do corpo do PacMan.
-     * @return a propriedade relacionada ao raio do corpo do PacMan.
-     */
-    public DoubleProperty radiusBodyProperty() {
-        return radiusBody;
-    }
-
-    /**
-     * Altera o valor do raio do corpo do PacMan.
-     * @param radiusBody novo valor do raio.
-     */
-    public void setRadiusBody(double radiusBody) {
-        double r = radiusBody / this.radiusBody.get();
-
-        this.radiusBody.set(radiusBody);
-        this.radiusBody.set(radiusBody);
-        this.bodyPacMan.setRadiusX(radiusBody);
-        this.bodyPacMan.setRadiusY(radiusBody);
-
-        this.eyePacMan.setRadius(this.eyePacMan.getRadius() * r);
-        this.eyePacMan.setLayoutX(this.eyePacMan.getLayoutX() * r);
-        this.eyePacMan.setLayoutY(this.eyePacMan.getLayoutY() * r);
+        this.body.setStartAngle(mouthAngle);
+        this.body.setLength((-2.0) * mouthAngle + 360.0);
     }
 
     /**
@@ -181,7 +146,7 @@ public class PacManGraphic extends AnchorPane {
     /**
      * Atributo relacionado à direção onde o PacMan olha.
      */
-    private final ObjectProperty<Direction> direction = new SimpleObjectProperty<>();
+    private final ObjectProperty<Direction> direction = new SimpleObjectProperty<>(Direction.LEFT);
 
     /**
      * Retorna a direção que o PacMan olha.
@@ -216,7 +181,8 @@ public class PacManGraphic extends AnchorPane {
                 break;
 
             case RIGHT:
-                setScaleX((-1)*getScaleX());
+                double r = getScaleX() > 0 ? -1 : 1;
+                setScaleX(r * getScaleX());
                 break;
 
             case DOWN:
@@ -252,6 +218,58 @@ public class PacManGraphic extends AnchorPane {
      */
     public void setBodyColor(Paint bodyColor) {
         this.bodyColor.set(bodyColor);
-        this.bodyPacMan.setFill(bodyColor);
+        this.body.setFill(bodyColor);
+    }
+
+
+    /**
+     * Propriedade responsável pelo comprimento do PacMan.
+     */
+    private final DoubleProperty widthValue = new SimpleDoubleProperty();
+
+    @Override
+    public double getWidthValue() {
+        return widthValue.get();
+    }
+
+    public DoubleProperty widthValueProperty() {
+        return widthValue;
+    }
+
+    @Override
+    public void setWidthValue(double widthValue) {
+
+        this.widthValue.set(widthValue);
+
+        double r = widthValue / body.getLayoutBounds().getWidth();
+
+        body.setRadiusX(body.getRadiusX() * r);
+        body.setLayoutX(body.getLayoutX() * r);
+        eye.setRadiusX(eye.getRadiusX() * r);
+        eye.setLayoutX(eye.getLayoutX() * r);
+    }
+
+    private final DoubleProperty heightValue = new SimpleDoubleProperty();
+
+    @Override
+    public double getHeightValue() {
+        return heightValue.get();
+    }
+
+    public DoubleProperty heightValueProperty() {
+        return heightValue;
+    }
+
+    @Override
+    public void setHeightValue(double heightValue) {
+
+        this.heightValue.set(heightValue);
+
+        double r = heightValue / body.getLayoutBounds().getHeight();
+
+        body.setRadiusY(body.getRadiusY() * r);
+        body.setLayoutY(body.getLayoutY() * r);
+        eye.setRadiusY(eye.getRadiusY() * r);
+        eye.setLayoutY(eye.getLayoutY() * r);
     }
 }

@@ -9,18 +9,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Path;
+import javafx.scene.shape.*;
 
 import java.io.IOException;
 
 /**
- * Representação gráfica da entidade {@link com.pacman.systemelements.Ghost} no jogo.
+ * Representação gráfica da entidade Ghost no jogo.
  */
-public class GhostGraphic extends AnchorPane {
+public class GhostGraphic extends AnchorPane implements SceneElementGraphic {
 
     /**
-     * Construtor padrão no qual o arquivo fxml referente a entidade {@link com.pacman.systemelements.Ghost} é carregado.
+     * Construtor padrão no qual o arquivo fxml referente a entidade Ghost é carregado.
      */
     public GhostGraphic() {
 
@@ -61,13 +60,13 @@ public class GhostGraphic extends AnchorPane {
      * Representação gráfica do olho esquerdo do Ghost.
      */
     @FXML
-    private Circle leftEye;
+    private Ellipse leftEye;
 
     /**
      * Retorna o olho esquerdo do Ghost.
      * @return o olho esquerdo do Ghost.
      */
-    public Circle leftEye() {
+    public Ellipse leftEye() {
         return leftEye;
     }
 
@@ -75,7 +74,7 @@ public class GhostGraphic extends AnchorPane {
      * Altera o olho esquerdo do Ghost.
      * @param leftEye novo olho.
      */
-    public void setLeftEye(Circle leftEye) {
+    public void setLeftEye(Ellipse leftEye) {
         this.leftEye = leftEye;
     }
 
@@ -83,13 +82,13 @@ public class GhostGraphic extends AnchorPane {
      * Representação gráfica da pupula esquerda do Ghost.
      */
     @FXML
-    private Circle leftPupil;
+    private Ellipse leftPupil;
 
     /**
      * Retorna a pupila esquerda do Ghost.
      * @return a pupila esquerda do Ghost.
      */
-    public Circle leftPupil() {
+    public Ellipse leftPupil() {
         return leftPupil;
     }
 
@@ -97,7 +96,7 @@ public class GhostGraphic extends AnchorPane {
      * Altera a pupila esquerda do Ghost.
      * @param leftPupil nova pupila.
      */
-    public void setLeftPupil(Circle leftPupil) {
+    public void setLeftPupil(Ellipse leftPupil) {
         this.leftPupil = leftPupil;
     }
 
@@ -105,13 +104,13 @@ public class GhostGraphic extends AnchorPane {
      * Representação gráfica do olho direito do Ghost.
      */
     @FXML
-    private Circle rightEye;
+    private Ellipse rightEye;
 
     /**
      * Retorna o olho direito do Ghost.
      * @return o olho direito do Ghost.
      */
-    public Circle rightEye() {
+    public Ellipse rightEye() {
         return rightEye;
     }
 
@@ -119,7 +118,7 @@ public class GhostGraphic extends AnchorPane {
      * Altera o olho direito do Ghost.
      * @param rightEye novo olho.
      */
-    public void setRightEye(Circle rightEye) {
+    public void setRightEye(Ellipse rightEye) {
         this.rightEye = rightEye;
     }
 
@@ -127,13 +126,13 @@ public class GhostGraphic extends AnchorPane {
      * Representação gráfica da pupila direita do Ghost.
      */
     @FXML
-    private Circle rightPupil;
+    private Ellipse rightPupil;
 
     /**
      * Retorna a pupila direita do Ghost.
      * @return a pupila direita do Ghost
      */
-    public Circle rightPupil() {
+    public Ellipse rightPupil() {
         return rightPupil;
     }
 
@@ -141,7 +140,7 @@ public class GhostGraphic extends AnchorPane {
      * Altera a pupila direita do Ghost.
      * @param rightPupil nova pupila.
      */
-    public void setRightPupil(Circle rightPupil) {
+    public void setRightPupil(Ellipse rightPupil) {
         this.rightPupil = rightPupil;
     }
 
@@ -259,65 +258,132 @@ public class GhostGraphic extends AnchorPane {
         }
     }
 
-    /**
-     * Propriedade relacionada à largura do Ghost.
-     */
-    private final DoubleProperty widthGhost = new SimpleDoubleProperty();
+    @FXML
+    private MoveTo initialPoint;
+
+    @FXML
+    private ArcTo arcHead;
+
+    @FXML
+    private LineTo leftEdge;
+
+    @FXML
+    private ArcTo leftFoot;
+
+    @FXML
+    private ArcTo middleFoot;
+
+    @FXML
+    private ArcTo rightFoot;
+
+    @FXML
+    private ClosePath endEdge;
 
     /**
-     * Retorna o valor da largura do Ghost.
-     * @return o valor da largura do Ghost.
+     * Propriedade relacionada ao comprimento do Ghost.
      */
-    public double getWidthGhost() {
-        return widthGhost.get();
+    private final DoubleProperty widthValue = new SimpleDoubleProperty();
+
+    @Override
+    public double getWidthValue() {
+        return widthValue.get();
+    }
+
+    public DoubleProperty widthValueProperty() {
+        return widthValue;
+    }
+
+    @Override
+    public void setWidthValue(double widthValue) {
+
+        this.widthValue.set(widthValue);
+
+        double r = widthValue / body.getLayoutBounds().getWidth();
+
+        initialPoint.setX(initialPoint.getX() * r);
+
+        arcHead.setRadiusX(arcHead.getRadiusX() * r);
+        arcHead.setX(arcHead.getX() * r);
+
+        leftEdge.setX(leftEdge.getX() * r);
+
+        leftFoot.setRadiusX(leftFoot.getRadiusX() * r);
+        leftFoot.setX(leftFoot.getX() * r);
+
+        middleFoot.setRadiusX(middleFoot.getRadiusX() * r);
+        middleFoot.setX(middleFoot.getX() * r);
+
+        rightFoot.setRadiusX(rightFoot.getRadiusX() * r);
+        rightFoot.setX(rightFoot.getX() * r);
+
+        rightEye.setLayoutX(rightEye.getLayoutX() * r);
+        rightEye.setRadiusX(rightEye.getRadiusX() * r);
+        rightEye.setStrokeWidth(rightEye.getStrokeWidth() * r);
+        rightPupil.setLayoutX(rightPupil.getLayoutX() * r);
+        rightPupil.setRadiusX(rightPupil.getRadiusX() * r);
+        rightPupil.setStrokeWidth(rightPupil.getStrokeWidth() * r);
+
+        leftEye.setLayoutX(leftEye.getLayoutX() * r);
+        leftEye.setRadiusX(leftEye.getRadiusX() * r);
+        leftEye.setStrokeWidth(leftEye.getStrokeWidth() * r);
+        leftPupil.setLayoutX(leftPupil.getLayoutX() * r);
+        leftPupil.setRadiusX(leftPupil.getRadiusX() * r);
+        leftPupil.setStrokeWidth(leftPupil.getStrokeWidth() * r);
+
+        body.setLayoutX(body.getLayoutX() * r);
     }
 
     /**
-     * Retorna a propriedade relacionada à largura do Ghost.
-     * @return a propriedade relacionada à largura do Ghost.
+     * Propriedade relacionada a altura do Ghost.
      */
-    public DoubleProperty widthGhostProperty() {
-        return widthGhost;
+    private final DoubleProperty heightValue = new SimpleDoubleProperty();
+
+    @Override
+    public double getHeightValue() {
+        return heightValue.get();
     }
 
-    /**
-     * Altera o valor da largura do Ghost.
-     * @param widthGhost nova largura.
-     */
-    public void setWidthGhost(double widthGhost) {
-        this.widthGhost.set(widthGhost);
-        double r = widthGhost / body.getLayoutBounds().getWidth();
-        setScaleX(r);
+    public DoubleProperty heightValueProperty() {
+        return heightValue;
     }
 
-    /**
-     * Propriedade relacionada à altura do Ghost.
-     */
-    private final DoubleProperty heightGhost = new SimpleDoubleProperty();
+    @Override
+    public void setHeightValue(double heightValue) {
 
-    /**
-     * Retorna o valor da altura do Ghost.
-     * @return o valor da altura do Ghost.
-     */
-    public double getHeightGhost() {
-        return heightGhost.get();
-    }
+        this.heightValue.set(heightValue);
 
-    /**
-     * Retorna a propriedade relacionada à altura do Ghost.
-     * @return a propriedade relacionada à altura do Ghost.
-     */
-    public DoubleProperty heightGhostProperty() {
-        return heightGhost;
-    }
+        double r = heightValue / body.getLayoutBounds().getHeight();
 
-    /**
-     * Altera a altura do Ghost.
-     * @param heightGhost nova altura.
-     */
-    public void setHeightGhost(double heightGhost) {
-        this.heightGhost.set(heightGhost);
-        double r = heightGhost / body.getLayoutBounds().getHeight();
-        setScaleY(r);
+        initialPoint.setY(initialPoint.getY() * r);
+
+        arcHead.setRadiusY(arcHead.getRadiusY() * r);
+        arcHead.setY(arcHead.getY() * r);
+
+        leftEdge.setY(leftEdge.getY() * r);
+
+        leftFoot.setRadiusY(leftFoot.getRadiusY() * r);
+        leftFoot.setY(leftFoot.getY() * r);
+
+        middleFoot.setRadiusY(middleFoot.getRadiusY() * r);
+        middleFoot.setY(middleFoot.getY() * r);
+
+        rightFoot.setRadiusY(rightFoot.getRadiusY() * r);
+        rightFoot.setY(rightFoot.getY() * r);
+
+        rightEye.setLayoutY(rightEye.getLayoutY() * r);
+        rightEye.setRadiusY(rightEye.getRadiusY() * r);
+        rightEye.setStrokeWidth(rightEye.getStrokeWidth() * r);
+        rightPupil.setLayoutY(rightPupil.getLayoutY() * r);
+        rightPupil.setRadiusY(rightPupil.getRadiusY() * r);
+        rightPupil.setStrokeWidth(rightPupil.getStrokeWidth() * r);
+
+        leftEye.setLayoutY(leftEye.getLayoutY() * r);
+        leftEye.setRadiusY(leftEye.getRadiusY() * r);
+        leftEye.setStrokeWidth(leftEye.getStrokeWidth() * r);
+        leftPupil.setLayoutY(leftPupil.getLayoutY() * r);
+        leftPupil.setRadiusY(leftPupil.getRadiusY() * r);
+        leftPupil.setStrokeWidth(leftPupil.getStrokeWidth() * r);
+
+        body.setLayoutY(body.getLayoutY() * r);
     }
 }

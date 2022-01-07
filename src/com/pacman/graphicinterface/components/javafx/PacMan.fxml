@@ -2,9 +2,8 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Arc?>
-<?import javafx.scene.shape.Circle?>
-
-<fx:root prefHeight="130.0" prefWidth="130.0" type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
-   <Arc fx:id="bodyPacMan" fill="#ffe71f" layoutX="64.0" layoutY="64.0" length="300.0" radiusX="65.0" radiusY="65.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0.4;" type="ROUND" />
-   <Circle fx:id="eyePacMan" layoutX="73.0" layoutY="29.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+<?import javafx.scene.shape.Ellipse?>
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
+   <Arc fx:id="body" fill="#ffe71f" layoutX="64.0" layoutY="64.0" length="300.0" radiusX="65.0" radiusY="65.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0.4;" type="ROUND" />
+   <Ellipse fx:id="eye" layoutX="73.0" layoutY="29.0" radiusX="9.0" radiusY="9.0" stroke="BLACK" strokeType="INSIDE" />
 </fx:root>
