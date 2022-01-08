@@ -3,93 +3,73 @@ package com.pacman.graphicinterface.components.controllers;
 import com.pacman.engine.ScreenManager;
 import com.pacman.engine.SystemGame;
 import com.pacman.graphicinterface.GameObjectController;
-import com.pacman.systemelements.*;
+import com.pacman.graphicinterface.components.javafx.PacManGraphic;
+import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
+import com.pacman.systemelements.GameObject;
+import com.pacman.systemelements.PacMan;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.fxml.FXML;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
 import javafx.util.Duration;
-
 
 public class PacManController implements GameObjectController {
 
-    @FXML
-    private Region pacManID;
-
+    /**
+     * Atributo responsável por guardar o objeto {@link PacMan}.
+     */
     private PacMan pacMan;
 
-    public PacManController() {
-        pacMan = new PacMan(new Position());
-    }
-
-    public Region getPacManID() {
-        return pacManID;
-    }
-
-    public PacMan getPacMan() {
+    @Override
+    public GameObject getGameObject() {
         return pacMan;
     }
 
-    public void setPacMan(PacMan pacMan) {
-        this.pacMan = pacMan;
-    }
-
-    public void keyPressed(KeyEvent keyEvent) {
-
-        switch (keyEvent.getCode()) {
-            case UP:
-                pacMan.changeDirectionTo(Velocity.Direction.DOWN);
-                break;
-
-            case DOWN:
-                pacMan.changeDirectionTo(Velocity.Direction.UP);
-                break;
-
-            case RIGHT:
-                pacMan.changeDirectionTo(Velocity.Direction.RIGHT);
-                break;
-
-            case LEFT:
-                pacMan.changeDirectionTo(Velocity.Direction.LEFT);
-                break;
-        }
-    }
-
-    public void mouseClicked(MouseEvent mouseEvent) {
-        pacManID.requestFocus();
-        pacMan.getVelocity().setModulus(50);
-    }
-
-
     @Override
     public void setGameObject(GameObject gameObject) throws IllegalArgumentException {
-        if (!(gameObject instanceof PacMan)) throw new IllegalArgumentException("GameObject must be a PacMan!");
-        else pacMan = (PacMan) gameObject;
+        if (!(gameObject instanceof PacMan)) {
+            throw new IllegalArgumentException("The GameObject must be a PacMan object.");
+        } else pacMan = (PacMan) gameObject;
+    }
+
+    /**
+     * Atributo responsável por guardar a representação gráfica do {@link PacMan}.
+     */
+    private PacManGraphic pacManGraphic;
+
+    @Override
+    public SceneElementGraphic getSceneElementGraphic() {
+        return pacManGraphic;
     }
 
     @Override
-    public Region getGameObjectID() {
-        return pacManID;
+    public void setSceneElementGraphic(SceneElementGraphic sceneElementGraphic) throws IllegalArgumentException {
+        if (!(sceneElementGraphic instanceof PacManGraphic)) {
+            throw new IllegalArgumentException("The SceneElementGraphic must be a PacManGraphic object.");
+        } else pacManGraphic = (PacManGraphic) sceneElementGraphic;
     }
 
     @Override
-    public void updateGameObjectID() {
+    public KeyFrame getTranslationKeyFrame() {
 
+        KeyValue keyValueX = new KeyValue(pacManGraphic.translateXProperty(),
+                ScreenManager.convertGameToScreenX(pacMan));
+        KeyValue keyValueY = new KeyValue(pacManGraphic.translateYProperty(),
+                ScreenManager.convertGameToScreenY(pacMan));
+
+        return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
     }
 
     @Override
-    public KeyFrame getKeyFrame() {
+    public KeyFrame getAnimationKeyFrame() {
 
-        KeyValue kvX = new KeyValue(pacManID.translateXProperty(), ScreenManager.convertGameToScreenX(pacMan));
-        KeyValue kvY = new KeyValue(pacManID.translateYProperty(), ScreenManager.convertGameToScreenY(pacMan));
+        double finalMouthAngle = pacManGraphic.getMouthAngle() == 30 ? 0 : 30;
+        KeyValue keyValueMouth = new KeyValue(pacManGraphic.mouthAngleProperty(), finalMouthAngle);
 
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime), kvX, kvY);
+        return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueMouth);
     }
 
     @Override
     public void destroy() {
-        SystemGame.getScreenManager().getBoardPane().getChildren().remove(pacManID);
+
+
     }
 }
