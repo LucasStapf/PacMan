@@ -3,7 +3,6 @@ package com.pacman.graphicinterface;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
 import javafx.animation.KeyFrame;
-import javafx.scene.layout.Region;
 
 public interface GameObjectController {
 
