@@ -40,6 +40,7 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
         setWidthValue(130);
         setDirection(Direction.LEFT);
         setBodyColor(Color.YELLOW);
+        setMouthAngle(30);
         /* ------------------------ */
     }
 
