@@ -1,5 +1,6 @@
 package com.pacman.graphicinterface.components.javafx;
 
+import com.pacman.systemelements.Direction;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -117,31 +118,6 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
         this.mouthAngle.set(mouthAngle);
         this.body.setStartAngle(mouthAngle);
         this.body.setLength((-2.0) * mouthAngle + 360.0);
-    }
-
-    /**
-     * Representação das direções para as quais o PacMan está olhando.
-     */
-    public enum Direction {
-        /**
-         * Sentido positivo do eixo das ordenadas.
-         */
-        UP,
-
-        /**
-         * Sentido negativo do eixo das ordenadas.
-         */
-        DOWN,
-
-        /**
-         * Sentido positivo do eixo das abscissas.
-         */
-        LEFT,
-
-        /**
-         * Sentido negativo do eixo das abscissas.
-         */
-        RIGHT
     }
 
     /**

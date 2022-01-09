@@ -1,5 +1,6 @@
 package com.pacman.graphicinterface.components.javafx;
 
+import com.pacman.systemelements.Direction;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -172,31 +173,6 @@ public class GhostGraphic extends AnchorPane implements SceneElementGraphic {
     public void setBodyColor(Paint bodyColor) {
         this.bodyColor.set(bodyColor);
         body.setFill(bodyColor);
-    }
-
-    /**
-     * Representação das direções para as quais o PacMan está olhando.
-     */
-    public enum Direction {
-        /**
-         * Sentido positivo do eixo das ordenadas.
-         */
-        UP,
-
-        /**
-         * Sentido negativo do eixo das ordenadas.
-         */
-        DOWN,
-
-        /**
-         * Sentido positivo do eixo das abscissas.
-         */
-        LEFT,
-
-        /**
-         * Sentido negativo do eixo das abscissas.
-         */
-        RIGHT
     }
 
     /**
