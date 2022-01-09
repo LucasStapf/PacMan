@@ -1,4 +1,4 @@
-package com.pacman.graphicinterface;
+package com.pacman.graphicinterface.components.controllers;
 
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
