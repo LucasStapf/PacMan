@@ -6,17 +6,6 @@ package com.pacman.systemelements;
 public final class Velocity {
 
     /**
-     * Representa a direção da velocidade.
-     */
-    public enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT,
-        NONE;
-    }
-
-    /**
      * Indica o módulo da velocidade.
      */
     private double modulus;
@@ -139,23 +128,19 @@ public final class Velocity {
         if (v1 == null || v2 == null) throw new NullPointerException();
 
         if (v1.direction.equals(Direction.UP)) {
-            if (v2.direction.equals(Direction.DOWN)) return true;
-            else return false;
+            return v2.direction.equals(Direction.DOWN);
         }
 
         if (v1.direction.equals(Direction.DOWN)) {
-            if (v2.direction.equals(Direction.UP)) return true;
-            else return false;
+            return v2.direction.equals(Direction.UP);
         }
 
         if (v1.direction.equals(Direction.LEFT)) {
-            if (v2.direction.equals((Direction.RIGHT))) return true;
-            else return false;
+            return v2.direction.equals((Direction.RIGHT));
         }
 
         if (v1.direction.equals(Direction.RIGHT)) {
-            if (v2.direction.equals(Direction.LEFT)) return true;
-            else return false;
+            return v2.direction.equals(Direction.LEFT);
         }
 
         return true;
@@ -172,8 +157,7 @@ public final class Velocity {
         if (v1 == null || v2 == null) throw new NullPointerException();
         if (v1.direction.equals(Direction.NONE) || v2.direction.equals(Direction.NONE)) return false;
         else if (isSameDirection(v1, v2)) return false;
-        else if (isOppositeDirection(v1, v2)) return false;
-        else return true;
+        else return !isOppositeDirection(v1, v2);
     }
 
 //    public static int sign(Velocity velocity) throws NullPointerException {
