@@ -201,35 +201,39 @@ public class GhostGraphic extends AnchorPane implements SceneElementGraphic {
      * @param direction nova direção.
      */
     public void setDirection(Direction direction) {
+
         this.direction.set(direction);
+
+        double rX = getWidthValue() / 102; // 102 valor padrão de inicialização;
+        double rY = getHeightValue() / 130; // 130 valor padrão de inicialização;
 
         switch (direction) {
             case UP:
-                leftPupil.setLayoutX(45);
-                leftPupil.setLayoutY(55);
-                rightPupil.setLayoutX(85);
-                rightPupil.setLayoutY(55);
-                break;
-
-            case LEFT:
-                leftPupil.setLayoutX(45);
-                leftPupil.setLayoutY(50);
-                rightPupil.setLayoutX(85);
-                rightPupil.setLayoutY(50);
+                leftPupil.setLayoutX(45 * rX);
+                leftPupil.setLayoutY(55 * rY);
+                rightPupil.setLayoutX(85 * rX);
+                rightPupil.setLayoutY(55 * rY);
                 break;
 
             case RIGHT:
-                leftPupil.setLayoutX(35);
-                leftPupil.setLayoutY(50);
-                rightPupil.setLayoutX(75);
-                rightPupil.setLayoutY(50);
+                leftPupil.setLayoutX(45 * rX);
+                leftPupil.setLayoutY(50 * rY);
+                rightPupil.setLayoutX(85 * rX);
+                rightPupil.setLayoutY(50 * rY);
+                break;
+
+            case LEFT:
+                leftPupil.setLayoutX(35 * rX);
+                leftPupil.setLayoutY(50 * rY);
+                rightPupil.setLayoutX(75 * rX);
+                rightPupil.setLayoutY(50 * rY);
                 break;
 
             case DOWN:
-                leftPupil.setLayoutX(45);
-                leftPupil.setLayoutY(45);
-                rightPupil.setLayoutX(85);
-                rightPupil.setLayoutY(45);
+                leftPupil.setLayoutX(45 * rX);
+                leftPupil.setLayoutY(45 * rY);
+                rightPupil.setLayoutX(85 * rX);
+                rightPupil.setLayoutY(45 * rY);
                 break;
         }
     }
