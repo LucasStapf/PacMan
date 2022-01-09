@@ -36,6 +36,8 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
             e.printStackTrace();
         }
 
+        mouthAngle.addListener((observable, oldValue, newValue) -> setMouthAngle((Double) newValue));
+
         /* ---- Default Values ---- */
         setHeightValue(130);
         setWidthValue(130);
