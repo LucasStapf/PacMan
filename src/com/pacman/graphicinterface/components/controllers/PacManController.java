@@ -7,8 +7,11 @@ import com.pacman.graphicinterface.components.javafx.PacManGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.PacMan;
+import com.pacman.systemelements.Velocity;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 
 public class PacManController implements GameObjectController {
@@ -61,8 +64,15 @@ public class PacManController implements GameObjectController {
     @Override
     public KeyFrame getAnimationKeyFrame() {
 
-        double finalMouthAngle = pacManGraphic.getMouthAngle() == 30 ? 0 : 30;
+        System.out.println("Angulo: " + pacManGraphic.getMouthAngle());
+
+        double finalMouthAngle;
+
+        if (pacManGraphic.getMouthAngle() == 30) finalMouthAngle = 0;
+        else finalMouthAngle = 30;
+
         KeyValue keyValueMouth = new KeyValue(pacManGraphic.mouthAngleProperty(), finalMouthAngle);
+//        pacManGraphic.setMouthAngle(finalMouthAngle);
 
         return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueMouth);
     }
@@ -71,5 +81,42 @@ public class PacManController implements GameObjectController {
     public void destroy() {
 
 
+    }
+
+    private final EventHandler<KeyEvent> keyEventHandler = new EventHandler<KeyEvent>() {
+
+        @Override
+        public void handle(KeyEvent event) {
+
+            switch (event.getCode()) {
+                case UP:
+//                    pacMan.changeDirectionTo(Velocity.Direction.DOWN);
+                    pacMan.getVelocity().setDirection(Velocity.Direction.DOWN);
+                    pacManGraphic.setDirection(PacManGraphic.Direction.DOWN);
+                    break;
+
+                case DOWN:
+//                    pacMan.changeDirectionTo(Velocity.Direction.UP);
+                    pacMan.getVelocity().setDirection(Velocity.Direction.UP);
+                    pacManGraphic.setDirection(PacManGraphic.Direction.UP);
+                    break;
+
+                case RIGHT:
+//                    pacMan.changeDirectionTo(Velocity.Direction.RIGHT);
+                    pacMan.getVelocity().setDirection(Velocity.Direction.RIGHT);
+                    pacManGraphic.setDirection(PacManGraphic.Direction.RIGHT);
+                    break;
+
+                case LEFT:
+//                    pacMan.changeDirectionTo(Velocity.Direction.LEFT);
+                    pacMan.getVelocity().setDirection(Velocity.Direction.LEFT);
+                    pacManGraphic.setDirection(PacManGraphic.Direction.LEFT);
+                    break;
+            }
+        }
+    };
+
+    public EventHandler<KeyEvent> keyEventHandler() {
+        return keyEventHandler;
     }
 }
