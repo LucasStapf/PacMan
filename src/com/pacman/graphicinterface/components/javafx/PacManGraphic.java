@@ -38,7 +38,7 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
         /* ---- Default Values ---- */
         setHeightValue(130);
         setWidthValue(130);
-        setDirection(Direction.LEFT);
+        setDirection(Direction.RIGHT);
         setBodyColor(Color.YELLOW);
         setMouthAngle(30);
         /* ------------------------ */
@@ -170,7 +170,11 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
      * @param direction nova direção.
      */
     public void setDirection(Direction direction) {
+
         this.direction.set(direction);
+
+        setRotate(0);
+        double r = getScaleX() < 0 ? -1 : 1;
 
         switch (direction) {
             case UP:
@@ -178,18 +182,19 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
                 break;
 
             case LEFT:
-                setRotate(0);
+                r = getScaleX() > 0 ? -1 : 1;
                 break;
 
             case RIGHT:
-                double r = getScaleX() > 0 ? -1 : 1;
-                setScaleX(r * getScaleX());
+                setRotate(0);
                 break;
 
             case DOWN:
                 setRotate(-90);
                 break;
         }
+
+        setScaleX(r * getScaleX());
     }
 
     /**
