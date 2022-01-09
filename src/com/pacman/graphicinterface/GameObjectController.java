@@ -39,6 +39,12 @@ public interface GameObjectController {
     KeyFrame getTranslationKeyFrame();
 
     /**
+     * Retorna o KeyFrame responsável pela animação do {@link GameObject} em questão.
+     * @return o KeyFrame responsável pela animação do {@link GameObject} em questão.
+     */
+    KeyFrame getAnimationKeyFrame();
+
+    /**
      * Método chamado a nova Timeline iniciada.
      */
     void update();
