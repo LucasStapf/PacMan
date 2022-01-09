@@ -39,8 +39,14 @@ public interface GameObjectController {
     KeyFrame getTranslationKeyFrame();
 
     /**
+     * Método chamado a nova Timeline iniciada.
+     */
+    void update();
+
+    /**
      * Destrói tanto o {@link GameObject} controlado quanto sua representação gráfica.
      */
     void destroy();
+
 
 }
