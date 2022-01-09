@@ -16,7 +16,7 @@ public final class Ghost extends DynamicGameObject {
     public enum Movement {
         FOLLOW_TARGET,
         RUN_AWAY_TARGET,
-        RANDOM;
+        RANDOM
     }
 
     /**
@@ -119,10 +119,10 @@ public final class Ghost extends DynamicGameObject {
             dX = pathToTarget.get(1).getT().getPosition().getX() - pathToTarget.get(0).getT().getPosition().getX();
             dY = pathToTarget.get(1).getT().getPosition().getY() - pathToTarget.get(0).getT().getPosition().getY();
 
-            if (dX > 0) changeDirectionTo(Velocity.Direction.RIGHT);
-            else if (dX < 0) changeDirectionTo(Velocity.Direction.LEFT);
-            else if (dY > 0) changeDirectionTo(Velocity.Direction.UP);
-            else if (dY < 0) changeDirectionTo(Velocity.Direction.DOWN);
+            if (dX > 0) changeDirectionTo(Direction.RIGHT);
+            else if (dX < 0) changeDirectionTo(Direction.LEFT);
+            else if (dY > 0) changeDirectionTo(Direction.UP);
+            else if (dY < 0) changeDirectionTo(Direction.DOWN);
 
             if (isOnFloor(pathToTarget.get(1).getT())) {
                 pathToTarget.removeFirst();

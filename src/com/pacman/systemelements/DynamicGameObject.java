@@ -66,7 +66,7 @@ public abstract class DynamicGameObject extends GameObject {
         getHitBox().setPosition(position);
     }
 
-    public void turn(Velocity.Direction direction) {
+    public void turn(Direction direction) {
 
         Floor floor = Floor.getFloorFrom(this);
 
@@ -99,17 +99,17 @@ public abstract class DynamicGameObject extends GameObject {
         }
     }
 
-    public void changeDirectionTo(Velocity.Direction direction) {
+    public void changeDirectionTo(Direction direction) {
 
-        if (direction.equals(Velocity.Direction.UP) || direction.equals(Velocity.Direction.DOWN)) {
-            if (getVelocity().getDirection().equals(Velocity.Direction.UP) || getVelocity().getDirection().equals(Velocity.Direction.DOWN)) {
+        if (direction.equals(Direction.UP) || direction.equals(Direction.DOWN)) {
+            if (getVelocity().getDirection().equals(Direction.UP) || getVelocity().getDirection().equals(Direction.DOWN)) {
                 getVelocity().setDirection(direction);
                 return;
             }
         }
 
-        if (direction.equals(Velocity.Direction.LEFT) || direction.equals(Velocity.Direction.RIGHT)) {
-            if (getVelocity().getDirection().equals(Velocity.Direction.LEFT) || getVelocity().getDirection().equals(Velocity.Direction.RIGHT)) {
+        if (direction.equals(Direction.LEFT) || direction.equals(Direction.RIGHT)) {
+            if (getVelocity().getDirection().equals(Direction.LEFT) || getVelocity().getDirection().equals(Direction.RIGHT)) {
                 getVelocity().setDirection(direction);
                 return;
             }
