@@ -5,9 +5,9 @@ import com.pacman.engine.SystemGame;
 import com.pacman.graphicinterface.GameObjectController;
 import com.pacman.graphicinterface.components.javafx.PacManGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
+import com.pacman.systemelements.Direction;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.PacMan;
-import com.pacman.systemelements.Velocity;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.event.EventHandler;
@@ -69,6 +69,12 @@ public class PacManController implements GameObjectController {
     }
 
     @Override
+    public void update() {
+        pacMan.update();
+        pacManGraphic.setDirection(pacMan.getVelocity().getDirection());
+    }
+
+    @Override
     public void destroy() {
 
 
@@ -82,26 +88,22 @@ public class PacManController implements GameObjectController {
             switch (event.getCode()) {
                 case UP:
 //                    pacMan.changeDirectionTo(Velocity.Direction.DOWN);
-                    pacMan.getVelocity().setDirection(Velocity.Direction.DOWN);
-                    pacManGraphic.setDirection(PacManGraphic.Direction.DOWN);
+                    pacMan.getVelocity().setDirection(Direction.DOWN);
                     break;
 
                 case DOWN:
 //                    pacMan.changeDirectionTo(Velocity.Direction.UP);
-                    pacMan.getVelocity().setDirection(Velocity.Direction.UP);
-                    pacManGraphic.setDirection(PacManGraphic.Direction.UP);
+                    pacMan.getVelocity().setDirection(Direction.UP);
                     break;
 
                 case RIGHT:
 //                    pacMan.changeDirectionTo(Velocity.Direction.RIGHT);
-                    pacMan.getVelocity().setDirection(Velocity.Direction.RIGHT);
-                    pacManGraphic.setDirection(PacManGraphic.Direction.RIGHT);
+                    pacMan.getVelocity().setDirection(Direction.RIGHT);
                     break;
 
                 case LEFT:
 //                    pacMan.changeDirectionTo(Velocity.Direction.LEFT);
-                    pacMan.getVelocity().setDirection(Velocity.Direction.LEFT);
-                    pacManGraphic.setDirection(PacManGraphic.Direction.LEFT);
+                    pacMan.getVelocity().setDirection(Direction.LEFT);
                     break;
             }
         }

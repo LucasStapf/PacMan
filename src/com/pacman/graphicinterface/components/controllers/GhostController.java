@@ -7,7 +7,6 @@ import com.pacman.graphicinterface.components.javafx.GhostGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.Ghost;
-import com.pacman.systemelements.PacMan;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.util.Duration;
@@ -56,6 +55,12 @@ public class GhostController implements GameObjectController {
                 ScreenManager.convertGameToScreenY(ghost));
 
         return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
+    }
+
+    @Override
+    public void update() {
+        ghost.update();
+        ghostGraphic.setDirection(ghost.getVelocity().getDirection());
     }
 
     @Override
