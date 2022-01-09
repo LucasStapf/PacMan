@@ -28,22 +28,15 @@ public interface GameObjectController {
     /**
      * Altera a representação gráfica do {@link GameObject} controlado.
      * @param sceneElementGraphic nova representação gráfica.
+     * @throws IllegalArgumentException caso a classe do {@link SceneElementGraphic} não seja a requerida.
      */
-    void setSceneElementGraphic(SceneElementGraphic sceneElementGraphic);
+    void setSceneElementGraphic(SceneElementGraphic sceneElementGraphic) throws IllegalArgumentException;
 
     /**
      * Retorna o KeyFrame responsável pela translação do {@link GameObject} em questão.
      * @return o KeyFrame responsável pela translação do {@link GameObject} em questão.
-     * @param x abscissa do ponto de chegada.
-     * @param y ordenada do ponto de chegada.
      */
-    KeyFrame getTranslationKeyFrame(double x, double y);
-
-    /**
-     * Retorna o KeyFrame responsável pela animação do {@link GameObject} e questão.
-     * @return o KeyFrame responsável pela animação do {@link GameObject} e questão.
-     */
-    KeyFrame getAnimationKeyFrame();
+    KeyFrame getTranslationKeyFrame();
 
     /**
      * Destrói tanto o {@link GameObject} controlado quanto sua representação gráfica.

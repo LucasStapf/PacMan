@@ -53,28 +53,19 @@ public class PacManController implements GameObjectController {
     @Override
     public KeyFrame getTranslationKeyFrame() {
 
+        double finalMouthAngle;
+
+        if (pacManGraphic.getMouthAngle() == 30) finalMouthAngle = 0;
+        else finalMouthAngle = 30;
+
+        pacManGraphic.setMouthAngle(finalMouthAngle);
+
         KeyValue keyValueX = new KeyValue(pacManGraphic.translateXProperty(),
                 ScreenManager.convertGameToScreenX(pacMan));
         KeyValue keyValueY = new KeyValue(pacManGraphic.translateYProperty(),
                 ScreenManager.convertGameToScreenY(pacMan));
 
         return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
-    }
-
-    @Override
-    public KeyFrame getAnimationKeyFrame() {
-
-        System.out.println("Angulo: " + pacManGraphic.getMouthAngle());
-
-        double finalMouthAngle;
-
-        if (pacManGraphic.getMouthAngle() == 30) finalMouthAngle = 0;
-        else finalMouthAngle = 30;
-
-        KeyValue keyValueMouth = new KeyValue(pacManGraphic.mouthAngleProperty(), finalMouthAngle);
-//        pacManGraphic.setMouthAngle(finalMouthAngle);
-
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueMouth);
     }
 
     @Override
