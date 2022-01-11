@@ -2,7 +2,6 @@ package com.pacman.graphicinterface.components.controllers;
 
 import com.pacman.engine.ScreenManager;
 import com.pacman.engine.SystemGame;
-import com.pacman.graphicinterface.GameObjectController;
 import com.pacman.graphicinterface.components.javafx.PacManGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.Direction;
@@ -53,9 +52,9 @@ public class PacManController implements GameObjectController {
     @Override
     public KeyFrame getTranslationKeyFrame() {
 
-        KeyValue keyValueX = new KeyValue(pacManGraphic.translateXProperty(),
+        KeyValue keyValueX = new KeyValue(pacManGraphic.layoutXProperty(),
                 ScreenManager.convertGameToScreenX(pacMan));
-        KeyValue keyValueY = new KeyValue(pacManGraphic.translateYProperty(),
+        KeyValue keyValueY = new KeyValue(pacManGraphic.layoutYProperty(),
                 ScreenManager.convertGameToScreenY(pacMan));
 
         return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
@@ -84,6 +83,10 @@ public class PacManController implements GameObjectController {
     public void destroy() {
 
 
+    }
+
+    public void requestFocus() {
+        pacManGraphic.requestFocus();
     }
 
     private final EventHandler<KeyEvent> keyEventHandler = new EventHandler<KeyEvent>() {
