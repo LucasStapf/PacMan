@@ -36,6 +36,8 @@ public class WallGraphic extends AnchorPane implements SceneElementGraphic {
         setOrientation(Orientation.HORIZONTAL);
         setBorderWidth(16);
         setBorderColor(Color.BLUE);
+        setWidthValue(130);
+        setHeightValue(130);
     }
 
     /**
