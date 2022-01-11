@@ -33,6 +33,8 @@ public class WallGraphic extends AnchorPane implements SceneElementGraphic {
             e.printStackTrace();
         }
 
+        borderColorProperty().addListener((observable, oldValue, newValue) -> setBorderColor(newValue));
+
         setOrientation(Orientation.HORIZONTAL);
         setBorderWidth(16);
         setBorderColor(Color.BLUE);
