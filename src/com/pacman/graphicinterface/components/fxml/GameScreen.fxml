@@ -5,7 +5,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0"
             prefWidth="700.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1">
-   <fx:include fx:id="arena" source="fxml/Arena.fxml" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
+   <fx:include fx:id="arena" source="Arena.fxml" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0"/>
    <fx:include fx:id="gameScoreBoard" source="GameScoreBoard.fxml" AnchorPane.leftAnchor="5.0"
                AnchorPane.topAnchor="80.0"/>
    <fx:include fx:id="highScoreBoard" source="HighScoreBoard.fxml" AnchorPane.leftAnchor="5.0"
