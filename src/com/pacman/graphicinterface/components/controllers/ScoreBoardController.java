@@ -5,17 +5,23 @@ import javafx.scene.control.Label;
 
 public class ScoreBoardController {
 
-    @FXML
-    public Label scoreBoardText;
+    private Label scoreBoardText;
 
     public Label scoreBoardText() {
         return scoreBoardText;
     }
 
-    @FXML
-    public Label scoreBoardValue;
+    public void setScoreBoardText(Label scoreBoardText) {
+        this.scoreBoardText = scoreBoardText;
+    }
+
+    private Label scoreBoardValue;
 
     public Label scoreBoardValue() {
         return scoreBoardValue;
+    }
+
+    public void setScoreBoardValue(Label scoreBoardValue) {
+        this.scoreBoardValue = scoreBoardValue;
     }
 }
