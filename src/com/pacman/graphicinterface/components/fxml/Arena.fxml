@@ -5,6 +5,7 @@
 <?import com.pacman.graphicinterface.components.javafx.GhostGraphic?>
 <?import com.pacman.graphicinterface.components.javafx.PacDotGraphic?>
 <?import com.pacman.graphicinterface.components.javafx.PacManGraphic?>
+<?import com.pacman.graphicinterface.components.javafx.PlaceGraphic?>
 <?import com.pacman.graphicinterface.components.javafx.WallGraphic?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -803,4 +804,5 @@
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="520.0" layoutY="260.0" orientation="CORNER_TOP_RIGHT" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="520.0" layoutY="280.0" orientation="VERTICAL" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="520.0" layoutY="300.0" orientation="CORNER_BOTTOM_RIGHT" widthValue="20.0" />
+   <PlaceGraphic color="TRANSPARENT" heightValue="20.0" layoutX="260.0" layoutY="280.0" widthValue="20.0" />
 </AnchorPane>
