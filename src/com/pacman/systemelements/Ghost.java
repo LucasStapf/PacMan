@@ -169,6 +169,7 @@ public final class Ghost extends DynamicGameObject {
             if (isVulnerable){
 
                 GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost * ScoreManager.bonusScoreGhost);
+                ScoreManager.bonusScoreGhost += 1;
 
                 PlaceGraphic begin = GameSystem.gameobjects.begin();
 
