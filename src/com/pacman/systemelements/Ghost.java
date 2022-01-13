@@ -167,7 +167,8 @@ public final class Ghost extends DynamicGameObject {
     public void onCollision() {
 
         if (getCollider() instanceof PacMan) {
-            if (isVulnerable) GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost);
+            if (isVulnerable)
+                GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost * ScoreManager.bonusScoreGhost);
         }
 
         if (getCollider() instanceof Wall) {
