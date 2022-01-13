@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="CENTER" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.pacman.graphicinterface.components.controllers.ScoreBoardController">
+   <Label fx:id="scoreBoardText" text="SCORE" textFill="WHITE">
+      <font>
+         <Font name="Tw Cen MT Condensed Extra Bold" size="22.0"/>
+      </font>
+   </Label>
+   <Label fx:id="scoreBoardValue" text="01234" textFill="WHITE">
+      <font>
+         <Font name="Tw Cen MT Condensed Extra Bold" size="18.0"/>
+      </font>
+   </Label>
+</VBox>
