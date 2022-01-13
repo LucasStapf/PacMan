@@ -34,8 +34,4 @@ public class PacDot extends GameObject {
         }
     }
 
-    @Override
-    public void print() {
-
-    }
 }

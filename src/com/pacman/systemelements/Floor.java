@@ -14,7 +14,7 @@ public class Floor extends SceneElement {
     /**
      * {@link Vertex} associado ao Floor.
      */
-    private Vertex<Floor> vertex = new Vertex<>(this);
+    private final Vertex<Floor> vertex = new Vertex<>(this);
 
     /**
      * Atributo temporário para marcar o caminho.
@@ -45,19 +45,7 @@ public class Floor extends SceneElement {
         int i = (int) Math.round(sceneElement.getPosition().getY() / height - 0.5);
         int j = (int) Math.round(sceneElement.getPosition().getX() / width - 0.5);
 
-        return SystemGame.getArenaManager().getArena().getBoard().get(i).get(j);
+        return SystemGame.arenaManager.getArena().getBoard().get(i).get(j);
     }
 
-    @Override
-    public void print() {
-        if (highlighted) java.lang.System.out.print("o");
-        else java.lang.System.out.print(" ");
-    }
-
-    @Override
-    public String toString() {
-        return "Floor{" +
-                "Position=" + getPosition() +
-                '}';
-    }
 }

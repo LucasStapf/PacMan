@@ -25,8 +25,4 @@ public class Fruit extends GameObject {
 
     }
 
-    @Override
-    public void print() {
-
-    }
 }

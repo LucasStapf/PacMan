@@ -31,8 +31,4 @@ public class PacMan extends DynamicGameObject {
 
     }
 
-    @Override
-    public void print() {
-
-    }
 }

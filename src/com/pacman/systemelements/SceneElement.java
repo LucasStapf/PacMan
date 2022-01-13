@@ -22,11 +22,6 @@ public abstract class SceneElement implements Comparable {
     private int layer = 0;
 
     /**
-     * Responsável por imprimir o SceneElement na tela.
-     */
-    public abstract void print();
-
-    /**
      * Retorna a {@link Dimension} do SceneElement.
      * @return a {@link Dimension} do SceneElement.
      */

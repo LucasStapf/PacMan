@@ -26,8 +26,4 @@ public class EnergyPill extends GameObject {
         if (getCollider() instanceof PacMan) destroy();
     }
 
-    @Override
-    public void print() {
-
-    }
 }

@@ -172,8 +172,4 @@ public final class Ghost extends DynamicGameObject {
         }
     }
 
-    @Override
-    public void print() {
-
-    }
 }
