@@ -1,6 +1,5 @@
 package com.pacman.graphicinterface.components.javafx;
 
-import com.pacman.engine.SystemGame;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;

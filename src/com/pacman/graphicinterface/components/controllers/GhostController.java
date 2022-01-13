@@ -1,7 +1,7 @@
 package com.pacman.graphicinterface.components.controllers;
 
 import com.pacman.engine.ScreenManager;
-import com.pacman.engine.SystemGame;
+import com.pacman.engine.GameSystem;
 import com.pacman.graphicinterface.components.javafx.GhostGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
@@ -53,7 +53,7 @@ public class GhostController implements GameObjectController {
         KeyValue keyValueY = new KeyValue(ghostGraphic.layoutYProperty(),
                 ScreenManager.convertGameToScreenY(ghost));
 
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
+        return new KeyFrame(Duration.millis(GameSystem.deltaTime), keyValueX, keyValueY);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.pacman.systemelements;
 
 import com.pacman.engine.DijkstraAlgorithm;
+import com.pacman.engine.GameSystem;
 import com.pacman.engine.ScoreManager;
-import com.pacman.engine.SystemGame;
 import com.pacman.engine.Vertex;
 import java.util.LinkedList;
 import java.util.Random;
@@ -112,7 +112,7 @@ public final class Ghost extends DynamicGameObject {
         floor = Floor.getFloorFrom(this);
         targetFloor = Floor.getFloorFrom(target);
 
-        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(SystemGame.arenaManager.getGraph(), floor.getVertex());
+        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(GameSystem.arenaManager.getGraph(), floor.getVertex());
         pathToTarget = dijAlg.getShortestPath(targetFloor.getVertex());
 
         for (Vertex<Floor> vertex: pathToTarget) vertex.getT().highlighted = true; // temp
@@ -141,7 +141,7 @@ public final class Ghost extends DynamicGameObject {
             }
         }
 
-        translate(SystemGame.deltaTime);
+        translate(GameSystem.deltaTime);
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class Ghost extends DynamicGameObject {
         switch (movement) {
 
             case RANDOM:
-                translate(SystemGame.deltaTime);
+                translate(GameSystem.deltaTime);
                 break;
 
             case FOLLOW_TARGET:
@@ -167,7 +167,7 @@ public final class Ghost extends DynamicGameObject {
     public void onCollision() {
 
         if (getCollider() instanceof PacMan) {
-            if (isVulnerable) SystemGame.scoreManager.addGameScore(ScoreManager.scoreFromGhost);
+            if (isVulnerable) GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost);
         }
 
         if (getCollider() instanceof Wall) {

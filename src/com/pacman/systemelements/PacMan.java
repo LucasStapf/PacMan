@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.SystemGame;
+import com.pacman.engine.GameSystem;
 
 /**
  * Classe que representa o Pac-Man do jogo.
@@ -23,7 +23,7 @@ public class PacMan extends DynamicGameObject {
 
     @Override
     public void update() {
-        translate(SystemGame.deltaTime);
+        translate(GameSystem.deltaTime);
     }
 
     @Override

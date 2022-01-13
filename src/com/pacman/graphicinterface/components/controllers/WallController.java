@@ -58,6 +58,6 @@ public class WallController implements GameObjectController {
 
     @Override
     public void destroy() {
-//        SystemGame.getScreenManager().getBoardPane().getChildren().remove(wallID);
+//        GameSystem.getScreenManager().getBoardPane().getChildren().remove(wallID);
     }
 }

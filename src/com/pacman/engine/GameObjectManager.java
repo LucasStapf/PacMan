@@ -6,7 +6,6 @@ import com.pacman.systemelements.*;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -107,7 +106,7 @@ public class GameObjectManager {
 
         gameObjectControllers.clear();
 
-        Iterator<Node> nodeIterator = SystemGame.screenManager.arena().getChildren().listIterator();
+        Iterator<Node> nodeIterator = GameSystem.screenManager.arena().getChildren().listIterator();
 
         while (nodeIterator.hasNext()) {
 
@@ -174,8 +173,8 @@ public class GameObjectManager {
                 Floor floor = new Floor(position);
                 floor.setDimension(dimension);
 
-                SystemGame.arenaManager.getArena().getBoard().get(i).set(j, floor);
-                SystemGame.arenaManager.getGraph().addVertex(floor.getVertex());
+                GameSystem.arenaManager.getArena().getBoard().get(i).set(j, floor);
+                GameSystem.arenaManager.getGraph().addVertex(floor.getVertex());
 
             } else if (sceneElementGraphic instanceof GhostGraphic) {
 
@@ -216,7 +215,7 @@ public class GameObjectManager {
 
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 27; j++) {
-                SystemGame.arenaManager.updateEdgesArena(SystemGame.arenaManager.getArena().getBoard(), i, j);
+                GameSystem.arenaManager.updateEdgesArena(GameSystem.arenaManager.getArena().getBoard(), i, j);
             }
         }
     }
@@ -290,7 +289,7 @@ public class GameObjectManager {
                     gameObjectIterator.remove();
                     dynamicControllers.remove(gameObjectController);
                     staticControllers.remove(gameObjectController);
-                    SystemGame.screenManager.arena().getChildren().remove(gameObjectController.getSceneElementGraphic());
+                    GameSystem.screenManager.arena().getChildren().remove(gameObjectController.getSceneElementGraphic());
                 }
             }
         }

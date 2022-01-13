@@ -1,7 +1,7 @@
 package com.pacman.graphicinterface.components.controllers;
 
+import com.pacman.engine.GameSystem;
 import com.pacman.engine.ScreenManager;
-import com.pacman.engine.SystemGame;
 import com.pacman.graphicinterface.components.javafx.PacManGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.Direction;
@@ -11,7 +11,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class PacManController implements GameObjectController {
@@ -58,7 +57,7 @@ public class PacManController implements GameObjectController {
         KeyValue keyValueY = new KeyValue(pacManGraphic.layoutYProperty(),
                 ScreenManager.convertGameToScreenY(pacMan));
 
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
+        return new KeyFrame(Duration.millis(GameSystem.deltaTime), keyValueX, keyValueY);
     }
 
     @Override
@@ -71,7 +70,7 @@ public class PacManController implements GameObjectController {
 
         KeyValue keyValueMouth = new KeyValue(pacManGraphic.mouthAngleProperty(), finalMouthAngle);
 
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime * 10), keyValueMouth);
+        return new KeyFrame(Duration.millis(GameSystem.deltaTime * 10), keyValueMouth);
     }
 
     @Override

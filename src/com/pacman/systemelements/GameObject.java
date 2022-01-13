@@ -1,6 +1,6 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.SystemGame;
+import com.pacman.engine.GameSystem;
 
 import java.util.LinkedList;
 
@@ -95,7 +95,7 @@ public abstract class GameObject extends SceneElement {
      * Método utilizado para destruir o atual GameObject.
      */
     public final void destroy() {
-        SystemGame.destroyGameObject(this);
+        GameSystem.destroyGameObject(this);
     }
 
     /**

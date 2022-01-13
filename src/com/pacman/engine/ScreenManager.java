@@ -1,17 +1,13 @@
 package com.pacman.engine;
 
 import com.pacman.graphicinterface.components.controllers.GameObjectController;
-import com.pacman.graphicinterface.components.controllers.ScoreBoardController;
 import com.pacman.graphicinterface.components.javafx.ScoreBoardGraphic;
 import com.pacman.systemelements.SceneElement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -160,21 +156,21 @@ public class ScreenManager {
 
             timelineTranslations.getKeyFrames().clear();
 
-            SystemGame.collisionManager.checkCollisions(SystemGame.gameObjectManager.dynamicControllers(),
-                    SystemGame.gameObjectManager.staticControllers());
-            SystemGame.collisionManager.handleCollisions();
+            GameSystem.collisionManager.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
+                    GameSystem.gameObjectManager.staticControllers());
+            GameSystem.collisionManager.handleCollisions();
 
-            for (GameObjectController gameObjectController : SystemGame.gameObjectManager.gameObjectControllers()) {
+            for (GameObjectController gameObjectController : GameSystem.gameObjectManager.gameObjectControllers()) {
                 gameObjectController.update();
                 KeyFrame translation = gameObjectController.getTranslationKeyFrame();
                 if (translation != null) timelineTranslations.getKeyFrames().add(translation);
             }
 
-            SystemGame.collisionManager.checkCollisions(SystemGame.gameObjectManager.dynamicControllers(),
-                    SystemGame.gameObjectManager.staticControllers());
-            SystemGame.collisionManager.handleCollisions();
+            GameSystem.collisionManager.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
+                    GameSystem.gameObjectManager.staticControllers());
+            GameSystem.collisionManager.handleCollisions();
 
-            SystemGame.gameObjectManager.destroyGameObjects();
+            GameSystem.gameObjectManager.destroyGameObjects();
 
             if (!timelineTranslations.getKeyFrames().isEmpty()) timelineTranslations.play();
         });
@@ -183,7 +179,7 @@ public class ScreenManager {
 
             timelineAnimations.getKeyFrames().clear();
 
-            for (GameObjectController gameObjectController : SystemGame.gameObjectManager.gameObjectControllers()) {
+            for (GameObjectController gameObjectController : GameSystem.gameObjectManager.gameObjectControllers()) {
                 KeyFrame animation = gameObjectController.getAnimationKeyFrame();
                 if (animation != null) timelineAnimations.getKeyFrames().add(animation);
             }

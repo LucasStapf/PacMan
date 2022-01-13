@@ -5,7 +5,7 @@ import com.pacman.systemelements.GameObject;
 /**
  * Classe que gerencia toda a lógica do jogo.
  */
-public class SystemGame {
+public class GameSystem {
 
     /**
      * Constantes que armazenam o atual estado do jogo.
@@ -56,7 +56,7 @@ public class SystemGame {
     /**
      * Construtor padrão.
      */
-    public SystemGame() {
+    public GameSystem() {
         start();
     }
 

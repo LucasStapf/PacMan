@@ -1,15 +1,11 @@
 package com.pacman.graphicinterface.components.controllers;
 
-import com.pacman.engine.SystemGame;
-import com.pacman.graphicinterface.components.controllers.GameObjectController;
+import com.pacman.engine.GameSystem;
 import com.pacman.graphicinterface.components.javafx.PacDotGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
 import com.pacman.systemelements.PacDot;
-import com.pacman.systemelements.Position;
 import javafx.animation.KeyFrame;
-import javafx.fxml.FXML;
-import javafx.scene.layout.Region;
 
 public class PacDotController implements GameObjectController {
 
@@ -57,9 +53,9 @@ public class PacDotController implements GameObjectController {
 
     @Override
     public void destroy() {
-//        SystemGame.getScreenManager().getBoardPane().getChildren().remove(pacDotID);
-        SystemGame.gameObjectManager.gameObjectControllers().remove(this);
-        SystemGame.gameObjectManager.staticControllers().remove(this);
-        SystemGame.screenManager.arena().getChildren().remove(pacDotGraphic);
+//        GameSystem.getScreenManager().getBoardPane().getChildren().remove(pacDotID);
+        GameSystem.gameObjectManager.gameObjectControllers().remove(this);
+        GameSystem.gameObjectManager.staticControllers().remove(this);
+        GameSystem.screenManager.arena().getChildren().remove(pacDotGraphic);
     }
 }

@@ -90,7 +90,7 @@ public class ArenaManager {
 //        }
 //
 //        GameObjectController gameObjectController = fxmlLoader.getController();
-//        SystemGame.getGameObjectManager().getGameObjectController().put(gameObject, gameObjectController);
+//        GameSystem.getGameObjectManager().getGameObjectController().put(gameObject, gameObjectController);
 //
 //        gameObjectController.setGameObject(gameObject);
 //
@@ -203,7 +203,7 @@ public class ArenaManager {
 //                    }
 //
 //                    if (!(gameObject instanceof Wall)) floor = new Floor(new Position(x, y));
-//                    if (gameObject != null) SystemGame.getGameObjectManager().getGameObjects().add(gameObject);
+//                    if (gameObject != null) GameSystem.getGameObjectManager().getGameObjects().add(gameObject);
 //                    if (floor != null) graph.addVertex(floor.getVertex());
 //                    board.get(i).add(floor);
 //
@@ -221,9 +221,9 @@ public class ArenaManager {
 //        }
 //
 //        arena.setBoard(board);
-//        Collections.sort(SystemGame.getGameObjectManager().getGameObjects());
-////        for (GameObject gameObject: SystemGame.getGameObjectManager().getGameObjects()) {
-////            SystemGame.getScreenManager().getBoardPane().getChildren().add(createNodeOf(gameObject));
+//        Collections.sort(GameSystem.getGameObjectManager().getGameObjects());
+////        for (GameObject gameObject: GameSystem.getGameObjectManager().getGameObjects()) {
+////            GameSystem.getScreenManager().getBoardPane().getChildren().add(createNodeOf(gameObject));
 ////        }
 //    }
 }

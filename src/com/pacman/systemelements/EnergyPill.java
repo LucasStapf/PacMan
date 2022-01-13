@@ -1,7 +1,7 @@
 package com.pacman.systemelements;
 
+import com.pacman.engine.GameSystem;
 import com.pacman.engine.ScoreManager;
-import com.pacman.engine.SystemGame;
 
 /**
  * Classe que representa uma pílula de energia do jogo.
@@ -27,7 +27,7 @@ public class EnergyPill extends GameObject {
     @Override
     public void onCollision() {
         if (getCollider() instanceof PacMan) {
-            SystemGame.scoreManager.addGameScore(ScoreManager.scoreFromEnergyPill);
+            GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromEnergyPill);
             destroy();
         }
     }

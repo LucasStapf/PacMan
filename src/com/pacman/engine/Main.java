@@ -12,30 +12,30 @@ import java.io.IOException;
 public class Main extends Application {
 
     public static void main(String[] args) {
-        SystemGame.start();
+        GameSystem.start();
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        SystemGame.screenManager.setPrimaryStage(primaryStage);
-        primaryStage.setScene(new Scene(SystemGame.screenManager.gameScreen()));
+        GameSystem.screenManager.setPrimaryStage(primaryStage);
+        primaryStage.setScene(new Scene(GameSystem.screenManager.gameScreen()));
         primaryStage.show();
 
-        SystemGame.gameObjectManager.updateGameObjectControllers();
+        GameSystem.gameObjectManager.updateGameObjectControllers();
 
-        SystemGame.screenManager.arena().addEventFilter(KeyEvent.KEY_PRESSED, SystemGame.gameObjectManager.player().keyEventHandler());
+        GameSystem.screenManager.arena().addEventFilter(KeyEvent.KEY_PRESSED, GameSystem.gameObjectManager.player().keyEventHandler());
 
-        SystemGame.gameObjectManager.blinky().setTarget(SystemGame.gameObjectManager.player().getGameObject());
-        SystemGame.gameObjectManager.pinky().setTarget(SystemGame.gameObjectManager.player().getGameObject());
-        SystemGame.gameObjectManager.inky().setMovement(Ghost.Movement.RANDOM);
-        SystemGame.gameObjectManager.inky().getVelocity().updateVelocity(50, Direction.DOWN);
-        SystemGame.gameObjectManager.clyde().setMovement(Ghost.Movement.RANDOM);
-        SystemGame.gameObjectManager.clyde().getVelocity().updateVelocity(50, Direction.DOWN);
+        GameSystem.gameObjectManager.blinky().setTarget(GameSystem.gameObjectManager.player().getGameObject());
+        GameSystem.gameObjectManager.pinky().setTarget(GameSystem.gameObjectManager.player().getGameObject());
+        GameSystem.gameObjectManager.inky().setMovement(Ghost.Movement.RANDOM);
+        GameSystem.gameObjectManager.inky().getVelocity().updateVelocity(50, Direction.DOWN);
+        GameSystem.gameObjectManager.clyde().setMovement(Ghost.Movement.RANDOM);
+        GameSystem.gameObjectManager.clyde().getVelocity().updateVelocity(50, Direction.DOWN);
 
-        SystemGame.gameObjectManager.player().requestFocus();
+        GameSystem.gameObjectManager.player().requestFocus();
 
-        SystemGame.screenManager.runAnimations();
+        GameSystem.screenManager.runAnimations();
     }
 }

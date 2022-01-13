@@ -1,7 +1,7 @@
 package com.pacman.systemelements;
 
 import com.pacman.engine.ScoreManager;
-import com.pacman.engine.SystemGame;
+import com.pacman.engine.GameSystem;
 
 /**
  * Classe que representa um pacdot do jogo.
@@ -28,8 +28,8 @@ public class PacDot extends GameObject {
     @Override
     public void onCollision() {
         if (getCollider() instanceof PacMan) {
-            SystemGame.gameObjectManager.blinky().getVelocity().setModulus(SystemGame.gameObjectManager.blinky().getVelocity().getModulus() + 0.1);
-            SystemGame.scoreManager.addGameScore(ScoreManager.scoreFromPacDot);
+            GameSystem.gameObjectManager.blinky().getVelocity().setModulus(GameSystem.gameObjectManager.blinky().getVelocity().getModulus() + 0.1);
+            GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromPacDot);
             destroy();
         }
     }

@@ -1,6 +1,6 @@
 package com.pacman.graphicinterface.components.controllers;
 
-import com.pacman.engine.SystemGame;
+import com.pacman.engine.GameSystem;
 import com.pacman.graphicinterface.components.javafx.EnergyPillGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.EnergyPill;
@@ -53,7 +53,7 @@ public class EnergyPillController implements GameObjectController {
 
         KeyValue keyValueColor = new KeyValue(energyPillGraphic.colorProperty(), finalColor);
 
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime * 10), keyValueColor);
+        return new KeyFrame(Duration.millis(GameSystem.deltaTime * 10), keyValueColor);
     }
 
     @Override
@@ -63,6 +63,6 @@ public class EnergyPillController implements GameObjectController {
 
     @Override
     public void destroy() {
-//        SystemGame.getScreenManager().getBoardPane().getChildren().remove(energyPillID);
+//        GameSystem.getScreenManager().getBoardPane().getChildren().remove(energyPillID);
     }
 }

@@ -19,7 +19,7 @@ import java.io.IOException;
 public class MainGraphicInterface extends Application {
 
     public static void main(String[] args) {
-//        SystemGame.start();
+//        GameSystem.start();
         launch(args);
     }
 
@@ -59,31 +59,31 @@ public class MainGraphicInterface extends Application {
             timeline.play();
         });
 
-//        SystemGame.getScreenManager().setMainStage(primaryStage);
-//        SystemGame.getScreenManager().startGameScreen();
+//        GameSystem.getScreenManager().setMainStage(primaryStage);
+//        GameSystem.getScreenManager().startGameScreen();
 //
 //        BorderPane gameScreen = FXMLLoader.load(getClass().getResource("components/GameScreen.fxml"));
 //
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("components/InfoBoard.fxml"));
 //        Pane infoBoard = loader.load();
 //        InfoBoardController infoBoardController = loader.getController();
-//        SystemGame.getScreenManager().setInfoBoardController(infoBoardController);
+//        GameSystem.getScreenManager().setInfoBoardController(infoBoardController);
 //
 //        Pane root = FXMLLoader.load(getClass().getResource("components/Board.fxml"));
 //
-//        SystemGame.getScreenManager().setBoardPane(root);
+//        GameSystem.getScreenManager().setBoardPane(root);
 //
-//        SystemGame.getArenaManager().loadArenaFrom("src/com/pacman/systemelements/Arena.txt");
-//        SystemGame.getGameObjectManager().updateGameObjectLists();
+//        GameSystem.getArenaManager().loadArenaFrom("src/com/pacman/systemelements/Arena.txt");
+//        GameSystem.getGameObjectManager().updateGameObjectLists();
 //
-////        for(GameObject gameObject: SystemGame.getGameObjectManager().getGameObjectController().keySet()) {
-////            SystemGame.out.println(SystemGame.getGameObjectManager().getGameObjectController().get(gameObject));
+////        for(GameObject gameObject: GameSystem.getGameObjectManager().getGameObjectController().keySet()) {
+////            GameSystem.out.println(GameSystem.getGameObjectManager().getGameObjectController().get(gameObject));
 ////        }
 //
 //        PacMan pacMan = null;
 //        Ghost ghost = null;
 //
-//        for(DynamicGameObject dynamicGameObject: SystemGame.getGameObjectManager().getDynamicGameObjects()) {
+//        for(DynamicGameObject dynamicGameObject: GameSystem.getGameObjectManager().getDynamicGameObjects()) {
 //            if (dynamicGameObject instanceof PacMan) pacMan = (PacMan) dynamicGameObject;
 //            else if (dynamicGameObject instanceof Ghost) {
 //                ghost = (Ghost) dynamicGameObject;
@@ -102,6 +102,6 @@ public class MainGraphicInterface extends Application {
 //        primaryStage.setFullScreen(true);
 //        primaryStage.show();
 //
-//        SystemGame.run();
+//        GameSystem.run();
     }
 }
