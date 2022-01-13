@@ -37,7 +37,7 @@ public class ScoreManager {
     }
 
     /**
-     * Altera a pontuação atual no jogo.
+     * Altera a pontuação atual no jogo e atualiza o valor na tela.
      * @param gameScore nova pontuação.
      */
     public void setGameScore(int gameScore) {
@@ -46,10 +46,30 @@ public class ScoreManager {
     }
 
 
+    /**
+     * Bonus aplicado na pontuação padrão originada pelo Ghost.
+     */
+    public static int bonusScoreGhost = 1;
+
+    /**
+     * Quantidade de pontos dada pelo {@link com.pacman.systemelements.Ghost}
+     */
     public final static int scoreFromGhost = 200;
+
+    /**
+     * Quantidade de pontos dada pela {@link com.pacman.systemelements.EnergyPill}
+     */
     public final static int scoreFromEnergyPill = 50;
+
+    /**
+     * Quantidade de pontos dado pelo {@link com.pacman.systemelements.PacDot}
+     */
     public final static int scoreFromPacDot = 10;
 
+    /**
+     * Método utilizado para adicionar pontos na pontuação atual.
+     * @param points quantidade a ser adicionada.
+     */
     public void addGameScore(int points) {
         int score = gameScore + points;
         setGameScore(score);
