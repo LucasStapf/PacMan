@@ -111,12 +111,10 @@
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="240.0" layoutY="200.0" orientation="CORNER_BOTTOM_LEFT" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="260.0" layoutY="200.0" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="280.0" layoutY="200.0" orientation="CORNER_BOTTOM_RIGHT" widthValue="20.0" />
-   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="240.0" layoutY="240.0" orientation="CONER_RIGHT" widthValue="20.0" />
-   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="220.0" layoutY="240.0" widthValue="20.0" />
-   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="200.0" layoutY="240.0" orientation="CORNER_TOP_LEFT" widthValue="20.0" />
-   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="280.0" layoutY="240.0" orientation="CORNER_LEFT" widthValue="20.0" />
-   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="300.0" layoutY="240.0" widthValue="20.0" />
-   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="320.0" layoutY="240.0" orientation="CORNER_TOP_RIGHT" widthValue="20.0" />
+   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="240.0" layoutY="240.0" orientation="SINGLE" widthValue="20.0" />
+   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="200.0" layoutY="240.0" orientation="CORNER_TOP" widthValue="20.0" />
+   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="280.0" layoutY="240.0" orientation="SINGLE" widthValue="20.0" />
+   <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="320.0" layoutY="240.0" orientation="CORNER_TOP" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="40.0" layoutX="200.0" layoutY="260.0" orientation="VERTICAL" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="40.0" layoutX="320.0" layoutY="260.0" orientation="VERTICAL" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="200.0" layoutY="300.0" orientation="CORNER_BOTTOM_LEFT" widthValue="20.0" />
@@ -558,6 +556,8 @@
    <FloorGraphic heightValue="20.0" layoutX="80.0" layoutY="280.0" visible="false" widthValue="20.0" />
    <FloorGraphic heightValue="20.0" layoutX="60.0" layoutY="280.0" visible="false" widthValue="20.0" />
    <FloorGraphic heightValue="20.0" layoutX="40.0" layoutY="280.0" visible="false" widthValue="20.0" />
+   <FloorGraphic heightValue="20.0" layoutX="300.0" layoutY="240.0" visible="false" widthValue="20.0" />
+   <FloorGraphic heightValue="20.0" layoutX="220.0" layoutY="240.0" visible="false" widthValue="20.0" />
    <FloorGraphic heightValue="20.0" layoutX="20.0" layoutY="280.0" visible="false" widthValue="20.0" />
    <FloorGraphic heightValue="20.0" layoutY="280.0" visible="false" widthValue="20.0" />
    <FloorGraphic heightValue="20.0" layoutX="260.0" layoutY="240.0" visible="false" widthValue="20.0" />
@@ -804,5 +804,5 @@
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="520.0" layoutY="260.0" orientation="CORNER_TOP_RIGHT" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="520.0" layoutY="280.0" orientation="VERTICAL" widthValue="20.0" />
    <WallGraphic borderWidth="2.0" heightValue="20.0" layoutX="520.0" layoutY="300.0" orientation="CORNER_BOTTOM_RIGHT" widthValue="20.0" />
-   <PlaceGraphic color="TRANSPARENT" heightValue="20.0" layoutX="260.0" layoutY="280.0" widthValue="20.0" />
+   <PlaceGraphic fx:id="beginPlace" color="TRANSPARENT" heightValue="20.0" layoutX="260.0" layoutY="280.0" widthValue="20.0" />
 </AnchorPane>
