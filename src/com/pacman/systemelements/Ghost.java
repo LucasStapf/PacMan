@@ -4,6 +4,7 @@ import com.pacman.engine.DijkstraAlgorithm;
 import com.pacman.engine.SystemGame;
 import com.pacman.engine.Vertex;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Classe que representa os fantasmas do jogo.
@@ -41,7 +42,7 @@ public final class Ghost extends DynamicGameObject {
      */
     public Ghost(Position position) {
         setLayer(4);
-        setRigidBody(false);
+        setRigidBody(true);
         setPosition(position);
         setOldPosition(position);
         setDimension(new Dimension(18, 18));
@@ -100,7 +101,7 @@ public final class Ghost extends DynamicGameObject {
         floor = Floor.getFloorFrom(this);
         targetFloor = Floor.getFloorFrom(target);
 
-        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(SystemGame.getArenaManager().getGraph(), floor.getVertex());
+        DijkstraAlgorithm dijAlg = new DijkstraAlgorithm(SystemGame.arenaManager.getGraph(), floor.getVertex());
         pathToTarget = dijAlg.getShortestPath(targetFloor.getVertex());
 
         for (Vertex<Floor> vertex: pathToTarget) vertex.getT().highlighted = true; // temp
@@ -129,22 +130,6 @@ public final class Ghost extends DynamicGameObject {
             }
         }
 
-//        if (isOnFloor(pathToTarget.getFirst().getT())) {
-//
-//            pathToTarget.getFirst().getT().highlighted = false;
-//            pathToTarget.removeFirst();
-//            if (pathToTarget.isEmpty()) return;
-//
-//            double deltaX = pathToTarget.getFirst().getT().getPosition().getX() - getPosition().getX();
-//            double deltaY = pathToTarget.getFirst().getT().getPosition().getY() - getPosition().getY();
-//
-//            if (deltaX > 0) changeDirectionTo(Velocity.Direction.RIGHT);
-//            else if (deltaX < 0) changeDirectionTo(Velocity.Direction.LEFT);
-//            else if (deltaY > 0) changeDirectionTo(Velocity.Direction.UP);
-//            else if (deltaY < 0) changeDirectionTo(Velocity.Direction.DOWN);
-//
-//        }
-
         translate(SystemGame.deltaTime);
     }
 
@@ -169,10 +154,26 @@ public final class Ghost extends DynamicGameObject {
 
     @Override
     public void onCollision() {
+
+        if (getCollider() instanceof Wall) {
+
+            LinkedList<Direction> d = new LinkedList<>();
+
+            d.add(Direction.UP);
+            d.add(Direction.DOWN);
+            d.add(Direction.LEFT);
+            d.add(Direction.RIGHT);
+
+            d.remove(getVelocity().getDirection());
+
+            int r = (new Random()).nextInt(d.size());
+
+            changeDirectionTo(d.get(r));
+        }
     }
 
     @Override
     public void print() {
-        java.lang.System.out.print("G");
+
     }
 }

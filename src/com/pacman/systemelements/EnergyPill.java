@@ -28,6 +28,6 @@ public class EnergyPill extends GameObject {
 
     @Override
     public void print() {
-        System.out.print('E');
+
     }
 }

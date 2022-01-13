@@ -19,7 +19,7 @@ public class Wall extends GameObject {
         CORNER_TOP,
         CORNER_BUTTON,
         CORNER_LEFT,
-        CORNER_RIGHT;
+        CORNER_RIGHT
     }
 
     /**
@@ -54,17 +54,7 @@ public class Wall extends GameObject {
 
     @Override
     public void print() {
-        switch (orientation) {
-            case HORIZONTAL:
-                System.out.print("-");
-                break;
-            case VERTICAL:
-                System.out.print("|");
-                break;
-            case CORNER:
-                System.out.print("+");
-                break;
-        }
+
     }
 
 }
