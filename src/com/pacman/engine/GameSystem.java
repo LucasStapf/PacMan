@@ -26,7 +26,7 @@ public class GameSystem {
      * Intervalo de tempo entre cada atualização do sistema do jogo.
      * É utilizado, por exemplo, para o cálculo de distâncias percorridas e para o processamento gráfico.
      */
-    public static final long deltaTime = 20;
+    public static final long deltaTime = 10;
 
     /**
      * Atributo que armazena o gerenciador da arena.
