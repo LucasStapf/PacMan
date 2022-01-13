@@ -304,6 +304,18 @@ public class GameObjectManager {
                 staticControllers.add(gameObjectController);
 
             } else if (sceneElementGraphic instanceof PlaceGraphic) {
+
+                gameObjectController = new PlaceController();
+
+                Place place = new Place(position);
+                place.setDimension(dimension);
+
+                gameObjectController.setGameObject(place);
+                gameObjectController.setSceneElementGraphic(sceneElementGraphic);
+
+                gameObjectControllers.add(gameObjectController);
+                staticControllers.add(gameObjectController);
+
                 begin = (PlaceGraphic) sceneElementGraphic;
             }
         }
