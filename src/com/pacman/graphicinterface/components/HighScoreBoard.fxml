@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0"
+            prefWidth="140.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+   </padding>
+   <Label fx:id="HIGH_SCORE_TEXT" layoutX="17.0" layoutY="14.0" text="HIGH SCORE" textFill="WHITE">
+      <font>
+         <Font name="Tw Cen MT Condensed Extra Bold" size="22.0"/>
+      </font>
+   </Label>
+   <Label fx:id="HIGH_SCORE_VALUE" layoutX="48.0" layoutY="39.0" text="01234" textFill="WHITE">
+      <font>
+         <Font name="Tw Cen MT Condensed Extra Bold" size="18.0"/>
+      </font>
+   </Label>
+</AnchorPane>

@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
    <Arc fx:id="body" fill="#ffe71f" layoutX="64.0" layoutY="64.0" length="300.0" radiusX="65.0" radiusY="65.0" startAngle="30.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0.4;" type="ROUND" />
    <Ellipse fx:id="eye" layoutX="73.0" layoutY="29.0" radiusX="9.0" radiusY="9.0" stroke="BLACK" strokeType="INSIDE" />
 </fx:root>
