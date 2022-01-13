@@ -53,7 +53,7 @@ public class WallController implements GameObjectController {
 
     @Override
     public void update() {
-
+        wall.update();
     }
 
     @Override

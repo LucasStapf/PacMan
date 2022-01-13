@@ -11,6 +11,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class PacManController implements GameObjectController {
@@ -70,7 +71,7 @@ public class PacManController implements GameObjectController {
 
         KeyValue keyValueMouth = new KeyValue(pacManGraphic.mouthAngleProperty(), finalMouthAngle);
 
-        return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueMouth);
+        return new KeyFrame(Duration.millis(SystemGame.deltaTime * 10), keyValueMouth);
     }
 
     @Override
@@ -96,23 +97,23 @@ public class PacManController implements GameObjectController {
 
             switch (event.getCode()) {
                 case UP:
-//                    pacMan.changeDirectionTo(Velocity.Direction.DOWN);
-                    pacMan.getVelocity().setDirection(Direction.DOWN);
+                    pacMan.changeDirectionTo(Direction.DOWN);
+//                    pacMan.getVelocity().setDirection(Direction.DOWN);
                     break;
 
                 case DOWN:
-//                    pacMan.changeDirectionTo(Velocity.Direction.UP);
-                    pacMan.getVelocity().setDirection(Direction.UP);
+                    pacMan.changeDirectionTo(Direction.UP);
+//                    pacMan.getVelocity().setDirection(Direction.UP);
                     break;
 
                 case RIGHT:
-//                    pacMan.changeDirectionTo(Velocity.Direction.RIGHT);
-                    pacMan.getVelocity().setDirection(Direction.RIGHT);
+                    pacMan.changeDirectionTo(Direction.RIGHT);
+//                    pacMan.getVelocity().setDirection(Direction.RIGHT);
                     break;
 
                 case LEFT:
-//                    pacMan.changeDirectionTo(Velocity.Direction.LEFT);
-                    pacMan.getVelocity().setDirection(Direction.LEFT);
+                    pacMan.changeDirectionTo(Direction.LEFT);
+//                    pacMan.getVelocity().setDirection(Direction.LEFT);
                     break;
             }
         }

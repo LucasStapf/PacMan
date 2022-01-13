@@ -37,6 +37,7 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
         }
 
         mouthAngle.addListener((observable, oldValue, newValue) -> setMouthAngle((Double) newValue));
+        bodyColor.addListener((observable, oldValue, newValue) -> setBodyColor(newValue));
 
         /* ---- Default Values ---- */
         setHeightValue(130);
@@ -233,6 +234,9 @@ public class PacManGraphic extends AnchorPane implements SceneElementGraphic {
         eye.setLayoutX(eye.getLayoutX() * r);
     }
 
+    /**
+     * Propriedade responsável pela altura do PacMan.
+     */
     private final DoubleProperty heightValue = new SimpleDoubleProperty();
 
     @Override

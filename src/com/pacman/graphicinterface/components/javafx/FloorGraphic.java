@@ -36,7 +36,7 @@ public class FloorGraphic extends AnchorPane implements SceneElementGraphic {
         setBackgroundColor(Color.GRAY);
         setBorderColor(Color.BLACK);
         setWidthValue(130);
-        setPrefHeight(130);
+        setHeightValue(130);
     }
 
     /**

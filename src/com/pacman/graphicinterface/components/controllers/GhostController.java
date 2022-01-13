@@ -2,7 +2,6 @@ package com.pacman.graphicinterface.components.controllers;
 
 import com.pacman.engine.ScreenManager;
 import com.pacman.engine.SystemGame;
-import com.pacman.graphicinterface.GameObjectController;
 import com.pacman.graphicinterface.components.javafx.GhostGraphic;
 import com.pacman.graphicinterface.components.javafx.SceneElementGraphic;
 import com.pacman.systemelements.GameObject;
@@ -49,12 +48,17 @@ public class GhostController implements GameObjectController {
     @Override
     public KeyFrame getTranslationKeyFrame() {
 
-        KeyValue keyValueX = new KeyValue(ghostGraphic.translateXProperty(),
+        KeyValue keyValueX = new KeyValue(ghostGraphic.layoutXProperty(),
                 ScreenManager.convertGameToScreenX(ghost));
-        KeyValue keyValueY = new KeyValue(ghostGraphic.translateYProperty(),
+        KeyValue keyValueY = new KeyValue(ghostGraphic.layoutYProperty(),
                 ScreenManager.convertGameToScreenY(ghost));
 
         return new KeyFrame(Duration.millis(SystemGame.deltaTime), keyValueX, keyValueY);
+    }
+
+    @Override
+    public KeyFrame getAnimationKeyFrame() {
+        return null;
     }
 
     @Override
