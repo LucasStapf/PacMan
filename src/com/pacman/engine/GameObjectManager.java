@@ -36,44 +36,106 @@ public class GameObjectManager {
     }
 
     /**
-     * Fantasma Blinky. Seu movimento é de perseguir o Pac-Man
+     * Ghost Blinky. Seu movimento é de perseguir o PacMan
+     * aumentanto sua velocidade conforme o PacMan come PacDots.
      */
     private Ghost blinky;
 
+    /**
+     * Cor original do Ghost Blicky.
+     */
+    public final Color colorBlinky = Color.RED;
+
+    /**
+     * Retorna o Ghost Blinky.
+     * @return o Ghost Blinky.
+     */
     public Ghost blinky() {
         return blinky;
     }
 
+    /**
+     * Altera o Ghost Blinky.
+     * @param blinky novo Ghost Blinky.
+     */
     public void setBlinky(Ghost blinky) {
         this.blinky = blinky;
     }
 
+    /**
+     * Ghost Pinky. Seu movimento é de perseguir o PacMan com velocidade constante.
+     */
     private Ghost pinky;
 
+    /**
+     * Cor original do Ghost Pinky.
+     */
+    public final Color colorPinky = Color.PINK;
+
+    /**
+     * Retorna o Ghost Pinky.
+     * @return o Ghost Pinky.
+     */
     public Ghost pinky() {
         return pinky;
     }
 
+    /**
+     * Altera o Ghost Pinky.
+     * @param pinky novo Ghost Pinky.
+     */
     public void setPinky(Ghost pinky) {
         this.pinky = pinky;
     }
 
+    /**
+     * Ghost Inky. Seu movimento é aleatório.
+     */
     private Ghost inky;
 
+    /**
+     * Cor original do Ghost Inky.
+     */
+    public final Color colorInky = Color.LIMEGREEN;
+
+    /**
+     * Retorna o Ghost Inky.
+     * @return o Ghost Inky.
+     */
     public Ghost inky() {
         return inky;
     }
 
+    /**
+     * Altera o Ghost Inky.
+     * @param inky novo Ghost Inky.
+     */
     public void setInky(Ghost inky) {
         this.inky = inky;
     }
 
+    /**
+     * Ghost Clyde. Seu movimento é aleatório.
+     */
     private Ghost clyde;
 
+    /**
+     * Cor original do Ghost Clyde.
+     */
+    public final Color colorClyde = Color.ORANGE;
+
+    /**
+     * Retorna o Ghost Clyde.
+     * @return o Ghost Clyde.
+     */
     public Ghost clyde() {
         return clyde;
     }
 
+    /**
+     * Altera o Ghost Clyde.
+     * @param clyde novo Ghost Clyde.
+     */
     public void setClyde(Ghost clyde) {
         this.clyde = clyde;
     }
@@ -105,7 +167,6 @@ public class GameObjectManager {
     public void updateGameObjectControllers() {
 
         gameObjectControllers.clear();
-
         Iterator<Node> nodeIterator = GameSystem.screen.arena().getChildren().listIterator();
 
         while (nodeIterator.hasNext()) {
