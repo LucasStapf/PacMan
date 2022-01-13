@@ -36,7 +36,7 @@ public class GameSystem {
     /**
      * Atributo que armazena o gerenciador de colisões.
      */
-    public static CollisionManager collisionManager;
+    public static CollisionManager collisions;
 
     /**
      * Atributo que armazena o gerenciador dos objetos do jogo.
@@ -76,7 +76,7 @@ public class GameSystem {
      */
     public static void destroyGameObject(GameObject gameObject) {
 
-        if (arenaManager == null || gameObjectManager == null || collisionManager == null) return;
+        if (arenaManager == null || gameObjectManager == null || collisions == null) return;
         gameObjectManager.getObjectsToDestroy().add(gameObject);
     }
 
@@ -87,7 +87,7 @@ public class GameSystem {
 
         gameObjectManager = new GameObjectManager();
         screen = new ScreenManager();
-        collisionManager = new CollisionManager();
+        collisions = new CollisionManager();
         arenaManager = new ArenaManager();
         scoreManager = new ScoreManager();
         levelManager = new LevelManager();

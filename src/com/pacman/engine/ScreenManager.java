@@ -157,9 +157,9 @@ public class ScreenManager {
             timelineTranslations.getKeyFrames().clear();
 
             GameSystem.levelManager.checkEffectEnergyPill();
-            GameSystem.collisionManager.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
+            GameSystem.collisions.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
                     GameSystem.gameObjectManager.staticControllers());
-            GameSystem.collisionManager.handleCollisions();
+            GameSystem.collisions.handleCollisions();
 
             for (GameObjectController gameObjectController : GameSystem.gameObjectManager.gameObjectControllers()) {
                 gameObjectController.update();
@@ -167,9 +167,9 @@ public class ScreenManager {
                 if (translation != null) timelineTranslations.getKeyFrames().add(translation);
             }
 
-            GameSystem.collisionManager.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
+            GameSystem.collisions.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
                     GameSystem.gameObjectManager.staticControllers());
-            GameSystem.collisionManager.handleCollisions();
+            GameSystem.collisions.handleCollisions();
 
             GameSystem.gameObjectManager.destroyGameObjects();
 
