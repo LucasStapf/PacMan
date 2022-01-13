@@ -46,7 +46,7 @@ public class GameSystem {
     /**
      * Gerenciador da interface gráfica do jogo.
      */
-    public static ScreenManager screenManager;
+    public static ScreenManager screen;
 
     /**
      * Gerenciador do sistema de pontuação do jogo.
@@ -91,7 +91,7 @@ public class GameSystem {
     public static void start() {
 
         gameObjectManager = new GameObjectManager();
-        screenManager = new ScreenManager();
+        screen = new ScreenManager();
         collisionManager = new CollisionManager();
         arenaManager = new ArenaManager();
         scoreManager = new ScoreManager();

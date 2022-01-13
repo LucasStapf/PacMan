@@ -19,13 +19,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        GameSystem.screenManager.setPrimaryStage(primaryStage);
-        primaryStage.setScene(new Scene(GameSystem.screenManager.gameScreen()));
+        GameSystem.screen.setPrimaryStage(primaryStage);
+        primaryStage.setScene(new Scene(GameSystem.screen.gameScreen()));
         primaryStage.show();
 
         GameSystem.gameObjectManager.updateGameObjectControllers();
 
-        GameSystem.screenManager.arena().addEventFilter(KeyEvent.KEY_PRESSED, GameSystem.gameObjectManager.player().keyEventHandler());
+        GameSystem.screen.arena().addEventFilter(KeyEvent.KEY_PRESSED, GameSystem.gameObjectManager.player().keyEventHandler());
 
         GameSystem.gameObjectManager.blinky().setTarget(GameSystem.gameObjectManager.player().getGameObject());
         GameSystem.gameObjectManager.pinky().setTarget(GameSystem.gameObjectManager.player().getGameObject());
@@ -36,6 +36,6 @@ public class Main extends Application {
 
         GameSystem.gameObjectManager.player().requestFocus();
 
-        GameSystem.screenManager.runAnimations();
+        GameSystem.screen.runAnimations();
     }
 }

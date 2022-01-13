@@ -56,6 +56,6 @@ public class PacDotController implements GameObjectController {
 //        GameSystem.getScreenManager().getBoardPane().getChildren().remove(pacDotID);
         GameSystem.gameObjectManager.gameObjectControllers().remove(this);
         GameSystem.gameObjectManager.staticControllers().remove(this);
-        GameSystem.screenManager.arena().getChildren().remove(pacDotGraphic);
+        GameSystem.screen.arena().getChildren().remove(pacDotGraphic);
     }
 }

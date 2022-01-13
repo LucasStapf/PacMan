@@ -106,7 +106,7 @@ public class GameObjectManager {
 
         gameObjectControllers.clear();
 
-        Iterator<Node> nodeIterator = GameSystem.screenManager.arena().getChildren().listIterator();
+        Iterator<Node> nodeIterator = GameSystem.screen.arena().getChildren().listIterator();
 
         while (nodeIterator.hasNext()) {
 
@@ -289,7 +289,7 @@ public class GameObjectManager {
                     gameObjectIterator.remove();
                     dynamicControllers.remove(gameObjectController);
                     staticControllers.remove(gameObjectController);
-                    GameSystem.screenManager.arena().getChildren().remove(gameObjectController.getSceneElementGraphic());
+                    GameSystem.screen.arena().getChildren().remove(gameObjectController.getSceneElementGraphic());
                 }
             }
         }

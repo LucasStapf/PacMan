@@ -42,7 +42,7 @@ public class ScoreManager {
      */
     public void setGameScore(int gameScore) {
         this.gameScore = gameScore;
-        GameSystem.screenManager.gameScoreBoard().setValue(gameScore);
+        GameSystem.screen.gameScoreBoard().setValue(gameScore);
     }
 
 
