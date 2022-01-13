@@ -59,6 +59,11 @@ public class GameSystem {
     public static LevelManager levelManager;
 
     /**
+     * Gerenciador do jogador.
+     */
+    public static PlayerManager player;
+
+    /**
      * Construtor padrão.
      */
     public GameSystem() {
@@ -91,6 +96,7 @@ public class GameSystem {
         arenaManager = new ArenaManager();
         scoreManager = new ScoreManager();
         levelManager = new LevelManager();
+        player = new PlayerManager();
 
         status = Status.STARTED;
     }
