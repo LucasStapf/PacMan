@@ -60,19 +60,24 @@ public class LevelManager {
         timeStarted = System.currentTimeMillis();
 
         Color color = Color.CADETBLUE;
+        float modulus = GameObjectManager.modulusInEffect;
 
         ((Ghost) GameSystem.gameObjectManager.blinky().getGameObject()).setVulnerable(true);
+        ((Ghost) GameSystem.gameObjectManager.blinky().getGameObject()).getVelocity().setModulus(modulus);
         ((Ghost) GameSystem.gameObjectManager.blinky().getGameObject()).setMovement(Ghost.Movement.RANDOM);
         ((GhostGraphic) GameSystem.gameObjectManager.blinky().getSceneElementGraphic()).setBodyColor(color);
 
         ((Ghost) GameSystem.gameObjectManager.pinky().getGameObject()).setVulnerable(true);
+        ((Ghost) GameSystem.gameObjectManager.pinky().getGameObject()).getVelocity().setModulus(modulus);
         ((Ghost) GameSystem.gameObjectManager.pinky().getGameObject()).setMovement(Ghost.Movement.RANDOM);
         ((GhostGraphic) GameSystem.gameObjectManager.pinky().getSceneElementGraphic()).setBodyColor(color);
 
         ((Ghost) GameSystem.gameObjectManager.inky().getGameObject()).setVulnerable(true);
+        ((Ghost) GameSystem.gameObjectManager.inky().getGameObject()).getVelocity().setModulus(modulus);
         ((GhostGraphic) GameSystem.gameObjectManager.inky().getSceneElementGraphic()).setBodyColor(color);
 
         ((Ghost) GameSystem.gameObjectManager.clyde().getGameObject()).setVulnerable(true);
+        ((Ghost) GameSystem.gameObjectManager.clyde().getGameObject()).getVelocity().setModulus(modulus);
         ((GhostGraphic) GameSystem.gameObjectManager.clyde().getSceneElementGraphic()).setBodyColor(color);
     }
 
@@ -81,25 +86,31 @@ public class LevelManager {
         if (effectEnergyPill && System.currentTimeMillis() - timeStarted > deltaTimeEffect) {
 
             effectEnergyPill = false;
+            ScoreManager.bonusScoreGhost = 1;
+            float modulus = GameObjectManager.defaultModulus;
 
             ((Ghost) GameSystem.gameObjectManager.blinky().getGameObject()).setVulnerable(false);
+            ((Ghost) GameSystem.gameObjectManager.blinky().getGameObject()).getVelocity().setModulus(modulus);
             ((Ghost) GameSystem.gameObjectManager.blinky().getGameObject()).setMovement(Ghost.Movement.FOLLOW_TARGET);
             ((GhostGraphic) GameSystem.gameObjectManager.blinky().getSceneElementGraphic()).setBodyColor(
                     GameSystem.gameObjectManager.colorBlinky
             );
 
             ((Ghost) GameSystem.gameObjectManager.pinky().getGameObject()).setVulnerable(false);
+            ((Ghost) GameSystem.gameObjectManager.pinky().getGameObject()).getVelocity().setModulus(modulus);
             ((Ghost) GameSystem.gameObjectManager.pinky().getGameObject()).setMovement(Ghost.Movement.FOLLOW_TARGET);
             ((GhostGraphic) GameSystem.gameObjectManager.pinky().getSceneElementGraphic()).setBodyColor(
                     GameSystem.gameObjectManager.colorPinky
             );
 
             ((Ghost) GameSystem.gameObjectManager.inky().getGameObject()).setVulnerable(false);
+            ((Ghost) GameSystem.gameObjectManager.inky().getGameObject()).getVelocity().setModulus(modulus);
             ((GhostGraphic) GameSystem.gameObjectManager.inky().getSceneElementGraphic()).setBodyColor(
                     GameSystem.gameObjectManager.colorInky
             );
 
             ((Ghost) GameSystem.gameObjectManager.clyde().getGameObject()).setVulnerable(false);
+            ((Ghost) GameSystem.gameObjectManager.clyde().getGameObject()).getVelocity().setModulus(modulus);
             ((GhostGraphic) GameSystem.gameObjectManager.clyde().getSceneElementGraphic()).setBodyColor(
                     GameSystem.gameObjectManager.colorClyde
             );
