@@ -167,18 +167,19 @@ public final class Ghost extends DynamicGameObject {
 
         if (getCollider() instanceof PacMan) {
             if (isVulnerable){
-
-                GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost * ScoreManager.bonusScoreGhost);
+                GameSystem.player.addGameScore(ScoreManager.scoreFromGhost * ScoreManager.bonusScoreGhost);
                 ScoreManager.bonusScoreGhost += 1;
-
-                PlaceGraphic begin = GameSystem.gameobjects.begin();
-
-                double x = ScreenManager.convertScreenToGameX(begin);
-                double y = ScreenManager.convertScreenToGameY(begin);
-
-                setPosition(new Position(x, y));
-                getVelocity().setDirection(Direction.DOWN);
+            } else {
+                GameSystem.player.removeLifes(1);
             }
+
+            PlaceGraphic begin = GameSystem.gameobjects.begin();
+
+            double x = ScreenManager.convertScreenToGameX(begin);
+            double y = ScreenManager.convertScreenToGameY(begin);
+
+            setPosition(new Position(x, y));
+            getVelocity().setDirection(Direction.DOWN);
         }
 
         if (getCollider() instanceof Wall) {

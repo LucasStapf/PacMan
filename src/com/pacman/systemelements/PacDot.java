@@ -28,7 +28,7 @@ public class PacDot extends GameObject {
     @Override
     public void onCollision() {
         if (getCollider() instanceof PacMan) {
-            GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromPacDot);
+            GameSystem.player.addGameScore(ScoreManager.scoreFromPacDot);
             destroy();
         }
     }
