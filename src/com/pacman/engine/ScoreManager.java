@@ -5,7 +5,7 @@ public class ScoreManager {
     /**
      * Pontuação máxima atingida no jogo.
      */
-    private int highScore;
+    private int highScore = 0;
 
     /**
      * Retorna a pontuação máxima atingida no jogo.
@@ -26,7 +26,7 @@ public class ScoreManager {
     /**
      * Pontuação atual.
      */
-    private int gameScore;
+    private int gameScore = 0;
 
     /**
      * Retorna a pontuação atual no jogo.
@@ -42,13 +42,15 @@ public class ScoreManager {
      */
     public void setGameScore(int gameScore) {
         this.gameScore = gameScore;
+        SystemGame.screenManager.gameScoreBoard().scoreBoardValue().setText(Integer.toString(gameScore));
     }
 
-    private static final int bonus = 1;
-    private static int bonusPacDot = 1;
-    private static int bonusGhost = 1;
+    public final static int scoreFromGhost = 200;
+    public final static int scoreFromPacDot = 1;
 
-    private static int scoreFromGhost = 200;
-    private static int scoreFromPacDot = 1;
+    public void addGameScore(int points) {
+        int score = gameScore + points;
+        setGameScore(score);
+    }
 
 }
