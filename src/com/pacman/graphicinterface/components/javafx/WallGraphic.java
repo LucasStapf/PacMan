@@ -76,7 +76,10 @@ public class WallGraphic extends AnchorPane implements SceneElementGraphic {
         CORNER_BOTTOM_LEFT,
         CORNER_BOTTOM_RIGHT,
         CORNER_LEFT,
-        CONER_RIGHT
+        CONER_RIGHT,
+        CORNER_TOP,
+        CORNER_BOTTOM,
+        SINGLE,
     }
 
     /**
@@ -150,6 +153,21 @@ public class WallGraphic extends AnchorPane implements SceneElementGraphic {
             case CONER_RIGHT:
                 sBorderWidth = "-fx-border-width: " + getBorderWidth() + " " + getBorderWidth() + " " + getBorderWidth() + " " + 0;
                 this.wallRegion.setStyle("-fx-border-radius: 0 40 40 0; " + sBorderColor + sBorderWidth);
+                break;
+
+            case CORNER_TOP:
+                sBorderWidth = "-fx-border-width: " + getBorderWidth() + " " + getBorderWidth() + " " + 0 + " " + getBorderWidth();
+                this.wallRegion.setStyle("-fx-border-radius: 40 40 0 0; " + sBorderColor + sBorderWidth);
+                break;
+
+            case CORNER_BOTTOM:
+                sBorderWidth = "-fx-border-width: " + 0 + " " + getBorderWidth() + " " + getBorderWidth() + " " + getBorderWidth();
+                this.wallRegion.setStyle("-fx-border-radius: 0 0 40 40; " + sBorderColor + sBorderWidth);
+                break;
+
+            case SINGLE:
+                sBorderWidth = "-fx-border-width: " + getBorderWidth() + " " + getBorderWidth() + " " + getBorderWidth() + " " + getBorderWidth();
+                this.wallRegion.setStyle("-fx-border-radius: 40 40 40 40; " + sBorderColor + sBorderWidth);
                 break;
         }
     }
