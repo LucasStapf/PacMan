@@ -41,7 +41,7 @@ public class GameSystem {
     /**
      * Atributo que armazena o gerenciador dos objetos do jogo.
      */
-    public static GameObjectManager gameObjectManager;
+    public static GameObjectManager gameobjects;
 
     /**
      * Gerenciador da interface gráfica do jogo.
@@ -76,8 +76,8 @@ public class GameSystem {
      */
     public static void destroyGameObject(GameObject gameObject) {
 
-        if (arenaManager == null || gameObjectManager == null || collisions == null) return;
-        gameObjectManager.getObjectsToDestroy().add(gameObject);
+        if (arenaManager == null || gameobjects == null || collisions == null) return;
+        gameobjects.getObjectsToDestroy().add(gameObject);
     }
 
     /**
@@ -85,7 +85,7 @@ public class GameSystem {
      */
     public static void start() {
 
-        gameObjectManager = new GameObjectManager();
+        gameobjects = new GameObjectManager();
         screen = new ScreenManager();
         collisions = new CollisionManager();
         arenaManager = new ArenaManager();

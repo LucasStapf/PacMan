@@ -170,7 +170,7 @@ public final class Ghost extends DynamicGameObject {
 
                 GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost * ScoreManager.bonusScoreGhost);
 
-                PlaceGraphic begin = GameSystem.gameObjectManager.begin();
+                PlaceGraphic begin = GameSystem.gameobjects.begin();
 
                 double x = ScreenManager.convertScreenToGameX(begin);
                 double y = ScreenManager.convertScreenToGameY(begin);

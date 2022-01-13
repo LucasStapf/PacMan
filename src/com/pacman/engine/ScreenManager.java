@@ -157,21 +157,21 @@ public class ScreenManager {
             timelineTranslations.getKeyFrames().clear();
 
             GameSystem.levelManager.checkEffectEnergyPill();
-            GameSystem.collisions.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
-                    GameSystem.gameObjectManager.staticControllers());
+            GameSystem.collisions.checkCollisions(GameSystem.gameobjects.dynamicControllers(),
+                    GameSystem.gameobjects.staticControllers());
             GameSystem.collisions.handleCollisions();
 
-            for (GameObjectController gameObjectController : GameSystem.gameObjectManager.gameObjectControllers()) {
+            for (GameObjectController gameObjectController : GameSystem.gameobjects.gameObjectControllers()) {
                 gameObjectController.update();
                 KeyFrame translation = gameObjectController.getTranslationKeyFrame();
                 if (translation != null) timelineTranslations.getKeyFrames().add(translation);
             }
 
-            GameSystem.collisions.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
-                    GameSystem.gameObjectManager.staticControllers());
+            GameSystem.collisions.checkCollisions(GameSystem.gameobjects.dynamicControllers(),
+                    GameSystem.gameobjects.staticControllers());
             GameSystem.collisions.handleCollisions();
 
-            GameSystem.gameObjectManager.destroyGameObjects();
+            GameSystem.gameobjects.destroyGameObjects();
 
             if (!timelineTranslations.getKeyFrames().isEmpty()) timelineTranslations.play();
         });
@@ -180,7 +180,7 @@ public class ScreenManager {
 
             timelineAnimations.getKeyFrames().clear();
 
-            for (GameObjectController gameObjectController : GameSystem.gameObjectManager.gameObjectControllers()) {
+            for (GameObjectController gameObjectController : GameSystem.gameobjects.gameObjectControllers()) {
                 KeyFrame animation = gameObjectController.getAnimationKeyFrame();
                 if (animation != null) timelineAnimations.getKeyFrames().add(animation);
             }
