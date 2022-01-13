@@ -28,6 +28,7 @@ public class EnergyPill extends GameObject {
     public void onCollision() {
         if (getCollider() instanceof PacMan) {
             GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromEnergyPill);
+            GameSystem.levelManager.startEffectEnergyPill();
             destroy();
         }
     }
