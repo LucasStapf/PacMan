@@ -1,6 +1,7 @@
 package com.pacman.systemelements;
 
 import com.pacman.engine.DijkstraAlgorithm;
+import com.pacman.engine.ScoreManager;
 import com.pacman.engine.SystemGame;
 import com.pacman.engine.Vertex;
 import java.util.LinkedList;
@@ -10,6 +11,16 @@ import java.util.Random;
  * Classe que representa os fantasmas do jogo.
  */
 public final class Ghost extends DynamicGameObject {
+
+    private boolean isVulnerable;
+
+    public boolean isVulnerable() {
+        return isVulnerable;
+    }
+
+    public void setVulnerable(boolean vulnerable) {
+        isVulnerable = vulnerable;
+    }
 
     /**
      * Constantes que descrevem o tipo de movimento do Ghost.
@@ -154,6 +165,10 @@ public final class Ghost extends DynamicGameObject {
 
     @Override
     public void onCollision() {
+
+        if (getCollider() instanceof PacMan) {
+            if (isVulnerable) SystemGame.scoreManager.addGameScore(ScoreManager.scoreFromGhost);
+        }
 
         if (getCollider() instanceof Wall) {
 

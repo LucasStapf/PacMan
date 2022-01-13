@@ -29,6 +29,7 @@ public class PacDot extends GameObject {
     public void onCollision() {
         if (getCollider() instanceof PacMan) {
             SystemGame.gameObjectManager.blinky().getVelocity().setModulus(SystemGame.gameObjectManager.blinky().getVelocity().getModulus() + 0.1);
+            SystemGame.scoreManager.addGameScore(ScoreManager.scoreFromPacDot);
             destroy();
         }
     }

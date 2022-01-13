@@ -42,11 +42,13 @@ public class ScoreManager {
      */
     public void setGameScore(int gameScore) {
         this.gameScore = gameScore;
-        SystemGame.screenManager.gameScoreBoard().scoreBoardValue().setText(Integer.toString(gameScore));
+        SystemGame.screenManager.gameScoreBoard().setValue(gameScore);
     }
 
+
     public final static int scoreFromGhost = 200;
-    public final static int scoreFromPacDot = 1;
+    public final static int scoreFromEnergyPill = 50;
+    public final static int scoreFromPacDot = 10;
 
     public void addGameScore(int points) {
         int score = gameScore + points;

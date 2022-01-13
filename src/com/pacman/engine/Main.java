@@ -20,8 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         SystemGame.screenManager.setPrimaryStage(primaryStage);
-
-        primaryStage.setScene(new Scene(SystemGame.screenManager.arena()));
+        primaryStage.setScene(new Scene(SystemGame.screenManager.gameScreen()));
         primaryStage.show();
 
         SystemGame.gameObjectManager.updateGameObjectControllers();

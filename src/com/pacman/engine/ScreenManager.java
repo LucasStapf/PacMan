@@ -2,6 +2,7 @@ package com.pacman.engine;
 
 import com.pacman.graphicinterface.components.controllers.GameObjectController;
 import com.pacman.graphicinterface.components.controllers.ScoreBoardController;
+import com.pacman.graphicinterface.components.javafx.ScoreBoardGraphic;
 import com.pacman.systemelements.SceneElement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -100,13 +101,13 @@ public class ScreenManager {
     /**
      * Armazena o placar que informa a atual pontuação do jogador.
      */
-    private ScoreBoardController gameScoreBoard;
+    private ScoreBoardGraphic gameScoreBoard;
 
     /**
      * Retorna o placar responsável pela atual pontuação do jogador.
      * @return o placar responsável pela atual pontuação do jogador.
      */
-    public ScoreBoardController gameScoreBoard() {
+    public ScoreBoardGraphic gameScoreBoard() {
         return gameScoreBoard;
     }
 
@@ -114,7 +115,7 @@ public class ScreenManager {
      * Altera o placar responsável pela pontuação atual do jogador.
      * @param gameScoreBoard novo placar.
      */
-    public void setGameScoreBoard(ScoreBoardController gameScoreBoard) {
+    public void setGameScoreBoard(ScoreBoardGraphic gameScoreBoard) {
         this.gameScoreBoard = gameScoreBoard;
     }
 
@@ -131,16 +132,8 @@ public class ScreenManager {
                         arena = (AnchorPane) node;
                         break;
                     case "gameScoreBoard":
-                        gameScoreBoard = new ScoreBoardController();
-                        Pane pane = (Pane) node;
-                        for (Node nodeAux: pane.getChildren()) {
-                            if (nodeAux.getId().equals("scoreBoardText"))
-                                gameScoreBoard.setScoreBoardText((Label) nodeAux);
-                            else if (nodeAux.getId().equals("scoreBoardValue"))
-                                gameScoreBoard.setScoreBoardValue((Label) nodeAux);
-                        }
-                        gameScoreBoard.scoreBoardText().setText("GAME SCORE");
-                        gameScoreBoard.scoreBoardValue().setText("0");
+                        gameScoreBoard = (ScoreBoardGraphic) node;
+                        break;
                     case "highScoreBoard":
                         break;
                 }
