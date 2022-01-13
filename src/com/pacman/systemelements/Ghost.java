@@ -1,9 +1,8 @@
 package com.pacman.systemelements;
 
-import com.pacman.engine.DijkstraAlgorithm;
-import com.pacman.engine.GameSystem;
-import com.pacman.engine.ScoreManager;
-import com.pacman.engine.Vertex;
+import com.pacman.engine.*;
+import com.pacman.graphicinterface.components.javafx.PlaceGraphic;
+
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -167,8 +166,18 @@ public final class Ghost extends DynamicGameObject {
     public void onCollision() {
 
         if (getCollider() instanceof PacMan) {
-            if (isVulnerable)
+            if (isVulnerable){
+
                 GameSystem.scoreManager.addGameScore(ScoreManager.scoreFromGhost * ScoreManager.bonusScoreGhost);
+
+                PlaceGraphic begin = GameSystem.gameObjectManager.begin();
+
+                double x = ScreenManager.convertScreenToGameX(begin);
+                double y = ScreenManager.convertScreenToGameY(begin);
+
+                setPosition(new Position(x, y));
+                getVelocity().setDirection(Direction.DOWN);
+            }
         }
 
         if (getCollider() instanceof Wall) {
