@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<fx:root fx:id="pane" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.2"
+         xmlns:fx="http://javafx.com/fxml/1">
+   <Group fx:id="group">
+      <Ellipse fx:id="body" fill="#ffa100" layoutX="65.0" layoutY="115.0" radiusX="65.0" radiusY="65.0"
+               stroke="BLACK" strokeType="INSIDE"/>
+      <CubicCurve fx:id="leafOne" controlX1="-164.0" controlX2="50.0" controlY1="-2.0" controlY2="100.0"
+                  endX="-186.0" endY="72.0" layoutX="253.0" layoutY="-22.0" startX="-186.0" startY="72.0"
+                  stroke="BLACK">
+         <fill>
+            <LinearGradient endX="1.0">
+               <stops>
+                  <Stop color="#007504"/>
+                  <Stop color="WHITE" offset="1.0"/>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </CubicCurve>
+      <CubicCurve fx:id="leafTwo" controlX1="-215.0" controlY1="12.0" controlY2="-2.0" endX="-186.0" endY="72.0"
+                  layoutX="251.0" layoutY="-21.0" startX="-186.0" startY="72.0" stroke="BLACK">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#007202"/>
+                  <Stop color="WHITE" offset="1.0"/>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </CubicCurve>
+   </Group>
+</fx:root>
