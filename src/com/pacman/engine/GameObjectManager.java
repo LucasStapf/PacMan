@@ -15,6 +15,27 @@ import java.util.LinkedList;
 public class GameObjectManager {
 
     /**
+     * Guarda a posição central da Arena para onde os Ghosts são teleportados quando comidos pelo PacMan.
+     */
+    private PlaceGraphic begin;
+
+    /**
+     * Retorna a posição central da Arena.
+     * @return a posição central da Arena.
+     */
+    public PlaceGraphic begin() {
+        return begin;
+    }
+
+    /**
+     * Altera a posição central da Arena.
+     * @param begin nova posição.
+     */
+    public void setBegin(PlaceGraphic begin) {
+        this.begin = begin;
+    }
+
+    /**
      * Atributo que representa o controlador do Pac-Man do jogador.
      */
     private PacManController player;
@@ -166,6 +187,8 @@ public class GameObjectManager {
      */
     public void updateGameObjectControllers() {
 
+        float modulus = 100.0f;
+
         gameObjectControllers.clear();
         Iterator<Node> nodeIterator = GameSystem.screen.arena().getChildren().listIterator();
 
@@ -201,7 +224,7 @@ public class GameObjectManager {
 
                 PacMan pacMan = new PacMan(position);
                 pacMan.setDimension(dimension);
-                pacMan.getVelocity().updateVelocity(50, Direction.RIGHT);
+                pacMan.getVelocity().updateVelocity(modulus, Direction.RIGHT);
 
                 player = (PacManController) gameObjectController;
 
@@ -243,7 +266,7 @@ public class GameObjectManager {
 
                 Ghost ghost = new Ghost(position);
                 ghost.setDimension(dimension);
-                ghost.getVelocity().setModulus(50);
+                ghost.getVelocity().setModulus(modulus);
                 ghost.setMovement(Ghost.Movement.FOLLOW_TARGET);
 
                 GhostGraphic ghostGraphic = (GhostGraphic) sceneElementGraphic;
@@ -271,6 +294,9 @@ public class GameObjectManager {
 
                 gameObjectControllers.add(gameObjectController);
                 staticControllers.add(gameObjectController);
+
+            } else if (sceneElementGraphic instanceof PlaceGraphic) {
+                begin = (PlaceGraphic) sceneElementGraphic;
             }
         }
 
