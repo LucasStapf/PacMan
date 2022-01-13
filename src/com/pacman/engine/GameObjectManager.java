@@ -162,6 +162,16 @@ public class GameObjectManager {
     }
 
     /**
+     * Módulo da velocidade padrão de todos os objetos dinâmicos do jogo.
+     */
+    public static final float defaultModulus = 100.0f;
+
+    /**
+     * Módulo da velocidade durante o efeito da pílula de energia.
+     */
+    public static final float modulusInEffect = 80.0f;
+
+    /**
      * Lista de controladores de todos os {@link SceneElement} presentes na arena do jogo.
      */
     private LinkedList<GameObjectController> gameObjectControllers;
@@ -186,8 +196,6 @@ public class GameObjectManager {
      * Atualiza a lista de {@link GameObjectController} a partir dos elementos presentes na Arena do jogo.
      */
     public void updateGameObjectControllers() {
-
-        float modulus = 100.0f;
 
         gameObjectControllers.clear();
         Iterator<Node> nodeIterator = GameSystem.screen.arena().getChildren().listIterator();
@@ -224,7 +232,7 @@ public class GameObjectManager {
 
                 PacMan pacMan = new PacMan(position);
                 pacMan.setDimension(dimension);
-                pacMan.getVelocity().updateVelocity(modulus, Direction.RIGHT);
+                pacMan.getVelocity().updateVelocity(defaultModulus, Direction.RIGHT);
 
                 player = (PacManController) gameObjectController;
 
@@ -266,7 +274,7 @@ public class GameObjectManager {
 
                 Ghost ghost = new Ghost(position);
                 ghost.setDimension(dimension);
-                ghost.getVelocity().setModulus(modulus);
+                ghost.getVelocity().setModulus(defaultModulus);
                 ghost.setMovement(Ghost.Movement.FOLLOW_TARGET);
 
                 GhostGraphic ghostGraphic = (GhostGraphic) sceneElementGraphic;
