@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.pacman.graphicinterface.components.javafx.LifeBoardGraphic?>
 <?import com.pacman.graphicinterface.components.javafx.ScoreBoardGraphic?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="700.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <fx:include fx:id="arena" source="Arena.fxml" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-   <ScoreBoardGraphic fx:id="gameScoreBoard" layoutX="31.0" layoutY="33.0" text="GAME SCORE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
+   <ScoreBoardGraphic fx:id="gameScoreBoard" layoutX="21.0" layoutY="217.0" text="GAME SCORE" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="217.0" />
+   <LifeBoardGraphic fx:id="lifeBoard" layoutX="45.0" layoutY="289.0" />
 </AnchorPane>
