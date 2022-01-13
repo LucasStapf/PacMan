@@ -1,6 +1,7 @@
 package com.pacman.engine;
 
 import com.pacman.graphicinterface.components.controllers.GameObjectController;
+import com.pacman.graphicinterface.components.javafx.LifeBoardGraphic;
 import com.pacman.graphicinterface.components.javafx.ScoreBoardGraphic;
 import com.pacman.systemelements.SceneElement;
 import javafx.animation.KeyFrame;
@@ -115,6 +116,27 @@ public class ScreenManager {
         this.gameScoreBoard = gameScoreBoard;
     }
 
+    /**
+     * Armazena o placar de vidas do jogador.
+     */
+    private LifeBoardGraphic lifeBoard;
+
+    /**
+     * Retorna o placar de vidas do jogador.
+     * @return o placar de vidas do jogador.
+     */
+    public LifeBoardGraphic lifeBoard() {
+        return lifeBoard;
+    }
+
+    /**
+     * Altera o placar de vidas do jogador.
+     * @param lifeBoard novo placar.
+     */
+    public void setLifeBoard(LifeBoardGraphic lifeBoard) {
+        this.lifeBoard = lifeBoard;
+    }
+
     public ScreenManager() {
 
         String path = "/com/pacman/graphicinterface/components/fxml/GameScreen.fxml";
@@ -130,6 +152,9 @@ public class ScreenManager {
                     case "gameScoreBoard":
                         gameScoreBoard = (ScoreBoardGraphic) node;
                         break;
+                    case "lifeBoard":
+                        lifeBoard = (LifeBoardGraphic) node;
+                        break;
                     case "highScoreBoard":
                         break;
                 }
@@ -137,9 +162,6 @@ public class ScreenManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        String path = "/com/pacman/graphicinterface/components/fxml/Arena.fxml";
-//        loadFileArena(path);
     }
 
     public void runAnimations() {
