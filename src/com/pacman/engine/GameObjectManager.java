@@ -39,7 +39,7 @@ public class GameObjectManager {
      * Ghost Blinky. Seu movimento é de perseguir o PacMan
      * aumentanto sua velocidade conforme o PacMan come PacDots.
      */
-    private Ghost blinky;
+    private GhostController blinky;
 
     /**
      * Cor original do Ghost Blicky.
@@ -50,7 +50,7 @@ public class GameObjectManager {
      * Retorna o Ghost Blinky.
      * @return o Ghost Blinky.
      */
-    public Ghost blinky() {
+    public GhostController blinky() {
         return blinky;
     }
 
@@ -58,14 +58,14 @@ public class GameObjectManager {
      * Altera o Ghost Blinky.
      * @param blinky novo Ghost Blinky.
      */
-    public void setBlinky(Ghost blinky) {
+    public void setBlinky(GhostController blinky) {
         this.blinky = blinky;
     }
 
     /**
      * Ghost Pinky. Seu movimento é de perseguir o PacMan com velocidade constante.
      */
-    private Ghost pinky;
+    private GhostController pinky;
 
     /**
      * Cor original do Ghost Pinky.
@@ -76,7 +76,7 @@ public class GameObjectManager {
      * Retorna o Ghost Pinky.
      * @return o Ghost Pinky.
      */
-    public Ghost pinky() {
+    public GhostController pinky() {
         return pinky;
     }
 
@@ -84,14 +84,14 @@ public class GameObjectManager {
      * Altera o Ghost Pinky.
      * @param pinky novo Ghost Pinky.
      */
-    public void setPinky(Ghost pinky) {
+    public void setPinky(GhostController pinky) {
         this.pinky = pinky;
     }
 
     /**
      * Ghost Inky. Seu movimento é aleatório.
      */
-    private Ghost inky;
+    private GhostController inky;
 
     /**
      * Cor original do Ghost Inky.
@@ -102,7 +102,7 @@ public class GameObjectManager {
      * Retorna o Ghost Inky.
      * @return o Ghost Inky.
      */
-    public Ghost inky() {
+    public GhostController inky() {
         return inky;
     }
 
@@ -110,14 +110,14 @@ public class GameObjectManager {
      * Altera o Ghost Inky.
      * @param inky novo Ghost Inky.
      */
-    public void setInky(Ghost inky) {
+    public void setInky(GhostController inky) {
         this.inky = inky;
     }
 
     /**
      * Ghost Clyde. Seu movimento é aleatório.
      */
-    private Ghost clyde;
+    private GhostController clyde;
 
     /**
      * Cor original do Ghost Clyde.
@@ -128,7 +128,7 @@ public class GameObjectManager {
      * Retorna o Ghost Clyde.
      * @return o Ghost Clyde.
      */
-    public Ghost clyde() {
+    public GhostController clyde() {
         return clyde;
     }
 
@@ -136,7 +136,7 @@ public class GameObjectManager {
      * Altera o Ghost Clyde.
      * @param clyde novo Ghost Clyde.
      */
-    public void setClyde(Ghost clyde) {
+    public void setClyde(GhostController clyde) {
         this.clyde = clyde;
     }
 
@@ -248,10 +248,10 @@ public class GameObjectManager {
 
                 GhostGraphic ghostGraphic = (GhostGraphic) sceneElementGraphic;
 
-                if (ghostGraphic.getBodyColor() == Color.PINK) pinky = ghost;
-                else if (ghostGraphic.getBodyColor() == Color.RED) blinky = ghost;
-                else if (ghostGraphic.getBodyColor() == Color.LIMEGREEN) inky = ghost;
-                else clyde = ghost;
+                if (ghostGraphic.getBodyColor() == Color.PINK) pinky = (GhostController) gameObjectController;
+                else if (ghostGraphic.getBodyColor() == Color.RED) blinky = (GhostController) gameObjectController;
+                else if (ghostGraphic.getBodyColor() == Color.LIMEGREEN) inky = (GhostController) gameObjectController;
+                else clyde = (GhostController) gameObjectController;
 
                 gameObjectController.setGameObject(ghost);
                 gameObjectController.setSceneElementGraphic(sceneElementGraphic);
