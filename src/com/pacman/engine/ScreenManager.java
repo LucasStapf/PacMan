@@ -156,6 +156,7 @@ public class ScreenManager {
 
             timelineTranslations.getKeyFrames().clear();
 
+            GameSystem.levelManager.checkEffectEnergyPill();
             GameSystem.collisionManager.checkCollisions(GameSystem.gameObjectManager.dynamicControllers(),
                     GameSystem.gameObjectManager.staticControllers());
             GameSystem.collisionManager.handleCollisions();
