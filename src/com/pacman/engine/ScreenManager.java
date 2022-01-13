@@ -57,6 +57,27 @@ public class ScreenManager {
         this.arena = arena;
     }
 
+    /**
+     * Armazena a tela do jogo, o que inclui a arena, placares de pontos e outras informações.
+     */
+    private AnchorPane gameScreen;
+
+    /**
+     * Retorna a tela do jogo.
+     * @return a tela do jogo.
+     */
+    public AnchorPane gameScreen() {
+        return gameScreen;
+    }
+
+    /**
+     * Altera a tela do jogo.
+     * @param gameScreen nova tela do jogo.
+     */
+    public void setGameScreen(AnchorPane gameScreen) {
+        this.gameScreen = gameScreen;
+    }
+
     public void loadFileArena(String path) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
