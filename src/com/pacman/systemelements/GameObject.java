@@ -2,6 +2,8 @@ package com.pacman.systemelements;
 
 import com.pacman.engine.SystemGame;
 
+import java.util.LinkedList;
+
 /**
  * Classe que representa todos os {@link SceneElement} que podem interagir entre si via colisão.
  */
@@ -22,6 +24,12 @@ public abstract class GameObject extends SceneElement {
      * Atributo que registra se o GameObject é um rigido ou não. Dois GameObject rigidos são podem se sobrepor.
      */
     private boolean rigidBody;
+
+    private final LinkedList<Position> oldPositions = new LinkedList<>();
+
+    public LinkedList<Position> oldPositions() {
+        return oldPositions;
+    }
 
     private Position oldPosition = getPosition();
 
@@ -117,6 +125,7 @@ public abstract class GameObject extends SceneElement {
      * @return true se o GameObject estiver centralizado, false caso contrário.
      */
     public boolean isCenteredOnFloor(Floor floor) {
+
         double fraction = 0.10;
         double deltaX = Math.abs(getPosition().getX() - floor.getPosition().getX());
         double deltaY = Math.abs(getPosition().getY() - floor.getPosition().getY());
@@ -131,9 +140,13 @@ public abstract class GameObject extends SceneElement {
     }
 
     public void returnToOldPosition() {
-        if (oldPosition != null) {
-            setPosition(oldPosition);
-            oldPosition = null;
+//        if (oldPosition != null) {
+//            setPosition(oldPosition);
+//            oldPosition = null;
+//        }
+
+        if (!oldPositions.isEmpty()) {
+            super.setPosition(oldPositions.pop());
         }
     }
 
@@ -145,7 +158,13 @@ public abstract class GameObject extends SceneElement {
      */
     @Override
     public void setPosition(Position position) throws NullPointerException {
-        oldPosition = getPosition();
+//        oldPosition = getPosition();
+//        super.setPosition(position);
+//        getHitBox().setPosition(position);
+
+        if (oldPositions.size() >= 10) oldPositions.removeLast(); // só guarda 10 posições.
+
+        oldPositions.addFirst(getPosition());
         super.setPosition(position);
         getHitBox().setPosition(position);
     }

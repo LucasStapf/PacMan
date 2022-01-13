@@ -17,6 +17,10 @@ public class Arena {
      */
     public Arena() {
         board = new ArrayList<>();
+        for(int i = 0; i < 30; i++) {
+            board.add(new ArrayList<>());
+            for(int j = 0; j < 27; j++) board.get(i).add(null);
+        }
     }
 
     /**

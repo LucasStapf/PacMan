@@ -14,7 +14,7 @@ public class SystemGame {
         STARTED,
         RUNNING,
         PAUSED,
-        ENDED;
+        ENDED
     }
 
     /**
@@ -26,24 +26,27 @@ public class SystemGame {
      * Intervalo de tempo entre cada atualização do sistema do jogo.
      * É utilizado, por exemplo, para o cálculo de distâncias percorridas e para o processamento gráfico.
      */
-    public static final long deltaTime = 100;
+    public static final long deltaTime = 20;
 
     /**
      * Atributo que armazena o gerenciador da arena.
      */
-    private static ArenaManager arenaManager;
-
-    /**
-     * Atributo que armazena o gerenciador dos objectos da arena.
-     */
-    private static GameObjectManager gameObjectManager;
+    public static ArenaManager arenaManager;
 
     /**
      * Atributo que armazena o gerenciador de colisões.
      */
-    private static CollisionManager collisionManager;
+    public static CollisionManager collisionManager;
 
-    private static ScreenManager screenManager;
+    /**
+     * Atributo que armazena o gerenciador dos objetos do jogo.
+     */
+    public static GameObjectManager gameObjectManager;
+
+    /**
+     * Gerenciador da interface gráfica do jogo.
+     */
+    public static ScreenManager screenManager;
 
     /**
      * Construtor padrão.
@@ -56,33 +59,6 @@ public class SystemGame {
         return status;
     }
 
-    /**
-     * Método que retorna o gerenciador da arena do jogo.
-     * @return arenaManager
-     */
-    public static ArenaManager getArenaManager() {
-        return arenaManager;
-    }
-
-    /**
-     * Método que retorna o gerenciador dos objetos do jogo.
-     * @return gameObjectManager
-     */
-    public static GameObjectManager getGameObjectManager() {
-        return gameObjectManager;
-    }
-
-    /**
-     * Método que retorna o gerenciador de colisões do jogo.
-     * @return collisionManager
-     */
-    public static CollisionManager getCollisionManager() {
-        return collisionManager;
-    }
-
-    public static ScreenManager getScreenManager() {
-        return screenManager;
-    }
 
     /**
      * Método utilizado para adicionar um GameObject dinâmicamente (runtime).
@@ -110,9 +86,9 @@ public class SystemGame {
     public static void start() {
 
         gameObjectManager = new GameObjectManager();
-        arenaManager = new ArenaManager();
-        collisionManager = new CollisionManager();
         screenManager = new ScreenManager();
+        collisionManager = new CollisionManager();
+        arenaManager = new ArenaManager();
 
         status = Status.STARTED;
     }
@@ -122,7 +98,6 @@ public class SystemGame {
      */
     public static void run() {
         status = Status.RUNNING;
-        screenManager.runGameScreen();
     }
 
     /**

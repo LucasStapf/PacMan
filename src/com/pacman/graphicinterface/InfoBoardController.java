@@ -23,7 +23,6 @@ public class InfoBoardController {
     }
 
     public void updateInfo() {
-        lifeLabelID.setText(String.valueOf(pacMan.getLife()));
-        scoreLabelID.setText(String.valueOf(pacMan.getScore()));
+
     }
 }

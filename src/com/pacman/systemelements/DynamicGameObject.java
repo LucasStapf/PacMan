@@ -59,8 +59,6 @@ public abstract class DynamicGameObject extends GameObject {
                 break;
         }
 
-        int i, j;
-
         Position position = new Position(x, y);
         setPosition(position);
         getHitBox().setPosition(position);
@@ -93,7 +91,7 @@ public abstract class DynamicGameObject extends GameObject {
                 break;
         }
 
-        if (SystemGame.getArenaManager().getArena().hasFloorOn(x, y)) {
+        if (SystemGame.arenaManager.getArena().hasFloorOn(x, y)) {
             setPosition(new Position(floor.getPosition().getX(), floor.getPosition().getY()));
             getVelocity().setDirection(direction);
         }
@@ -117,6 +115,8 @@ public abstract class DynamicGameObject extends GameObject {
 
         Floor floor = Floor.getFloorFrom(this);
 
+        if (!isCenteredOnFloor(floor)) return;
+
         double x = floor.getPosition().getX();
         double y = floor.getPosition().getY();
 
@@ -138,7 +138,7 @@ public abstract class DynamicGameObject extends GameObject {
                 break;
         }
 
-        if (SystemGame.getArenaManager().getArena().hasFloorOn(x, y)) {
+        if (SystemGame.arenaManager.getArena().hasFloorOn(x, y)) {
             setPosition(new Position(floor.getPosition().getX(), floor.getPosition().getY()));
             getVelocity().setDirection(direction);
         }
