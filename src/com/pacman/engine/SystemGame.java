@@ -49,6 +49,11 @@ public class SystemGame {
     public static ScreenManager screenManager;
 
     /**
+     * Gerenciador do sistema de pontuação do jogo.
+     */
+    public static ScoreManager scoreManager;
+
+    /**
      * Construtor padrão.
      */
     public SystemGame() {
@@ -60,15 +65,15 @@ public class SystemGame {
     }
 
 
-    /**
-     * Método utilizado para adicionar um GameObject dinâmicamente (runtime).
-     * @param gameObject objeto a ser adicionado.
-     */
-    public static void createGameObject(GameObject gameObject) {
-
-        if (arenaManager == null || gameObjectManager == null || collisionManager == null) return;
-
-    }
+//    /**
+//     * Método utilizado para adicionar um GameObject dinâmicamente (runtime).
+//     * @param gameObject objeto a ser adicionado.
+//     */
+//    public static void createGameObject(GameObject gameObject) {
+//
+//        if (arenaManager == null || gameObjectManager == null || collisionManager == null) return;
+//
+//    }
 
     /**
      * Método utilizado para remover um GameObject do jogo dinâmicamente (runtime).
@@ -89,6 +94,7 @@ public class SystemGame {
         screenManager = new ScreenManager();
         collisionManager = new CollisionManager();
         arenaManager = new ArenaManager();
+        scoreManager = new ScoreManager();
 
         status = Status.STARTED;
     }
