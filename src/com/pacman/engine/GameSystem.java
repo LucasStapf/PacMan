@@ -54,6 +54,11 @@ public class GameSystem {
     public static ScoreManager scoreManager;
 
     /**
+     * Gerenciador do sistema de nível do jogo.
+     */
+    public static LevelManager levelManager;
+
+    /**
      * Construtor padrão.
      */
     public GameSystem() {
@@ -64,16 +69,6 @@ public class GameSystem {
         return status;
     }
 
-
-//    /**
-//     * Método utilizado para adicionar um GameObject dinâmicamente (runtime).
-//     * @param gameObject objeto a ser adicionado.
-//     */
-//    public static void createGameObject(GameObject gameObject) {
-//
-//        if (arenaManager == null || gameObjectManager == null || collisionManager == null) return;
-//
-//    }
 
     /**
      * Método utilizado para remover um GameObject do jogo dinâmicamente (runtime).
@@ -95,6 +90,7 @@ public class GameSystem {
         collisionManager = new CollisionManager();
         arenaManager = new ArenaManager();
         scoreManager = new ScoreManager();
+        levelManager = new LevelManager();
 
         status = Status.STARTED;
     }
