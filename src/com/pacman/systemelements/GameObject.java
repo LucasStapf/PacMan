@@ -113,9 +113,7 @@ public abstract class GameObject extends SceneElement {
         if (getPosition().getX() < projX[0]) return false;
         else if (getPosition().getX() > projX[1]) return false;
         else if (getPosition().getY() < projY[0]) return false;
-        else if (getPosition().getY() > projY[1]) return false;
-
-        return true;
+        else return !(getPosition().getY() > projY[1]);
     }
 
     /**
@@ -126,7 +124,7 @@ public abstract class GameObject extends SceneElement {
      */
     public boolean isCenteredOnFloor(Floor floor) {
 
-        double fraction = 0.10;
+        double fraction = 0.20;
         double deltaX = Math.abs(getPosition().getX() - floor.getPosition().getX());
         double deltaY = Math.abs(getPosition().getY() - floor.getPosition().getY());
         return (deltaX <= fraction * Floor.width && deltaY <= fraction * Floor.height);
