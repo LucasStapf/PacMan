@@ -49,11 +49,24 @@ public class LevelManager {
     }
 
 
+    /**
+     * Guarda o atual estado do efeito da pílula de energia.
+     */
     private boolean effectEnergyPill = false;
 
+    /**
+     * Duração, em milissegundos, do efeito da pílula de energia.
+     */
     public final static long deltaTimeEffect = 10000;
+
+    /**
+     * Instante de tempo em que o efeito da pílula de energia foi ativado.
+     */
     private long timeStarted;
 
+    /**
+     * Inicia o efeito da pílula de energia tornando os Ghosts azuis, lentos e vulneráveis.
+     */
     public void startEffectEnergyPill() {
 
         effectEnergyPill = true;
@@ -81,6 +94,10 @@ public class LevelManager {
         ((GhostGraphic) GameSystem.gameobjects.clyde().getSceneElementGraphic()).setBodyColor(color);
     }
 
+    /**
+     * Verificia o atual estado da pílula de energia. Quando o efeito da pípula acabar, todos os Ghosts voltam
+     * para os seus estados padrões.
+     */
     public void checkEffectEnergyPill() {
 
         if (effectEnergyPill && System.currentTimeMillis() - timeStarted > deltaTimeEffect) {
