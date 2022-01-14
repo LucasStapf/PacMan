@@ -17,28 +17,6 @@ import java.io.IOException;
 public class ScreenManager {
 
     /**
-     * Responsável pelo {@link Stage} principal da aplicação.
-     */
-    private Stage primaryStage;
-
-    /**
-     * Retorna o {@link Stage} principal da aplicação.
-     * @return o {@link Stage} principal da aplicação.
-     */
-    public Stage primaryStage() {
-        return primaryStage;
-    }
-
-    /**
-     * Altera o {@link Stage} principal da aplicação.
-     * @param primaryStage novo {@link Stage} principal.
-     */
-    public void setPrimaryStage(Stage primaryStage) throws NullPointerException {
-        if (primaryStage == null) throw new NullPointerException("primaryStage must be not null.");
-        this.primaryStage = primaryStage;
-    }
-
-    /**
      * Armazena a tela do jogo, o que inclui a arena, placares de pontos e outras informações.
      */
     private AnchorPane gameScreen;
