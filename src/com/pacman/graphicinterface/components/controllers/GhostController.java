@@ -17,6 +17,14 @@ public class GhostController implements GameObjectController {
      */
     private Ghost ghost;
 
+    /**
+     * Retorna o {@link Ghost} controlado.
+     * @return o {@link Ghost} controlado.
+     */
+    public Ghost getGhost() {
+        return ghost;
+    }
+
     @Override
     public GameObject getGameObject() {
         return ghost;

@@ -20,6 +20,14 @@ public class PacManController implements GameObjectController {
      */
     private PacMan pacMan;
 
+    /**
+     * Retorna o {@link PacMan} controlado.
+     * @return o {@link PacMan} controlado.
+     */
+    public PacMan getPacMan() {
+        return pacMan;
+    }
+
     @Override
     public GameObject getGameObject() {
         return pacMan;
