@@ -19,23 +19,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        GameSystem.screen.setPrimaryStage(primaryStage);
+        GameSystem.primaryStage = primaryStage;
         primaryStage.setScene(new Scene(GameSystem.screen.gameScreen()));
         primaryStage.show();
 
-        GameSystem.gameObjectManager.updateGameObjectControllers();
-
-        GameSystem.screen.arena().addEventFilter(KeyEvent.KEY_PRESSED, GameSystem.gameObjectManager.player().keyEventHandler());
-
-        GameSystem.gameObjectManager.blinky().setTarget(GameSystem.gameObjectManager.player().getGameObject());
-        GameSystem.gameObjectManager.pinky().setTarget(GameSystem.gameObjectManager.player().getGameObject());
-        GameSystem.gameObjectManager.inky().setMovement(Ghost.Movement.RANDOM);
-        GameSystem.gameObjectManager.inky().getVelocity().updateVelocity(50, Direction.DOWN);
-        GameSystem.gameObjectManager.clyde().setMovement(Ghost.Movement.RANDOM);
-        GameSystem.gameObjectManager.clyde().getVelocity().updateVelocity(50, Direction.DOWN);
-
-        GameSystem.gameObjectManager.player().requestFocus();
-
-        GameSystem.screen.runAnimations();
+        GameSystem.run();
     }
 }
