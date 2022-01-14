@@ -21,6 +21,7 @@ public class PlayerManager {
      */
     public void setHighScore(int highScore) {
         this.highScore = highScore;
+        GameSystem.screen.highScoreBoard().setValue(highScore);
     }
 
     /**
@@ -99,7 +100,7 @@ public class PlayerManager {
      */
     public void restart() {
         setLifes(3);
-        if (gameScore > highScore) setHighScore(gameScore);
+        setHighScore(Math.max(gameScore, highScore));
         setGameScore(0);
     }
 }
