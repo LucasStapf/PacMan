@@ -1,6 +1,8 @@
 package com.pacman.engine;
 
 import com.pacman.systemelements.GameObject;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  * Classe que gerencia toda a lógica do jogo.
@@ -21,6 +23,11 @@ public class GameSystem {
      * Atributo que guarda o atual estado do jogo.
      */
     private static Status status;
+
+    /**
+     * Responsável pelo {@link Stage} principal da aplicação.
+     */
+    public static Stage primaryStage;
 
     /**
      * Intervalo de tempo entre cada atualização do sistema do jogo.
@@ -105,6 +112,11 @@ public class GameSystem {
      * Método responsável por rodar o jogo.
      */
     public static void run() {
+
+        gameobjects.updateGameObjectControllers();
+        screen.arena().addEventFilter(KeyEvent.KEY_PRESSED, gameobjects.player().keyEventHandler());
+        screen.runAnimations();
+
         status = Status.RUNNING;
     }
 
