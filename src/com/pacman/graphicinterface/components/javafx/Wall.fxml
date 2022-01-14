@@ -2,6 +2,6 @@
 
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
     <Region fx:id="wallRegion" prefHeight="130.0" prefWidth="130.0" />
 </fx:root>

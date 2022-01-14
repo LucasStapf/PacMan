@@ -3,6 +3,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Ellipse?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
    <Ellipse fx:id="pacdot" fill="#ffc2c2" layoutX="100.0" layoutY="80.0" radiusX="65.0" radiusY="65.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 </fx:root>

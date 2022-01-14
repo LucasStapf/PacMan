@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.*?>
-<fx:root fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
+<fx:root fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
     <Path fx:id="body" fill="#f50000" layoutY="51.0" stroke="BLACK" strokeType="INSIDE">
         <elements>
             <MoveTo fx:id="initialPoint" x="102.0" />
