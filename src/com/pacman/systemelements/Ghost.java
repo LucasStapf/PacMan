@@ -171,6 +171,7 @@ public final class Ghost extends DynamicGameObject {
                 ScoreManager.bonusScoreGhost += 1;
             } else {
                 GameSystem.player.removeLifes(1);
+                GameSystem.levelManager.respawnMainCaracters();
             }
 
             PlaceGraphic begin = GameSystem.gameobjects.begin();
