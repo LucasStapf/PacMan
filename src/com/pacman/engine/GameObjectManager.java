@@ -198,6 +198,10 @@ public class GameObjectManager {
     public void updateGameObjectControllers() {
 
         gameObjectControllers.clear();
+        dynamicControllers.clear();
+        staticControllers.clear();
+        objectsToDestroy.clear();
+
         Iterator<Node> nodeIterator = GameSystem.screen.arena().getChildren().listIterator();
 
         while (nodeIterator.hasNext()) {
@@ -231,10 +235,12 @@ public class GameObjectManager {
                 gameObjectController = new PacManController();
 
                 PacMan pacMan = new PacMan(position);
+                pacMan.setDefaultPosition(position);
                 pacMan.setDimension(dimension);
                 pacMan.getVelocity().updateVelocity(defaultModulus, Direction.RIGHT);
 
                 player = (PacManController) gameObjectController;
+                ((PacManGraphic) sceneElementGraphic).requestFocus();
 
                 gameObjectController.setGameObject(pacMan);
                 gameObjectController.setSceneElementGraphic(sceneElementGraphic);
@@ -273,9 +279,9 @@ public class GameObjectManager {
                 gameObjectController = new GhostController();
 
                 Ghost ghost = new Ghost(position);
+                ghost.setDefaultPosition(position);
                 ghost.setDimension(dimension);
-                ghost.getVelocity().setModulus(defaultModulus);
-                ghost.setMovement(Ghost.Movement.FOLLOW_TARGET);
+                ghost.getVelocity().updateVelocity(defaultModulus, Direction.DOWN);
 
                 GhostGraphic ghostGraphic = (GhostGraphic) sceneElementGraphic;
 
@@ -320,11 +326,25 @@ public class GameObjectManager {
             }
         }
 
+        setDefaultPropertiesGhosts();
+
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 27; j++) {
                 GameSystem.arenaManager.updateEdgesArena(GameSystem.arenaManager.getArena().getBoard(), i, j);
             }
         }
+    }
+
+    public void setDefaultPropertiesGhosts() {
+
+        blinky.getGhost().setTarget(player.getPacMan());
+        blinky.getGhost().setMovement(Ghost.Movement.FOLLOW_TARGET);
+
+        pinky.getGhost().setTarget(player.getPacMan());
+        pinky.getGhost().setMovement(Ghost.Movement.FOLLOW_TARGET);
+
+        inky.getGhost().setMovement(Ghost.Movement.RANDOM);
+        clyde.getGhost().setMovement(Ghost.Movement.RANDOM);
     }
 
     /**
