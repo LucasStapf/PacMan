@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.pacman.graphicinterface.components.javafx.PacManGraphic?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane prefHeight="620.0" prefWidth="700.0" style="-fx-background-color: black; -fx-border-color: yellow; -fx-border-width: 4 2 4 2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <fx:include source="ArenaWalls.fxml" />
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="700.0" spacing="14.0" style="-fx-background-color: transparent;">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow; -fx-border-width: 8 0 8 0; -fx-border-radius: 50 50 50 50;">
+               <children>
+                  <Label layoutX="118.0" layoutY="31.0" text="PA    MAN" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="96.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="29.0" text="PA    MAN" textFill="YELLOW">
+                     <font>
+                        <Font name="System Bold" size="96.0" />
+                     </font>
+                  </Label>
+                  <PacManGraphic bodyColor="WHITE" heightValue="70.0" layoutX="250.0" layoutY="68.0" mouthAngle="45.0" widthValue="70.0" />
+                  <PacManGraphic heightValue="70.0" layoutX="249.0" layoutY="65.0" mouthAngle="45.0" widthValue="70.0" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="playButton" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: yellow; -fx-border-width: 4 4 4 4; -fx-border-radius: 14 14 14 14;" text="PLAY" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: yellow; -fx-border-width: 4 4 4 4; -fx-border-radius: 14 14 14 14;" text="EXIT" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
