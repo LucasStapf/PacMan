@@ -93,4 +93,13 @@ public class PlayerManager {
         this.lifes -= lifes;
         setLifes(this.lifes);
     }
+
+    /**
+     * Reinicia os valores para o padrão (menos o highscore).
+     */
+    public void restart() {
+        setLifes(3);
+        if (gameScore > highScore) setHighScore(gameScore);
+        setGameScore(0);
+    }
 }
