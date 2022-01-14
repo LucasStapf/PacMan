@@ -1,6 +1,7 @@
 package com.pacman.engine;
 
 import com.pacman.systemelements.GameObject;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -113,6 +114,9 @@ public class GameSystem {
      */
     public static void run() {
 
+        primaryStage.setScene(new Scene(GameSystem.screen.gameScreen()));
+        primaryStage.show();
+
         gameobjects.updateGameObjectControllers();
         screen.arena().addEventFilter(KeyEvent.KEY_PRESSED, gameobjects.player().keyEventHandler());
         screen.runAnimations();
@@ -132,15 +136,20 @@ public class GameSystem {
         screen.timelineTranslations.stop();
         screen.timelineAnimations.stop();
 
-        gameobjects = new GameObjectManager();
-        screen = new ScreenManager();
-        collisions = new CollisionManager();
-        arenaManager = new ArenaManager();
-        scoreManager = new ScoreManager();
-        levelManager = new LevelManager();
-        player.restart();
+        screen.timelineTranslations.setOnFinished(event -> {
 
-        status = Status.STARTED;
+            gameobjects = new GameObjectManager();
+            screen = new ScreenManager();
+            collisions = new CollisionManager();
+            arenaManager = new ArenaManager();
+            scoreManager = new ScoreManager();
+            levelManager = new LevelManager();
+            player.restart();
+
+            status = Status.STARTED;
+
+            run();
+        });
     }
 
     /**
