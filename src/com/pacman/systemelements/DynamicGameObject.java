@@ -7,6 +7,21 @@ import com.pacman.engine.GameSystem;
  */
 public abstract class DynamicGameObject extends GameObject {
 
+    private Position defaultPosition = new Position();
+
+    public Position defaultPosition() {
+        return defaultPosition;
+    }
+
+    public void setDefaultPosition(Position defaultPosition) {
+        this.defaultPosition = defaultPosition;
+    }
+
+    public void returnDefaultPosition() {
+        oldPositions().clear();
+        setPosition(defaultPosition);
+    }
+
     /**
      * Atributo que guarda a {@link Velocity} do DynamicGameObject.
      */
