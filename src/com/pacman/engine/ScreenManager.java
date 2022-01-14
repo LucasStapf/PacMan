@@ -110,6 +110,27 @@ public class ScreenManager {
     }
 
     /**
+     * Armazena o placar que informa a atual pontuação máxima do jogador.
+     */
+    private ScoreBoardGraphic highScoreBoard;
+
+    /**
+     * Retorna o placar responsável pela atual máxima pontuação do jogodor.
+     * @return o placar responsável pela atual máxima pontuação do jogodor.
+     */
+    public ScoreBoardGraphic highScoreBoard() {
+        return highScoreBoard;
+    }
+
+    /**
+     * Altera o placar responsável pela máxima pontuação atual do jogador.
+     * @param highScoreBoard novo placar.
+     */
+    public void setHighScoreBoard(ScoreBoardGraphic highScoreBoard) {
+        this.highScoreBoard = highScoreBoard;
+    }
+
+    /**
      * Armazena o placar de vidas do jogador.
      */
     private LifeBoardGraphic lifeBoard;
@@ -149,6 +170,7 @@ public class ScreenManager {
                         lifeBoard = (LifeBoardGraphic) node;
                         break;
                     case "highScoreBoard":
+                        highScoreBoard = (ScoreBoardGraphic) node;
                         break;
                 }
             }
