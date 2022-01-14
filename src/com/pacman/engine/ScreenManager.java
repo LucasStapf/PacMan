@@ -59,6 +59,7 @@ public class ScreenManager {
         this.gameScreen = gameScreen;
     }
 
+    private final String defaultPathArena = "/com/pacman/graphicinterface/components/fxml/Arena.fxml";
     /**
      * Armazena a arena com todos os recursos inclusos (representações de Ghosts, PacDots, etc.)
      */
@@ -87,6 +88,20 @@ public class ScreenManager {
     public void loadFileArena(String path) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+
+        try {
+            arena = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Carrega o arquivo padrão da arena.
+     */
+    public void loadFileArena() {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(defaultPathArena));
 
         try {
             arena = loader.load();
@@ -164,13 +179,17 @@ public class ScreenManager {
         }
     }
 
+    public final Timeline timelineTranslations = new Timeline();
+    public final Timeline timelineAnimations = new Timeline();
+
+    /**
+     * Realiza as animações e translações dos GameObjects da arena.
+     */
     public void runAnimations() {
 
-        Timeline timelineTranslations = new Timeline();
         timelineTranslations.getKeyFrames().add(new KeyFrame(Duration.millis(1)));
         timelineTranslations.play();
 
-        Timeline timelineAnimations = new Timeline();
         timelineAnimations.getKeyFrames().add(new KeyFrame(Duration.millis(1)));
         timelineAnimations.play();
 
@@ -178,7 +197,7 @@ public class ScreenManager {
 
             timelineTranslations.getKeyFrames().clear();
 
-            GameSystem.levelManager.checkEffectEnergyPill();
+            GameSystem.levelManager.check();
             GameSystem.collisions.checkCollisions(GameSystem.gameobjects.dynamicControllers(),
                     GameSystem.gameobjects.staticControllers());
             GameSystem.collisions.handleCollisions();
@@ -213,18 +232,38 @@ public class ScreenManager {
 
     }
 
+    /**
+     * Converte a abscissa de um SceneElement do jogo para a sua respectiva abscissa na tela.
+     * @param sceneElement elemento alvo.
+     * @return a abscissa do elemento na tela.
+     */
     public static double convertGameToScreenX(SceneElement sceneElement) {
         return sceneElement.getPosition().getX() - sceneElement.getDimension().getWidth() / 2.0;
     }
 
+    /**
+     * Converte a ordenada de um SceneElement do jogo para a sua respectiva ordenada na tela.
+     * @param sceneElement elemento alvo.
+     * @return a ordenada do elemento na tela.
+     */
     public static double convertGameToScreenY(SceneElement sceneElement) {
         return sceneElement.getPosition().getY() - sceneElement.getDimension().getHeight() / 2.0;
     }
 
+    /**
+     * Converte a abscissa de um Node na tela para a sua respectiva abscissa no jogo.
+     * @param node nodo alvo.
+     * @return a abscissa do elemento no jogo.
+     */
     public static double convertScreenToGameX(Node node) {
         return node.getLayoutX() + node.getLayoutBounds().getWidth() / 2.0;
     }
 
+    /**
+     * Converte a ordenada de um Node na tela para a sua respectiva ordenada no jogo.
+     * @param node nodo alvo.
+     * @return a ordenada do elemento no jogo.
+     */
     public static double convertScreenToGameY(Node node) {
         return node.getLayoutY() + node.getLayoutBounds().getHeight() / 2.0;
     }
