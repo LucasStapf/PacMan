@@ -139,7 +139,6 @@ public class LevelManager {
      * Faz com que todos os Ghosts e o PacMan retornem para as suas posições iniciais e velocidades iniciais.
      */
     public void respawnMainCaracters() {
-
         GameSystem.gameobjects.player().getPacMan().returnDefaultPosition();
         GameSystem.gameobjects.player().getPacMan().getVelocity().setDirection(Direction.RIGHT);
         GameSystem.gameobjects.blinky().getGhost().returnDefaultPosition();
@@ -149,23 +148,8 @@ public class LevelManager {
         GameSystem.gameobjects.clyde().getGhost().returnDefaultPosition();
     }
 
-    public void reloadArena() {
-
-        GameSystem.screen.timelineTranslations.stop();
-        GameSystem.screen.timelineAnimations.stop();
-
-        GameSystem.screen.timelineTranslations.setOnFinished(event -> {
-            GameSystem.screen.loadFileArena();
-            GameSystem.gameobjects.updateGameObjectControllers();
-            GameSystem.player.restart();
-            GameSystem.screen.runAnimations();
-        });
-
-    }
-
     public void check() {
-
         checkEffectEnergyPill();
-        if (GameSystem.player.lifes() == 0) reloadArena();
+        if (GameSystem.player.lifes() == 0) GameSystem.restart();
     }
 }
