@@ -105,22 +105,18 @@ public class PacManController implements GameObjectController {
             switch (event.getCode()) {
                 case UP:
                     pacMan.changeDirectionTo(Direction.DOWN);
-//                    pacMan.getVelocity().setDirection(Direction.DOWN);
                     break;
 
                 case DOWN:
                     pacMan.changeDirectionTo(Direction.UP);
-//                    pacMan.getVelocity().setDirection(Direction.UP);
                     break;
 
                 case RIGHT:
                     pacMan.changeDirectionTo(Direction.RIGHT);
-//                    pacMan.getVelocity().setDirection(Direction.RIGHT);
                     break;
 
                 case LEFT:
                     pacMan.changeDirectionTo(Direction.LEFT);
-//                    pacMan.getVelocity().setDirection(Direction.LEFT);
                     break;
             }
         }

@@ -9,7 +9,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -151,6 +150,9 @@ public class ScreenManager {
         this.lifeBoard = lifeBoard;
     }
 
+    /**
+     * Construtor padrão.
+     */
     public ScreenManager() {
 
         String path = "/com/pacman/graphicinterface/components/fxml/GameScreen.fxml";
@@ -179,7 +181,14 @@ public class ScreenManager {
         }
     }
 
+    /**
+     * Timeline responsável pela translação dos GameObjects.
+     */
     public final Timeline timelineTranslations = new Timeline();
+
+    /**
+     * Timeline responsável pelas animações dos GameObjects.
+     */
     public final Timeline timelineAnimations = new Timeline();
 
     /**

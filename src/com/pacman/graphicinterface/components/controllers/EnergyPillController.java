@@ -12,6 +12,9 @@ import javafx.util.Duration;
 
 public class EnergyPillController implements GameObjectController {
 
+    /**
+     * Atributo responsável por guardar o objeto {@link EnergyPill}.
+     */
     private EnergyPill energyPill;
 
     @Override
@@ -25,6 +28,9 @@ public class EnergyPillController implements GameObjectController {
         else energyPill = (EnergyPill) gameObject;
     }
 
+    /**
+     * Representação gráfica do objeto {@link EnergyPill}.
+     */
     private EnergyPillGraphic energyPillGraphic;
 
     @Override
@@ -63,6 +69,6 @@ public class EnergyPillController implements GameObjectController {
 
     @Override
     public void destroy() {
-//        GameSystem.getScreenManager().getBoardPane().getChildren().remove(energyPillID);
+
     }
 }

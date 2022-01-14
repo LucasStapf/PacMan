@@ -5,3 +5,12 @@
 out/production/PacMan/com/pacman/systemelements/Arena.txt
 *.jar
 *.MF
+/out/production/PacMan/com/pacman/graphicinterface/components/javafx/EnergyPill.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/javafx/Floor.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/GameScoreBoard.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/GameScreen.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/javafx/Ghost.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/HighScoreBoard.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/javafx/PacDot.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/javafx/PacMan.fxml
+/out/production/PacMan/com/pacman/graphicinterface/components/javafx/Wall.fxml

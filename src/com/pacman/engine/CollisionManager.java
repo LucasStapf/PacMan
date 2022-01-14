@@ -33,8 +33,8 @@ public class CollisionManager {
 
     /**
      * Método que verifica se há colisões entre os GameObjects da arena do jogo.
-     * @param dynamicControllers
-     * @param staticControllers
+     * @param dynamicControllers lista de objetos dinâmicos.
+     * @param staticControllers lista de objetos estáticos.
      */
     public void checkCollisions(LinkedList<GameObjectController> dynamicControllers, LinkedList<GameObjectController> staticControllers) {
 
@@ -108,73 +108,5 @@ public class CollisionManager {
 
             iterator.remove();
         }
-    }
-
-
-    /**
-     * Método em construção
-     * @param dynamicGameObject
-     * @param gameObject
-     * @param distance
-     */
-    private void moveAwayInX(DynamicGameObject dynamicGameObject, GameObject gameObject, double distance) {
-
-        double x1;
-        double y1;
-        double x2;
-        x1 = dynamicGameObject.getPosition().getX();
-        y1 = dynamicGameObject.getPosition().getY();
-        x2 = gameObject.getPosition().getX();
-
-        if (x1 > x2) dynamicGameObject.setPosition(new Position(x1 + distance, y1));
-        else dynamicGameObject.setPosition(new Position(x1 - distance, y1));
-    }
-
-    /**
-     * Método em construção
-     * @param dynamicGameObject
-     * @param gameObject
-     * @param distance
-     */
-    private void moveAwayInY(DynamicGameObject dynamicGameObject, GameObject gameObject, double distance) {
-
-        double x1;
-        double y1;
-        double y2;
-        x1 = dynamicGameObject.getPosition().getX();
-        y1 = dynamicGameObject.getPosition().getY();
-        y2 = gameObject.getPosition().getY();
-
-        if (y1 > y2) dynamicGameObject.setPosition(new Position(x1, y1 + distance));
-        else dynamicGameObject.setPosition(new Position(x1, y1 - distance));
-    }
-
-    /**
-     * Método em construção
-     * @param dGameObject
-     * @param gameObject
-     */
-    public void breakOverlap(DynamicGameObject dGameObject, GameObject gameObject) {
-
-        double w1, w2;
-        double h1, h2;
-        double x1, x2;
-        double y1, y2;
-
-        w1 = dGameObject.getHitBox().getWidth() / 2;
-        h1 = dGameObject.getHitBox().getHeight() / 2;
-        x1 = dGameObject.getPosition().getX();
-        y1 = dGameObject.getPosition().getY();
-
-        w2 = gameObject.getHitBox().getWidth() / 2;
-        h2 = gameObject.getHitBox().getHeight() / 2;
-        x2 = gameObject.getPosition().getX();
-        y2 = gameObject.getPosition().getY();
-
-        double dX = ((w1 + w2) / 2) - Math.abs(x1 - x2);
-        double dY = ((h1 + h2) / 2) - Math.abs(y1 - y2);
-
-        moveAwayInX(dGameObject, gameObject, dX);
-        moveAwayInY(dGameObject, gameObject, dY);
     }
 }

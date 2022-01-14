@@ -177,6 +177,9 @@ public class LevelManager {
         GameSystem.gameobjects.clyde().getGhost().returnDefaultPosition();
     }
 
+    /**
+     * Realiza várias verificações e atua sobre elas.
+     */
     public void check() {
         checkEffectEnergyPill();
         if (GameSystem.player.lifes() == 0) GameSystem.restart();

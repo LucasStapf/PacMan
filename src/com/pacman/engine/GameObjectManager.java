@@ -339,6 +339,9 @@ public class GameObjectManager {
         }
     }
 
+    /**
+     * Altera as propriedades dos Ghosts para os valores padrão.
+     */
     public void setDefaultPropertiesGhosts() {
 
         blinky.getGhost().setTarget(player.getPacMan());
@@ -396,7 +399,7 @@ public class GameObjectManager {
     /**
      * Lista de {@link GameObject} a serem destruidos.
      */
-    private LinkedList<GameObject> objectsToDestroy;
+    private final LinkedList<GameObject> objectsToDestroy;
 
     public LinkedList<GameObject> getObjectsToDestroy() {
         return objectsToDestroy;
