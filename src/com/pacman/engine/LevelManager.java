@@ -1,6 +1,7 @@
 package com.pacman.engine;
 
 import com.pacman.graphicinterface.components.javafx.GhostGraphic;
+import com.pacman.systemelements.Direction;
 import com.pacman.systemelements.Ghost;
 import javafx.scene.paint.Color;
 
@@ -62,7 +63,7 @@ public class LevelManager {
     /**
      * Instante de tempo em que o efeito da pílula de energia foi ativado.
      */
-    private long timeStarted;
+    private long timeStartedEffect;
 
     /**
      * Inicia o efeito da pílula de energia tornando os Ghosts azuis, lentos e vulneráveis.
@@ -70,7 +71,7 @@ public class LevelManager {
     public void startEffectEnergyPill() {
 
         effectEnergyPill = true;
-        timeStarted = System.currentTimeMillis();
+        timeStartedEffect = System.currentTimeMillis();
 
         Color color = Color.CADETBLUE;
         float modulus = GameObjectManager.modulusInEffect;
@@ -100,7 +101,7 @@ public class LevelManager {
      */
     public void checkEffectEnergyPill() {
 
-        if (effectEnergyPill && System.currentTimeMillis() - timeStarted > deltaTimeEffect) {
+        if (effectEnergyPill && System.currentTimeMillis() - timeStartedEffect > deltaTimeEffect) {
 
             effectEnergyPill = false;
             ScoreManager.bonusScoreGhost = 1;
@@ -132,5 +133,39 @@ public class LevelManager {
                     GameSystem.gameobjects.colorClyde
             );
         }
+    }
+
+    /**
+     * Faz com que todos os Ghosts e o PacMan retornem para as suas posições iniciais e velocidades iniciais.
+     */
+    public void respawnMainCaracters() {
+
+        GameSystem.gameobjects.player().getPacMan().returnDefaultPosition();
+        GameSystem.gameobjects.player().getPacMan().getVelocity().setDirection(Direction.RIGHT);
+        GameSystem.gameobjects.blinky().getGhost().returnDefaultPosition();
+        GameSystem.gameobjects.blinky().getGhost().getVelocity().setModulus(GameObjectManager.defaultModulus);
+        GameSystem.gameobjects.pinky().getGhost().returnDefaultPosition();
+        GameSystem.gameobjects.inky().getGhost().returnDefaultPosition();
+        GameSystem.gameobjects.clyde().getGhost().returnDefaultPosition();
+    }
+
+    public void reloadArena() {
+
+        GameSystem.screen.timelineTranslations.stop();
+        GameSystem.screen.timelineAnimations.stop();
+
+        GameSystem.screen.timelineTranslations.setOnFinished(event -> {
+            GameSystem.screen.loadFileArena();
+            GameSystem.gameobjects.updateGameObjectControllers();
+            GameSystem.player.restart();
+            GameSystem.screen.runAnimations();
+        });
+
+    }
+
+    public void check() {
+
+        checkEffectEnergyPill();
+        if (GameSystem.player.lifes() == 0) reloadArena();
     }
 }
