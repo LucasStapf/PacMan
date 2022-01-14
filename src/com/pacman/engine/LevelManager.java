@@ -7,6 +7,8 @@ import javafx.scene.paint.Color;
 
 public class LevelManager {
 
+    private boolean extraLife = false;
+
     /**
      * Número de PacDots restantes na arena.
      */
@@ -26,6 +28,20 @@ public class LevelManager {
      */
     public void setPacdotsNumber(int pacdotsNumber) {
         this.pacdotsNumber = pacdotsNumber;
+    }
+
+    /**
+     * Aumenta uma unidade o número total de PacDots.
+     */
+    public void addPacDot() {
+        pacdotsNumber++;
+    }
+
+    /**
+     * Diminui uma unidade o número total de PacDots.
+     */
+    public void removePacDot() {
+        pacdotsNumber--;
     }
 
     /**
@@ -49,6 +65,19 @@ public class LevelManager {
         this.energyPillNumber = energyPillNumber;
     }
 
+    /**
+     * Aumenta uma unidade o número total de EnergyPills.
+     */
+    public void addEnergyPill() {
+        energyPillNumber++;
+    }
+
+    /**
+     * Diminiu uma unidade o número total de EnergyPills.
+     */
+    public void removeEnergyPill() {
+        energyPillNumber--;
+    }
 
     /**
      * Guarda o atual estado do efeito da pílula de energia.
@@ -151,5 +180,10 @@ public class LevelManager {
     public void check() {
         checkEffectEnergyPill();
         if (GameSystem.player.lifes() == 0) GameSystem.restart();
+        else if (pacdotsNumber == 0 && energyPillNumber == 0) GameSystem.reload();
+        else if (!extraLife && GameSystem.player.gameScore() >= 10000) {
+            extraLife = true;
+            GameSystem.player.addLifes(1);
+        }
     }
 }
