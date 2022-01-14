@@ -115,6 +115,22 @@ public class GameSystem {
 
     }
 
+    public static void restart() {
+
+        screen.timelineTranslations.stop();
+        screen.timelineAnimations.stop();
+
+        gameobjects = new GameObjectManager();
+        screen = new ScreenManager();
+        collisions = new CollisionManager();
+        arenaManager = new ArenaManager();
+        scoreManager = new ScoreManager();
+        levelManager = new LevelManager();
+        player.restart();
+
+        status = Status.STARTED;
+    }
+
     /**
      * Método responsável por encerrar o jogo.
      */
