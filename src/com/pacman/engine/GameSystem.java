@@ -131,6 +131,26 @@ public class GameSystem {
 
     }
 
+    public static void reload() {
+
+        screen.timelineTranslations.stop();
+        screen.timelineAnimations.stop();
+
+        screen.timelineTranslations.setOnFinished(event -> {
+
+            gameobjects = new GameObjectManager();
+            screen = new ScreenManager();
+            collisions = new CollisionManager();
+            arenaManager = new ArenaManager();
+            scoreManager = new ScoreManager();
+            levelManager = new LevelManager();
+
+            status = Status.STARTED;
+
+            run();
+        });
+    }
+
     public static void restart() {
 
         screen.timelineTranslations.stop();
