@@ -261,6 +261,8 @@ public class GameObjectManager {
                 gameObjectControllers.add(gameObjectController);
                 staticControllers.add(gameObjectController);
 
+                GameSystem.levelManager.addPacDot();
+
             } else if (sceneElementGraphic instanceof FloorGraphic) {
 
                 FloorGraphic floorGraphic = (FloorGraphic) sceneElementGraphic;
@@ -308,6 +310,8 @@ public class GameObjectManager {
 
                 gameObjectControllers.add(gameObjectController);
                 staticControllers.add(gameObjectController);
+
+                GameSystem.levelManager.addEnergyPill();
 
             } else if (sceneElementGraphic instanceof PlaceGraphic) {
 
